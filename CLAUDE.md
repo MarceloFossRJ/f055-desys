@@ -227,9 +227,9 @@ stroke.
 
 ## Components
 
-Fifteen components are **specified, not implemented**: Button, ButtonGroup,
+Sixteen components are **specified, not implemented**: Button, ButtonGroup,
 CloseButton, Badge, Input, Select, MultiSelect, Slider, Toggle, Calendar, Card,
-Table, ListGroup, Tabs, Breadcrumb. Each has a `README.md` under `components/<Name>/`
+Table, ListGroup, Nav, Tabs, Breadcrumb. Each has a `README.md` under `components/<Name>/`
 covering anatomy, variants, which token every part uses, and the decisions that
 are easy to get wrong — plus a `preview.html` that renders it from the real
 tokens.
@@ -240,12 +240,20 @@ from another design system; the spec records choices that are specific to F055
 (the pill on every control, the checkbox being the one square thing, `none` as a
 real elevation for inputs, tabular numerals on every numeric cell).
 
-If a component you need is not among the fifteen, say so rather than inventing one —
+If a component you need is not among the sixteen, say so rather than inventing one —
 the pattern for adding it is to write the spec first.
 
 **A floating panel (dropdown, popover, menu, tooltip, date picker) uses
 `popover` + `radius-14` + `shadow-overlay`.** Not card geometry. Select's README
 explains why.
+
+**Every control is `box-sizing: border-box`.** Heights in the specs are the
+rendered height, border included. Without it a 32px control with a 1px border
+renders at 34px, and one with block padding is far worse.
+
+**Nav, ListGroup and Tabs look alike and mean different things.** Nav is
+destinations in page chrome; ListGroup is rows inside a page; Tabs switch
+between views of one thing. Nav's README has the test.
 
 **Rows separated by space are a ListGroup; rows separated by hairlines are a
 Table.** If you are adding a `border-bottom` between list rows, you want a
