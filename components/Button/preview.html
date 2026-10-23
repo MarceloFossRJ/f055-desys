@@ -80,5 +80,11 @@
     stroke-linecap: round; stroke-linejoin: round;
   }
 
+  /* type style `caption`: 12 / 16 / 400. Defined here rather than relying on a
+     generated utility class, whose name differs between the repo stylesheet
+     (.type-caption) and the design-system page (.caption). */
+  .caption {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 400;
+  }
   .note { margin: 0; color: var(--muted-foreground); max-width: 60ch; }
 </style>

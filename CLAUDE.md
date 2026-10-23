@@ -149,6 +149,13 @@ makes the type layer impossible to audit.
 In Compose there is no `textTransform`, so `eyebrow` carries none: uppercase the
 string at the call site.
 
+**Loading the fonts is the consumer's job.** `tokens.css` declares the families
+but fetches nothing, so a project that does not load Roboto and Geist Mono
+silently renders in the fallback stack. On web that is one `@import` from Google
+Fonts (README has the line, with the exact weights); in KMP, pass real
+`FontFamily` values to `F055Theme`; in SwiftUI, bundle the faces or
+`Font.custom` falls back. No check catches this — it looks fine, just wrong.
+
 ## Radius
 
 | Token | Value | For |

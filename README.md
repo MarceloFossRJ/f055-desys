@@ -157,6 +157,19 @@ Every token is then a utility: `bg-background`, `text-muted-foreground`,
 Spacing needs no configuration — the eleven steps are exactly Tailwind's own, so
 `p-5` is the card padding and `gap-1.5` the button gap.
 
+**The stylesheet declares the font families but does not load them.**
+`--font-sans` and `--font-mono` name Roboto and Geist Mono with fallback stacks;
+nothing fetches the faces. Without this line you silently get the fallbacks,
+which is a visible downgrade that no check will catch:
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap');
+```
+
+Those are the only weights the system uses — Roboto 400/500/600, Geist Mono
+400/500. Self-host instead if you prefer; the point is that loading is the
+consumer's job on every platform, KMP and SwiftUI included.
+
 The file also defines `.type-*` classes (`type-label`, `type-display`,
 `type-numeric`) that bundle family, size, line height, weight and numerals. In a
 template those save repeating four utilities on every label; in React, composing

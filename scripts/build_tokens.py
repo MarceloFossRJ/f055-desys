@@ -100,6 +100,12 @@ def build_web_css() -> None:
     # would not resolve.
     theme_shadows = "\n".join(
         f"  --shadow-{k}: var(--elevation-{k});" for k in ELEV)
+
+    # The same aliases in :root, so `var(--shadow-card)` resolves in plain CSS
+    # too. Without these the component previews render flat wherever Tailwind is
+    # not in the pipeline -- opened straight from disk, or in a screenshot job --
+    # because @theme is a Tailwind construct, not a cascade layer.
+    root_shadows = theme_shadows
     text = "\n".join(
         f"  --text-{k}: {v['fontSize']};\n  --text-{k}--line-height: {v['lineHeight']};"
         for k, v in SCALE.items()
@@ -153,6 +159,8 @@ def build_web_css() -> None:
 {spaces}
 
 {shadows("light")}
+
+{root_shadows}
 }}
 
 .dark {{

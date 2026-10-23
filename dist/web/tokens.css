@@ -73,6 +73,11 @@
   --elevation-card: 0 0 0 1px #0A0A0A0D, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A;
   --elevation-thumb: 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A;
   --elevation-raised: 0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A;
+
+  --shadow-none: var(--elevation-none);
+  --shadow-card: var(--elevation-card);
+  --shadow-thumb: var(--elevation-thumb);
+  --shadow-raised: var(--elevation-raised);
 }
 
 .dark {

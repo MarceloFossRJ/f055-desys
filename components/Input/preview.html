@@ -60,5 +60,10 @@
     fill: none; stroke: var(--muted-foreground); stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
+  /* type style `caption`: 12 / 16 / 400, defined locally so the preview depends
+     on tokens only -- utility class names differ between contexts. */
+  .caption {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 400;
+  }
   .help { margin: 0; color: var(--muted-foreground); }
 </style>
