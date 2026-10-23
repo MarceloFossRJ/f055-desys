@@ -1,0 +1,38 @@
+name: tokens
+
+# dist/ is generated AND committed, so the two can drift silently: someone
+# hand-edits a file under dist/, or changes tokens/ without rebuilding, and a
+# consuming stack quietly picks up stale values. This job makes that a failing
+# build instead of a mystery.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # No dependencies: build_tokens.py is standard library only.
+      - name: Rebuild generated outputs
+        run: python3 scripts/build_tokens.py
+
+      - name: Fail if dist/ is out of date
+        run: |
+          if [ -n "$(git status --porcelain dist/)" ]; then
+            echo "::error::dist/ does not match tokens/. Run 'python3 scripts/build_tokens.py' and commit the result."
+            git --no-pager diff --stat dist/
+            git --no-pager diff dist/
+            exit 1
+          fi
+          echo "dist/ is in sync with tokens/"
+
+      - name: Validate component previews
+        run: python3 scripts/check_tokens.py
