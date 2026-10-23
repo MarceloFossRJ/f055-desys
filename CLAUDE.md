@@ -237,6 +237,10 @@ give.
 
 ## Per-stack usage
 
+Terse rules below. `README.md` has the same ground with working code examples
+per stack — read that if you need the actual wiring rather than the constraint.
+
+
 **Next.js / Rails / FastAPI+Jinja2 (anything with Tailwind)**
 
 Import `dist/web/tokens.css` once, after `@import "tailwindcss";`. Then:
@@ -312,3 +316,18 @@ minimum on dark surfaces (5.20:1 on background, 3.97:1 on muted). Do not
 
 `Archivo` is declared in the Paper file's font list but used on zero nodes. It
 is deliberately not a token.
+
+## Why the system looks the way it does
+
+Three facts explain most of the decisions above, and are worth holding when you
+are deciding how something should look rather than looking up a value:
+
+- **One hue.** Everything structural is neutral; a single red ramp carries
+  brand, action and data. So **red means action or data, never decoration** — a
+  red surface is a button you can press or a value you can read. Using it to
+  liven up a panel spends the one signal the system has.
+- **Everything is a pill.** Controls are fully rounded at every height; cards
+  are 24px. A square corner reads as foreign.
+- **Edges, not lift.** Surfaces separate with a 1px hairline ring; the drop
+  shadow behind it does almost nothing. Reach for a border or a heavier shadow
+  and the result stops looking like F055.

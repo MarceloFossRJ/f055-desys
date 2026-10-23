@@ -57,6 +57,29 @@ no 20px step at all. And surfaces are defined by a **crisp 1px edge** rather
 than by lift — every elevation is a hairline ring with a drop shadow doing very
 little behind it.
 
+## Using the tokens
+
+Pick a token by the **role** it plays, not by how it looks.
+
+Always pair a surface with its own foreground — `primary-foreground` on
+`primary`, `card-foreground` on `card`. Those pairings are contrast-checked;
+ad-hoc combinations are not. Putting plain `foreground` on `primary` is the most
+common way to break this system.
+
+One `primary` per view. If two things on screen are both primary red, neither
+reads as the main action.
+
+`muted` and `accent` currently resolve to the same value. They are still two
+tokens — use the one that matches intent, so they can diverge later without a
+find-and-replace.
+
+Use a **named type style** (`label`, `button`, `eyebrow`, `numeric`) rather than
+a raw size. The style bundles family, size, line height, weight and numeral
+behaviour, which is what keeps a label in a Rails form and a label in a Compose
+screen looking like the same thing.
+
+The chart ramp runs light to dark, `chart-1` through `chart-5`. Use it in order.
+
 ## Design decisions worth knowing
 
 **Naming follows shadcn/ui v4** for colour. The reference already used those
@@ -91,10 +114,121 @@ flagged.
 1.00:1. `ring-offset` puts a band of page colour in between. Every focus state
 uses both tokens; one without the other is a bug.
 
+## Consuming F055 in a project
+
+Everything under `dist/` is generated from `tokens/` by
+`python3 scripts/build_tokens.py`. Nothing under `dist/` is edited by hand.
+
+**Never write a raw design value in application code** — no hex, `rgb()` or
+`oklch()`; no Tailwind palette utilities like `bg-red-600`; no raw `font-size`,
+`line-height`, `font-family`, `border-radius` or `box-shadow`. If no token fits,
+add one under `tokens/` and rebuild rather than inlining a literal.
+
+### Focus states
+
+Every focusable control draws both tokens, always together:
+
+```html
+<button class="... focus-visible:ring-2 focus-visible:ring-ring
+               focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset">
+```
+
+Or in hand-written CSS, as two shadows so the ring stays outside the box model:
+
+```css
+box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring);
+```
+
+`:focus-visible`, not `:focus`, so pointer users don't see rings on click.
+
+### TypeScript · Next.js · Tailwind
+
+Tailwind v4 — import the stylesheet once, after `@import "tailwindcss";`:
+
+```css
+@import "tailwindcss";
+@import "../design-system/dist/web/tokens.css";
+```
+
+Every token is then a utility: `bg-background`, `text-muted-foreground`,
+`border-border`, `ring-ring`, `fill-chart-1`, `font-mono`, `text-sm`,
+`rounded-pill`, `rounded-xl`, `shadow-card`, `shadow-raised`.
+
+Spacing needs no configuration — the eleven steps are exactly Tailwind's own, so
+`p-5` is the card padding and `gap-1.5` the button gap.
+
+The file also defines `.type-*` classes (`type-label`, `type-display`,
+`type-numeric`) that bundle family, size, line height, weight and numerals. In a
+template those save repeating four utilities on every label; in React, composing
+utilities or wrapping a component is equally fine. Pick one approach per project
+— mixing both makes the type layer impossible to audit.
+
+Tailwind v3 projects consume `dist/web/tokens.js` from the config instead.
+
+### Python · FastAPI · Jinja2 · Tailwind
+
+Styling goes through the same Tailwind classes. Use `dist/python/tokens.py` only
+when a value must exist server-side — mailers, generated SVG or charts, PDF
+export, a `theme-color` tag:
+
+```python
+from design_system.tokens import jinja_globals
+templates.env.globals.update(jinja_globals())
+```
+
+```jinja
+<meta name="theme-color" content="{{ colors.light.background.hex }}">
+<span style="{{ type.label.css }}">Email</span>
+```
+
+`.css` on a text style emits an inline declaration — the only thing that works
+in email, where classes do not apply.
+
+### Ruby on Rails · Tailwind
+
+Same split. Views use the Tailwind classes; `dist/ruby/f055_tokens.rb` covers
+mailers, generated SVG and PDF export:
+
+```ruby
+F055::Tokens.scheme(:dark)[:background].hex  # => "#0A0A0A"
+F055::Tokens::TYPE[:label].css
+F055::Tokens::RADIUS[:pill]                  # => "18px"
+```
+
+Unknown scheme names fall back to light rather than raising, so a bad param
+cannot take a page down.
+
+### KMP · iOS · Android · Web
+
+```kotlin
+F055Theme(dark = isSystemInDarkTheme(), sans = robotoFamily, mono = geistMono) {
+    // LocalF055Colors.current, LocalF055Type.current, F055Space, F055Radius
+}
+```
+
+Pass real `FontFamily` values — the defaults fall back to system faces, which is
+a visible downgrade. `MaterialTheme` is wired up (colours, typography, shapes)
+for Material 3 components, but Material's slots cannot express `muted`, the
+chart ramp, or styles like `eyebrow`; go through the F055 locals for those.
+
+Two platform caveats: Compose has no `textTransform`, so `eyebrow` carries none
+— uppercase at the call site. And `F055Elevation` only approximates the
+shadows, drawing the hairline ring as a border that affects layout.
+
+`dist/swift/F055Tokens.swift` is for native SwiftUI surfaces outside the shared
+module — widgets, App Clips, a host screen. Shared UI belongs in Kotlin so both
+platforms move together.
+
+### AI-assisted coding
+
+`CLAUDE.md` carries these rules written for an agent, plus the greps that catch
+violations and the two commands that must be run after any token change.
+
 ## Open decisions
 
 1. **Destructive and primary are both red.** The reference never defined a
-   destructive colour, and because the brand *is* red, a destructive button
+   destructive colour — its "Danger Zone" row uses plain `foreground` — and
+   because the brand *is* red, a destructive button
    currently looks much like a primary one. The current value reaches AA-large
    only. If delete actions need to be unmistakable, a non-red destructive —
    amber or orange — is the stronger call.
@@ -148,3 +282,12 @@ screen in a real stack.
 
 Light reference: artboard `D5-0` · Dark: `3JI-0` · Palette cards: `1O9-0` /
 `2LV-0` · Type specimen: `1PS-0`, in Paper file `01M5M3N461Y0VSS854R6G5S86K`.
+
+`Archivo` is declared in that file's font list and used on zero nodes. It is
+deliberately not a token — worth confirming whether it was meant to be a display
+face before anyone adds it.
+
+The browsable version of this system — the same tokens with live component
+previews in both themes — is published as a Claude design-system artifact. Its
+prose is a presentation layer; this file and `CLAUDE.md` are the source of
+truth, and the artifact's token data comes from `dist/artifact/tokens.json`.
