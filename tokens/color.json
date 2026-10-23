@@ -129,6 +129,12 @@
       "origin": "extracted-light-derived-dark",
       "note": "Light value measured off the Name/Message fields (neutral.200 at 50%), used as a FILL with a transparent border. Dark value is derived; verify against the dark board before shipping."
     },
+    "track": {
+      "light": { "ref": "neutral.200", "alpha": 0.902 },
+      "dark":  { "ref": "white", "alpha": 0.1333 },
+      "origin": "extracted",
+      "note": "The empty half of a slider, and the fill of an unchecked checkbox or radio - the off state of a control. Measured as #E5E5E5E6 light and #FFFFFF22 dark, which is a third alpha ramp distinct from both border (10% dark) and input (15% dark). The values are extracted; only the name is mine."
+    },
     "ring": {
       "light": { "ref": "red.700" },
       "dark":  { "ref": "red.500" },

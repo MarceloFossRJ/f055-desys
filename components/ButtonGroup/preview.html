@@ -1,0 +1,66 @@
+<!-- @dsCard group="Actions" height=280 subtitle="Segments share an edge; only the ends are rounded" -->
+<div class="wrap">
+  <div class="grp">
+    <button class="seg">Button Group</button>
+    <button class="seg icon" aria-label="More options">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+  </div>
+
+  <div class="grp">
+    <button class="seg">Day</button>
+    <button class="seg">Week</button>
+    <button class="seg">Month</button>
+  </div>
+
+  <div class="grp">
+    <button class="seg on">Day</button>
+    <button class="seg">Week</button>
+    <button class="seg">Month</button>
+  </div>
+
+  <div class="grp">
+    <button class="seg">Export</button>
+    <button class="seg icon is-focus" aria-label="More options">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column;
+    gap: var(--space-16); align-items: flex-start;
+  }
+  .grp { display: flex; width: fit-content; }
+
+  .seg {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--space-6);
+    height: 32px; padding-inline: var(--space-12); cursor: pointer;
+    background: var(--card); color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    position: relative;
+  }
+  /* Only the outer edges are rounded; inner corners stay square. */
+  .seg:first-child {
+    border-top-left-radius: var(--radius-pill);
+    border-bottom-left-radius: var(--radius-pill);
+  }
+  .seg:last-child {
+    border-top-right-radius: var(--radius-pill);
+    border-bottom-right-radius: var(--radius-pill);
+  }
+  /* Drop the left border on every segment but the first, so adjacent
+     segments share one hairline rather than stacking two. */
+  .seg + .seg { border-left: 0; }
+
+  .icon { width: 32px; padding-inline: 0; }
+  .icon svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .on { background: var(--secondary); color: var(--secondary-foreground); }
+  .is-focus { z-index: 1; box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+</style>

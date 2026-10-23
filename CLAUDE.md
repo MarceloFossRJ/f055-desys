@@ -86,6 +86,7 @@ Pick a token by the *role* it plays, not by how it looks.
 | `destructive` / `destructive-foreground` | Delete, revoke, other irreversible actions |
 | `border` | Hairlines and dividers |
 | `input` | Form field fills |
+| `track` | The off state of a control: empty slider groove, unchecked box |
 | `ring` | Focus rings only |
 | `ring-offset` | The gap between a control and its focus ring |
 | `chart-1…5` | Data series, in order |
@@ -226,8 +227,9 @@ stroke.
 
 ## Components
 
-Ten components are **specified, not implemented**: Button, Badge, Input, Card,
-Toggle, Table, Tabs, Calendar, Select, MultiSelect. Each has a `README.md` under `components/<Name>/`
+Fifteen components are **specified, not implemented**: Button, ButtonGroup,
+CloseButton, Badge, Input, Select, MultiSelect, Slider, Toggle, Calendar, Card,
+Table, ListGroup, Tabs, Breadcrumb. Each has a `README.md` under `components/<Name>/`
 covering anatomy, variants, which token every part uses, and the decisions that
 are easy to get wrong — plus a `preview.html` that renders it from the real
 tokens.
@@ -238,12 +240,17 @@ from another design system; the spec records choices that are specific to F055
 (the pill on every control, the checkbox being the one square thing, `none` as a
 real elevation for inputs, tabular numerals on every numeric cell).
 
-If a component you need is not among the ten, say so rather than inventing one —
+If a component you need is not among the fifteen, say so rather than inventing one —
 the pattern for adding it is to write the spec first.
 
 **A floating panel (dropdown, popover, menu, tooltip, date picker) uses
 `popover` + `radius-14` + `shadow-overlay`.** Not card geometry. Select's README
 explains why.
+
+**Rows separated by space are a ListGroup; rows separated by hairlines are a
+Table.** If you are adding a `border-bottom` between list rows, you want a
+Table. If you are putting a `muted` pill around each table row, you want a
+ListGroup.
 
 ### Sizes are not tokenised
 

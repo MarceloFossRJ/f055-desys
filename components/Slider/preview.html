@@ -1,0 +1,65 @@
+<!-- @dsCard group="Forms" height=300 subtitle="4px track, 16px thumb on raised elevation" -->
+<div class="wrap">
+  <div class="field">
+    <div class="head">
+      <span class="lbl">Minimum Payout Amount</span>
+      <span class="val">$2,500.00</span>
+    </div>
+    <div class="sl">
+      <div class="track"><span class="fill" style="right:75%"></span></div>
+      <span class="thumb" style="left:25%"></span>
+    </div>
+    <div class="ends">
+      <span class="cap">$50 (MIN)</span>
+      <span class="cap">$10,000 (MAX)</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Midpoint</span>
+    <div class="sl">
+      <div class="track"><span class="fill" style="right:50%"></span></div>
+      <span class="thumb" style="left:50%"></span>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Focused</span>
+    <div class="sl">
+      <div class="track"><span class="fill" style="right:20%"></span></div>
+      <span class="thumb is-focus" style="left:80%"></span>
+    </div>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-24);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-8); }
+  .head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+  .val {
+    font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sl { position: relative; display: flex; align-items: center; height: 16px; }
+  .track {
+    position: relative; flex: 1; height: 4px; overflow: hidden;
+    background: var(--track); border-radius: var(--radius-pill);
+  }
+  .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--primary); }
+  .thumb {
+    position: absolute; translate: -50% 0; width: 16px; height: 16px;
+    background: var(--background); border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-raised); cursor: grab;
+  }
+  .is-focus { box-shadow: var(--shadow-raised), 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .ends { display: flex; justify-content: space-between; }
+  .cap {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground); font-variant-numeric: tabular-nums;
+  }
+</style>
