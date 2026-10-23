@@ -1,0 +1,34 @@
+<!-- @dsCard group="Display" height=150 subtitle="Status and count pills, 20px tall" -->
+<div class="wrap">
+  <div class="row">
+    <span class="badge primary">Badge</span>
+    <span class="badge secondary">Secondary</span>
+    <span class="badge outline">Outline</span>
+    <span class="badge destructive">Overdue</span>
+  </div>
+  <div class="row">
+    <span class="badge secondary"><i class="dot"></i>Pending Setup</span>
+    <span class="badge outline">ETF</span>
+    <span class="badge secondary num">+42%</span>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-12);
+  }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-8); }
+  .badge {
+    display: inline-flex; align-items: center; gap: var(--space-4);
+    height: 20px; padding-inline: var(--space-8);
+    border-radius: var(--radius-pill); border: 1px solid transparent;
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    white-space: nowrap;
+  }
+  .primary     { background: var(--primary);     color: var(--primary-foreground); }
+  .secondary   { background: var(--secondary);   color: var(--secondary-foreground); }
+  .outline     { background: transparent;        color: var(--foreground); border-color: var(--border); }
+  .destructive { background: var(--destructive); color: var(--destructive-foreground); }
+  .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .dot { width: 6px; height: 6px; border-radius: var(--radius-full); background: var(--chart-3); }
+</style>

@@ -1,0 +1,43 @@
+<!-- @dsCard group="Display" height=340 subtitle="Hairline rows, tabular figures, bleeding to the card edge" -->
+<div class="wrap">
+  <div class="card">
+    <div class="hd"><p class="t">Invoice #INV-2847</p></div>
+    <div class="bd">
+      <table>
+        <thead>
+          <tr><th>Item</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Design System License</td><td class="r n">1</td><td class="r n">$499.00</td><td class="r n">$499.00</td></tr>
+          <tr><td>Priority Support</td><td class="r n">12</td><td class="r n">$99.00</td><td class="r n">$1,188.00</td></tr>
+          <tr><td>Custom Components</td><td class="r n">3</td><td class="r n">$250.00</td><td class="r n">$750.00</td></tr>
+          <tr class="total"><td colspan="3" class="r">Total Due</td><td class="r n">$2,437.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<style>
+  .wrap { background: var(--background); color: var(--foreground); padding: var(--space-20); }
+  .card {
+    background: var(--card); color: var(--card-foreground);
+    border-radius: var(--radius-xl); box-shadow: var(--shadow-card);
+    padding-block: var(--space-20); display: flex; flex-direction: column; gap: var(--space-20);
+    overflow: clip;
+  }
+  .hd, .bd { padding-inline: var(--space-20); }
+  .t { margin: 0; font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 500; }
+
+  table { width: 100%; border-collapse: collapse; font-family: var(--font-sans); }
+  th, td {
+    padding: var(--space-8); text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px; line-height: 20px;
+  }
+  th { height: 40px; font-weight: 500; }
+  td { font-weight: 400; }
+  .r { text-align: right; }
+  .n { font-variant-numeric: tabular-nums; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .total td { font-weight: 500; }
+</style>

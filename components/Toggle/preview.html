@@ -1,0 +1,64 @@
+<!-- @dsCard group="Forms" height=260 subtitle="Switch, checkbox and radio — three shapes, three radii" -->
+<div class="wrap">
+  <div class="row">
+    <span class="sw on"><i></i></span>
+    <span class="sw"><i></i></span>
+    <span class="lbl">Switch — 32×20, track is a pill</span>
+  </div>
+
+  <div class="row">
+    <span class="cb on"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+    <span class="cb"></span>
+    <span class="lbl">Checkbox — 16×16 at <code class="mono">radius-sm</code> (5px)</span>
+  </div>
+
+  <div class="row">
+    <span class="rd on"><i></i></span>
+    <span class="rd"></span>
+    <span class="lbl">Radio — 16×16, fully round</span>
+  </div>
+
+  <div class="row">
+    <span class="cb on is-focus"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
+    <span class="lbl">Focused</span>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .row { display: flex; align-items: center; gap: var(--space-12); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 12px; }
+
+  .sw {
+    width: 32px; height: 20px; flex: none; display: flex; align-items: center;
+    border-radius: var(--radius-pill); border: 2px solid transparent;
+    background: var(--muted); transition: none;
+  }
+  .sw.on { background: var(--primary); border-color: var(--primary); justify-content: flex-end; }
+  .sw i {
+    width: 16px; height: 16px; border-radius: var(--radius-full);
+    background: var(--background); box-shadow: var(--shadow-thumb);
+  }
+
+  .cb {
+    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    border-radius: var(--radius-sm); border: 1px solid var(--border); background: transparent;
+  }
+  .cb.on { background: var(--primary); border-color: var(--primary); }
+  .cb svg {
+    width: 14px; height: 14px; fill: none; stroke: var(--primary-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .rd {
+    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    border-radius: var(--radius-full); border: 1px solid var(--border);
+  }
+  .rd.on { background: var(--primary); border-color: var(--primary); }
+  .rd i { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--primary-foreground); }
+
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+</style>

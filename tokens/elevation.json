@@ -1,0 +1,45 @@
+{
+  "$description": "Canonical elevation source. Hand-edit this file only; dist/ is generated.",
+  "meta": {
+    "source": "Paper file 'F055 Desys 1' (01M5M3N461Y0VSS854R6G5S86K)",
+    "extracted": "2026-10-23",
+    "note": "Three levels in use. Each is a Tailwind shadow (sm or md) with a 1px hairline ring in front of it. The ring is the part that carries the system's look: surfaces are defined by a crisp edge, with the drop shadow doing very little. Only the card ring changes between themes - near-black at 5% in light, near-white at 10% in dark. The drops are identical in both."
+  },
+
+  "tokens": {
+    "none": {
+      "value": { "light": "none", "dark": "none" },
+      "origin": "extracted",
+      "usage": "Inputs, textareas and other controls that sit flush in a surface. The reference gives these no shadow at all - they are distinguished by their fill, not by lift."
+    },
+    "card": {
+      "value": {
+        "light": "0 0 0 1px #0A0A0A0D, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A",
+        "dark":  "0 0 0 1px #FAFAFA1A, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A"
+      },
+      "origin": "extracted",
+      "usage": "Every card and panel. The only theme-varying elevation: its hairline ring flips from near-black 5% to near-white 10%, because a dark surface needs a light edge to read as raised."
+    },
+    "thumb": {
+      "value": {
+        "light": "0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A",
+        "dark":  "0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A"
+      },
+      "origin": "extracted",
+      "usage": "The knob of a switch. Same drops as card, with no ring - it sits on a coloured track, where a hairline would read as a seam."
+    },
+    "raised": {
+      "value": {
+        "light": "0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A",
+        "dark":  "0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A"
+      },
+      "origin": "extracted",
+      "usage": "Slider thumbs in the reference. The only level that reads as genuinely floating, so it is also the right choice for popovers, dropdowns and tooltips - which the reference never shows in an elevated state."
+    }
+  },
+
+  "notes": {
+    "ringVsBorder": "The 1px ring is part of the shadow, not a CSS border. That keeps it outside the box model, so it never shifts layout. Do not reimplement it as a border unless the platform forces you to - Compose does.",
+    "tailwindBase": "card and thumb use Tailwind's shadow-sm drops; raised uses shadow-md. Both exactly."
+  }
+}

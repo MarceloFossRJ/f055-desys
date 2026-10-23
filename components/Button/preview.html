@@ -1,0 +1,84 @@
+<!-- @dsCard group="Actions" height=300 subtitle="Five variants, three heights, pill on every one" -->
+<div class="wrap">
+  <div class="row">
+    <button class="btn md primary">Button</button>
+    <button class="btn md secondary">Secondary</button>
+    <button class="btn md outline">Outline</button>
+    <button class="btn md ghost">Ghost</button>
+    <button class="btn md destructive">Delete</button>
+  </div>
+
+  <div class="row">
+    <button class="btn sm primary">Small 28</button>
+    <button class="btn md primary">Medium 32</button>
+    <button class="btn xs primary">XS 20</button>
+  </div>
+
+  <div class="row">
+    <button class="btn md outline">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+      With icon
+    </button>
+    <button class="btn md primary is-focus">Focused</button>
+    <button class="btn md primary" disabled>Disabled</button>
+  </div>
+
+  <p class="note caption">The focused example shows the ring and its offset. Without the
+    offset the ring sits at 1.00:1 on a primary button and is invisible.</p>
+</div>
+
+<style>
+  .wrap {
+    background: var(--background);
+    color: var(--foreground);
+    padding: var(--space-20);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+  }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-8); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-pill);
+    border: 1px solid transparent;
+    padding-inline: var(--space-12);
+    cursor: pointer;
+    white-space: nowrap;
+    /* type style `button`: 14 / 20 / 500 */
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+  /* Heights are not tokens yet — see the component README. */
+  .btn.md { height: 32px; gap: var(--space-6); }
+  .btn.sm { height: 28px; gap: var(--space-4); }
+  .btn.xs { height: 20px; gap: var(--space-4); padding-inline: var(--space-8); font-size: 12px; line-height: 16px; }
+
+  .primary     { background: var(--primary);     color: var(--primary-foreground); }
+  .secondary   { background: var(--secondary);   color: var(--secondary-foreground); }
+  .outline     { background: var(--background);  color: var(--foreground); border-color: var(--border); }
+  .ghost       { background: transparent;        color: var(--foreground); }
+  .destructive { background: var(--destructive); color: var(--destructive-foreground); }
+
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  /* The canonical focus treatment: offset ring, drawn with two box-shadows so
+     it stays outside the box model and never shifts layout. */
+  .btn.is-focus,
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring);
+  }
+
+  .btn svg {
+    width: 16px; height: 16px; flex: none;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .note { margin: 0; color: var(--muted-foreground); max-width: 60ch; }
+</style>

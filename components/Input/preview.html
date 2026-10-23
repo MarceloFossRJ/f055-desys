@@ -1,0 +1,64 @@
+<!-- @dsCard group="Forms" height=380 subtitle="Input, textarea, label and help text" -->
+<div class="wrap">
+  <div class="field">
+    <label class="lbl" for="p-name">Name</label>
+    <div class="input"><input id="p-name" type="text" placeholder="Jane Okafor"></div>
+  </div>
+
+  <div class="field">
+    <label class="lbl" for="p-search">With trailing icon</label>
+    <div class="input">
+      <input id="p-search" type="text" placeholder="Search holdings or tickers…">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="lbl" for="p-msg">Message</label>
+    <div class="input area"><textarea id="p-msg" rows="2" placeholder="Add any notes for this payout configuration…"></textarea></div>
+    <p class="help caption">Visible to anyone with access to this account.</p>
+  </div>
+
+  <div class="field">
+    <label class="lbl" for="p-focus">Focused</label>
+    <div class="input is-focus"><input id="p-focus" type="text" value="artist@studio.inc"></div>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-6); }
+
+  .lbl {
+    font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500;
+    color: var(--foreground);
+  }
+  .input {
+    display: flex; align-items: center; gap: var(--space-8);
+    height: 32px; padding-left: var(--space-10); padding-right: var(--space-8);
+    background: var(--input);
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+  }
+  .input.area { height: auto; min-height: 64px; align-items: flex-start; padding: var(--space-8) var(--space-10); }
+
+  .input input, .input textarea {
+    flex: 1; min-width: 0; border: 0; background: none; padding: 0; margin: 0;
+    color: var(--foreground); resize: none;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  }
+  .input input:focus, .input textarea:focus { outline: none; }
+  .input ::placeholder { color: var(--muted-foreground); }
+
+  .input.is-focus, .input:focus-within {
+    box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring);
+  }
+  .input svg {
+    width: 16px; height: 16px; flex: none;
+    fill: none; stroke: var(--muted-foreground); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .help { margin: 0; color: var(--muted-foreground); }
+</style>

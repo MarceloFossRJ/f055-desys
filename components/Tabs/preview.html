@@ -1,0 +1,47 @@
+<!-- @dsCard group="Navigation" height=230 subtitle="A pill track with a pill thumb — no underline anywhere" -->
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab on">General</button>
+    <button class="tab">Billing</button>
+    <button class="tab">Goals</button>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on is-focus">Focused</button>
+    <button class="tab">Inactive</button>
+  </div>
+
+  <div class="seg">
+    <button class="sg">Stocks</button>
+    <button class="sg on">ETFs</button>
+    <button class="sg">REITs</button>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+
+  .tabs {
+    display: inline-flex; gap: var(--space-4); padding: var(--space-4);
+    background: var(--muted); border-radius: var(--radius-pill); width: fit-content;
+  }
+  .tab {
+    height: 28px; padding-inline: var(--space-12); border: 0; cursor: pointer;
+    border-radius: var(--radius-pill); background: transparent; color: var(--muted-foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .tab.on { background: var(--card); color: var(--foreground); box-shadow: var(--shadow-thumb); }
+
+  .seg { display: inline-flex; gap: var(--space-8); width: fit-content; }
+  .sg {
+    height: 28px; padding-inline: var(--space-12); cursor: pointer;
+    border-radius: var(--radius-pill); border: 1px solid var(--border);
+    background: var(--card); color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .sg.on { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+</style>

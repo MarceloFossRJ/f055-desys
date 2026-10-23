@@ -1,0 +1,31 @@
+{
+  "$description": "Canonical radius source. Hand-edit this file only; dist/ is generated.",
+  "meta": {
+    "source": "Paper file 'F055 Desys 1' (01M5M3N461Y0VSS854R6G5S86K)",
+    "extracted": "2026-10-23",
+    "note": "Five values in use, measured across the whole light artboard. They are not an arithmetic ramp, so they are recorded as observed rather than fitted to a formula."
+  },
+
+  "tokens": {
+    "sm":   { "value": "5px",    "origin": "extracted", "usage": "Checkboxes. The only square-ish control in the system." },
+    "md":   { "value": "8px",    "origin": "extracted", "usage": "Rare. Two decorative rectangles on the light artboard and nothing else. Confirm before relying on it; it may be incidental rather than intentional." },
+    "lg":   { "value": "10px",   "origin": "extracted", "usage": "Inner tiles inside a card: transaction icon squares, avatar tiles, swatches." },
+    "pill": { "value": "18px",   "origin": "extracted", "usage": "Every interactive control — buttons, inputs, textareas, badges, tabs, switches, slider tracks and thumbs. At the system's control heights (20/28/32px) 18px exceeds half the height, so it renders as a true pill. This is the system's defining shape; using anything else on a control will look wrong." },
+    "xl":   { "value": "24px",   "origin": "extracted", "usage": "Cards, panels, sheets, dialogs. The outer container radius." },
+    "full": { "value": "9999px", "origin": "extracted", "usage": "Circles: radio dots, avatars, status dots." }
+  },
+
+  "controlHeights": {
+    "$note": "Observed alongside the radii. Not yet tokens, but they are what makes 18px read as a pill.",
+    "badge": "20px",
+    "switch": "20px (32px wide, 2px border)",
+    "button-sm": "28px",
+    "button-md": "32px",
+    "input": "32px",
+    "textarea": "64px (min)",
+    "checkbox": "16px",
+    "radio": "16px",
+    "slider-track": "4px",
+    "slider-thumb": "16px"
+  }
+}

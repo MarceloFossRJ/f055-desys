@@ -1,0 +1,81 @@
+{
+  "$description": "Canonical spacing source. Hand-edit this file only; dist/ is generated.",
+  "meta": {
+    "source": "Paper file 'F055 Desys 1' (01M5M3N461Y0VSS854R6G5S86K)",
+    "extracted": "2026-10-23",
+    "note": "Eleven steps, measured across the whole light artboard. This is a 2px grid, not a 4px one - 2, 6, 10 and 14 are all in real use. Tokens are named by their pixel value (space-2 ... space-40); each carries its Tailwind step in `tailwindStep`, because every step maps exactly onto Tailwind's own scale. Naming by pixel rather than by step is deliberate: step names are fractional (0.5, 1.5, 2.5) and a '.' is not valid in a CSS custom-property identifier without escaping, which makes var(--space-1.5) a footgun. 32px (Tailwind's 8) is absent: the scale jumps 24 -> 40."
+  },
+  "tokens": {
+    "2": {
+      "value": "2px",
+      "tailwindStep": "0.5",
+      "origin": "extracted",
+      "usage": "Badge inner block padding, and the tightest icon rows."
+    },
+    "4": {
+      "value": "4px",
+      "tailwindStep": "1",
+      "origin": "extracted",
+      "usage": "Icon-to-label gap inside a small button or badge."
+    },
+    "6": {
+      "value": "6px",
+      "tailwindStep": "1.5",
+      "origin": "extracted",
+      "usage": "Icon-to-label gap in a standard button; title-to-subtitle in a card header."
+    },
+    "8": {
+      "value": "8px",
+      "tailwindStep": "2",
+      "origin": "extracted",
+      "usage": "Table cell padding; gaps in a tight stack of related controls."
+    },
+    "10": {
+      "value": "10px",
+      "tailwindStep": "2.5",
+      "origin": "extracted",
+      "usage": "Inner padding of an input or textarea. Rare as a gap - two uses on the whole artboard."
+    },
+    "12": {
+      "value": "12px",
+      "tailwindStep": "3",
+      "origin": "extracted",
+      "usage": "Horizontal padding inside every button, at all three heights."
+    },
+    "14": {
+      "value": "14px",
+      "tailwindStep": "3.5",
+      "origin": "extracted",
+      "usage": "Vertical padding of a bordered settings row."
+    },
+    "16": {
+      "value": "16px",
+      "tailwindStep": "4",
+      "origin": "extracted",
+      "usage": "Horizontal padding of a bordered row; gap between grouped controls."
+    },
+    "20": {
+      "value": "20px",
+      "tailwindStep": "5",
+      "origin": "extracted",
+      "usage": "The card unit. Every card's inner padding and the gap between its header, body and footer."
+    },
+    "24": {
+      "value": "24px",
+      "tailwindStep": "6",
+      "origin": "extracted",
+      "usage": "Gap between distinct sections inside one card."
+    },
+    "40": {
+      "value": "40px",
+      "tailwindStep": "10",
+      "origin": "extracted",
+      "usage": "Largest separation - between major blocks, and the artboard's own gutter."
+    }
+  },
+  "notes": {
+    "tailwind": "Because the values match Tailwind's scale, p-5 is the card padding and gap-1.5 the button gap - use the utilities on web and ignore --space-* entirely. The `tailwindStep` field on each token records the mapping.",
+    "cardUnit": "20px (step 5) is the single most load-bearing value in the system: it is both the card's inner padding and the gap between its parts. If you change one thing about spacing, change that.",
+    "notALayoutScale": "These are component-level values. Page containers, grid gutters and breakpoints are NOT derived from the reference - it is a presentation artboard, not an application layout."
+  }
+}
