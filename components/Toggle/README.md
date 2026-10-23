@@ -7,7 +7,7 @@ Switch, checkbox and radio — the three binary controls, and the only place the
 | Control | Size | Shape | On state |
 |---|---|---|---|
 | Switch | 32×20 | `radius-pill` track, 2px border | track `primary`, thumb slides right |
-| Checkbox | 16×16 | `radius-sm` (5px) | fill `primary`, tick in `primary-foreground` |
+| Checkbox | 16×16 | `radius-5` (5px) | fill `primary`, tick in `primary-foreground` |
 | Radio | 16×16 | `radius-full` | fill `primary`, 8px dot in `primary-foreground` |
 
 The checkbox is the **only square-ish thing in the entire system.** Everything

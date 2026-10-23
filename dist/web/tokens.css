@@ -50,11 +50,13 @@
   --font-sans: "Roboto", system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --radius-sm: 5px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
+  --radius-5: 5px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-14: 14px;
   --radius-pill: 18px;
-  --radius-xl: 24px;
+  --radius-24: 24px;
   --radius-full: 9999px;
 
   --space-2: 2px;
@@ -70,14 +72,18 @@
   --space-40: 40px;
 
   --elevation-none: none;
+  --elevation-hairline: 0 0 0 1px #E5E5E5;
   --elevation-card: 0 0 0 1px #0A0A0A0D, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A;
   --elevation-thumb: 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A;
   --elevation-raised: 0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A;
+  --elevation-overlay: 0 0 0 1px #0A0A0A0D, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A;
 
   --shadow-none: var(--elevation-none);
+  --shadow-hairline: var(--elevation-hairline);
   --shadow-card: var(--elevation-card);
   --shadow-thumb: var(--elevation-thumb);
   --shadow-raised: var(--elevation-raised);
+  --shadow-overlay: var(--elevation-overlay);
 }
 
 .dark {
@@ -108,9 +114,11 @@
   --chart-5: oklch(0.444 0.177 26.899);
 
   --elevation-none: none;
+  --elevation-hairline: 0 0 0 1px #FFFFFF1A;
   --elevation-card: 0 0 0 1px #FAFAFA1A, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A;
   --elevation-thumb: 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A;
   --elevation-raised: 0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A;
+  --elevation-overlay: 0 0 0 1px #FAFAFA1A, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A;
 }
 
 @theme inline {
@@ -156,17 +164,21 @@
   --text-3xl: 30px;
   --text-3xl--line-height: 36px;
 
-  --radius-sm: 5px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
+  --radius-5: 5px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-14: 14px;
   --radius-pill: 18px;
-  --radius-xl: 24px;
+  --radius-24: 24px;
   --radius-full: 9999px;
 
   --shadow-none: var(--elevation-none);
+  --shadow-hairline: var(--elevation-hairline);
   --shadow-card: var(--elevation-card);
   --shadow-thumb: var(--elevation-thumb);
   --shadow-raised: var(--elevation-raised);
+  --shadow-overlay: var(--elevation-overlay);
 }
 
 /*

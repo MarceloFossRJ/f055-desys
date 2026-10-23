@@ -13,11 +13,13 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 object F055Radius {
-    val sm: Dp = 5.dp
-    val md: Dp = 8.dp
-    val lg: Dp = 10.dp
+    val s5: Dp = 5.dp
+    val s6: Dp = 6.dp
+    val s8: Dp = 8.dp
+    val s10: Dp = 10.dp
+    val s14: Dp = 14.dp
     val pill: Dp = 18.dp
-    val xl: Dp = 24.dp
+    val s24: Dp = 24.dp
     val full: Dp = 9999.dp
 }
 
@@ -70,9 +72,9 @@ object F055Elevation {
 }
 
 val F055Shapes = Shapes(
-    extraSmall = RoundedCornerShape(F055Radius.sm),
-    small = RoundedCornerShape(F055Radius.md),
-    medium = RoundedCornerShape(F055Radius.lg),
-    large = RoundedCornerShape(F055Radius.pill),
-    extraLarge = RoundedCornerShape(F055Radius.xl),
+    extraSmall = RoundedCornerShape(F055Radius.s5),
+    small = RoundedCornerShape(F055Radius.s8),
+    medium = RoundedCornerShape(F055Radius.s10),
+    large = RoundedCornerShape(F055Radius.s14),
+    extraLarge = RoundedCornerShape(F055Radius.s24),
 )

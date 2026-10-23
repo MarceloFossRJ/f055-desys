@@ -113,11 +113,13 @@ module F055
     }.freeze
 
     RADIUS = {
-      sm: "5px",
-      md: "8px",
-      lg: "10px",
+      5: "5px",
+      6: "6px",
+      8: "8px",
+      10: "10px",
+      14: "14px",
       pill: "18px",
-      xl: "24px",
+      24: "24px",
       full: "9999px",
     }.freeze
 
@@ -139,9 +141,11 @@ module F055
 
     ELEVATION = {
       none: Shadow.new("none", "none").freeze,
+      hairline: Shadow.new("0 0 0 1px #E5E5E5", "0 0 0 1px #FFFFFF1A").freeze,
       card: Shadow.new("0 0 0 1px #0A0A0A0D, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A", "0 0 0 1px #FAFAFA1A, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A").freeze,
       thumb: Shadow.new("0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A", "0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A").freeze,
       raised: Shadow.new("0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A", "0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A").freeze,
+      overlay: Shadow.new("0 0 0 1px #0A0A0A0D, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A", "0 0 0 1px #FAFAFA1A, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A").freeze,
     }.freeze
 
     # Unknown names fall back to light rather than raising, so a bad param

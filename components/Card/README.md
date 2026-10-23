@@ -8,7 +8,7 @@ The system's primary surface, and where its 20px spacing unit is most visible.
 |---|---|
 | Fill | `card` |
 | Text | `card-foreground` |
-| Shape | `radius-xl` (24px) |
+| Shape | `radius-24` (24px) |
 | Elevation | `shadow-card` |
 | Vertical padding | `space-20` |
 | Horizontal padding | `space-20`, applied per section |
@@ -44,7 +44,7 @@ produces a visible 2px edge.
 ## Inner surfaces
 
 A tile inside a card — a stat block, an icon square, a nested row — uses `muted`
-with `radius-lg` (10px), not another `card` at `radius-xl`. Nesting the card
+with `radius-10` (10px), not another `card` at `radius-24`. Nesting the card
 treatment makes the hierarchy ambiguous.
 
 ## Guidelines

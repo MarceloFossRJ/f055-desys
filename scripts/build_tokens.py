@@ -679,8 +679,11 @@ fun F055Type.toMaterial(): Typography = Typography(
 
 def build_kotlin_shapes() -> None:
     def rk(k: str) -> str:
-        return {"sm": "extraSmall", "md": "small", "lg": "medium",
-                "pill": "large", "xl": "extraLarge"}.get(k)
+        # Material's five shape slots mapped onto the eight real radii.
+        # `pill` is deliberately absent: a pill is CircleShape at these control
+        # heights, not a corner size, and `6` is chart-only.
+        return {"5": "extraSmall", "8": "small", "10": "medium",
+                "14": "large", "24": "extraLarge"}.get(k)
 
     consts = "\n".join(
         f"    val {kid(k)}: Dp = {px(v['value']):g}.dp" for k, v in RADII.items())

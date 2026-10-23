@@ -250,11 +250,13 @@ public enum F055Type {
 }
 
 public enum F055Radius {
-    public static let sm: CGFloat = 5
-    public static let md: CGFloat = 8
-    public static let lg: CGFloat = 10
+    public static let s5: CGFloat = 5
+    public static let s6: CGFloat = 6
+    public static let s8: CGFloat = 8
+    public static let s10: CGFloat = 10
+    public static let s14: CGFloat = 14
     public static let pill: CGFloat = 18
-    public static let xl: CGFloat = 24
+    public static let s24: CGFloat = 24
     public static let full: CGFloat = 9999
 }
 

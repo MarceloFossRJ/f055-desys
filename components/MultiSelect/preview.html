@@ -1,0 +1,98 @@
+<!-- @dsCard group="Forms" height=460 subtitle="Chips in the trigger, checkboxes in the panel" -->
+<div class="wrap">
+  <div class="field">
+    <span class="lbl">Empty</span>
+    <div class="trig">
+      <span class="ph">Select tags</span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">With selections</span>
+    <div class="trig">
+      <span class="chips">
+        <span class="chip">Equities<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+        <span class="chip">Bonds<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+        <span class="chip">Real Estate<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+      </span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Open</span>
+    <div class="trig is-focus">
+      <span class="chips"><span class="chip">Equities<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></span></span>
+      <svg class="chev up" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="panel">
+      <div class="opt"><span class="cb on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Equities</div>
+      <div class="opt"><span class="cb"></span>Bonds</div>
+      <div class="opt"><span class="cb"></span>Commodities</div>
+      <div class="opt"><span class="cb"></span>Real Estate</div>
+    </div>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-6); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+
+  .trig {
+    display: flex; align-items: center; gap: var(--space-8); cursor: pointer;
+    min-height: 32px; padding: var(--space-4) var(--space-8) var(--space-4) var(--space-10);
+    background: var(--input); border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+  }
+  .ph {
+    flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    color: var(--muted-foreground);
+  }
+  .chips { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--space-4);
+    height: 20px; padding-inline: var(--space-8);
+    border-radius: var(--radius-pill);
+    background: var(--secondary); color: var(--secondary-foreground);
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+  }
+  .chip svg {
+    width: 12px; height: 12px; flex: none; cursor: pointer;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .chev {
+    width: 16px; height: 16px; flex: none; align-self: center;
+    fill: none; stroke: var(--muted-foreground); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .up { transform: rotate(180deg); }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .panel {
+    margin-top: var(--space-4);
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
+    padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .opt {
+    display: flex; align-items: center; gap: var(--space-10);
+    height: 32px; padding-inline: var(--space-10); cursor: pointer;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  }
+  .cb {
+    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    border-radius: var(--radius-5); border: 1px solid var(--border);
+  }
+  .on { background: var(--primary); border-color: var(--primary); }
+  .cb svg {
+    width: 14px; height: 14px; fill: none; stroke: var(--primary-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+</style>

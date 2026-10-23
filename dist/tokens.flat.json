@@ -662,27 +662,37 @@
     }
   },
   "radius": {
-    "sm": {
+    "5": {
       "value": "5px",
       "origin": "extracted",
-      "usage": "Checkboxes. The only square-ish control in the system."
+      "usage": "Checkboxes, and nothing else. The only square-ish control in the system."
     },
-    "md": {
+    "6": {
+      "value": "6px",
+      "origin": "extracted",
+      "usage": "Chart bars. Used on the weekday bars of the activity charts; ~28 occurrences, all in data visualisation."
+    },
+    "8": {
       "value": "8px",
       "origin": "extracted",
-      "usage": "Rare. Two decorative rectangles on the light artboard and nothing else. Confirm before relying on it; it may be incidental rather than intentional."
+      "usage": "Small tiles: colour swatches, compact grid cells. Widely used on the showcase boards - the first extraction called this incidental, which was wrong."
     },
-    "lg": {
+    "10": {
       "value": "10px",
       "origin": "extracted",
-      "usage": "Inner tiles inside a card: transaction icon squares, avatar tiles, swatches."
+      "usage": "Inner tiles inside a card: transaction icon squares, stat blocks."
+    },
+    "14": {
+      "value": "14px",
+      "origin": "extracted",
+      "usage": "40x40 icon tiles, small bordered cards, chart tooltips, and 24px icon buttons. At 40px this reads as a rounded square rather than a circle, which is what distinguishes it from `pill`."
     },
     "pill": {
       "value": "18px",
       "origin": "extracted",
-      "usage": "Every interactive control \u2014 buttons, inputs, textareas, badges, tabs, switches, slider tracks and thumbs. At the system's control heights (20/28/32px) 18px exceeds half the height, so it renders as a true pill. This is the system's defining shape; using anything else on a control will look wrong."
+      "usage": "Every interactive control - buttons, inputs, textareas, badges, tabs, switches, slider tracks and thumbs. At the system's control heights (20/28/32px) 18px exceeds half the height, so it renders as a true pill. This is the system's defining shape; anything else on a control will look wrong."
     },
-    "xl": {
+    "24": {
       "value": "24px",
       "origin": "extracted",
       "usage": "Cards, panels, sheets, dialogs. The outer container radius."
@@ -770,13 +780,21 @@
       "origin": "extracted",
       "usage": "Inputs, textareas and other controls that sit flush in a surface. The reference gives these no shadow at all - they are distinguished by their fill, not by lift."
     },
+    "hairline": {
+      "value": {
+        "light": "0 0 0 1px #E5E5E5",
+        "dark": "0 0 0 1px #FFFFFF1A"
+      },
+      "origin": "extracted",
+      "usage": "A 1px ring in the border colour with no drop at all - the most-used elevation in the system (~50 occurrences across both themes). Use it wherever an element needs an edge but no lift: swatch tiles, chart cells, bordered grid items. It is a border that costs no layout, which is why it is a shadow and not a border."
+    },
     "card": {
       "value": {
         "light": "0 0 0 1px #0A0A0A0D, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A",
         "dark": "0 0 0 1px #FAFAFA1A, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A"
       },
       "origin": "extracted",
-      "usage": "Every card and panel. The only theme-varying elevation: its hairline ring flips from near-black 5% to near-white 10%, because a dark surface needs a light edge to read as raised."
+      "usage": "Every card and panel. Its ring is a near-black/near-white alpha rather than the solid border colour `hairline` uses."
     },
     "thumb": {
       "value": {
@@ -784,7 +802,7 @@
         "dark": "0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A"
       },
       "origin": "extracted",
-      "usage": "The knob of a switch. Same drops as card, with no ring - it sits on a coloured track, where a hairline would read as a seam."
+      "usage": "The knob of a switch, and the active tab in a tab track. Same drops as card, with no ring - it sits on a coloured or filled track, where a hairline would read as a seam."
     },
     "raised": {
       "value": {
@@ -792,7 +810,15 @@
         "dark": "0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A"
       },
       "origin": "extracted",
-      "usage": "Slider thumbs in the reference. The only level that reads as genuinely floating, so it is also the right choice for popovers, dropdowns and tooltips - which the reference never shows in an elevated state."
+      "usage": "Slider thumbs. An element that floats just off the surface it controls. Its ring does not vary by theme."
+    },
+    "overlay": {
+      "value": {
+        "light": "0 0 0 1px #0A0A0A0D, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A",
+        "dark": "0 0 0 1px #FAFAFA1A, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A"
+      },
+      "origin": "extracted",
+      "usage": "Anything that floats above the page: chart tooltips in the reference, and by extension dropdown panels, popovers, menus and date pickers. Pairs with radius-14, which is what the reference's tooltip uses - NOT radius-24, which is for cards."
     }
   }
 }

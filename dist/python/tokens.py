@@ -151,11 +151,13 @@ TYPE: Dict[str, TextStyle] = {
 }
 
 RADIUS: Dict[str, str] = {
-    "sm": "5px",
-    "md": "8px",
-    "lg": "10px",
+    "5": "5px",
+    "6": "6px",
+    "8": "8px",
+    "10": "10px",
+    "14": "14px",
     "pill": "18px",
-    "xl": "24px",
+    "24": "24px",
     "full": "9999px",
 }
 
@@ -175,9 +177,11 @@ SPACING: Dict[str, str] = {
 
 ELEVATION: Dict[str, "Shadow"] = {
     "none": Shadow(light="none", dark="none"),
+    "hairline": Shadow(light="0 0 0 1px #E5E5E5", dark="0 0 0 1px #FFFFFF1A"),
     "card": Shadow(light="0 0 0 1px #0A0A0A0D, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A", dark="0 0 0 1px #FAFAFA1A, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A"),
     "thumb": Shadow(light="0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A", dark="0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A"),
     "raised": Shadow(light="0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A", dark="0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A"),
+    "overlay": Shadow(light="0 0 0 1px #0A0A0A0D, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A", dark="0 0 0 1px #FAFAFA1A, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A"),
 }
 
 

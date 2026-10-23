@@ -3,15 +3,19 @@
   "meta": {
     "source": "Paper file 'F055 Desys 1' (01M5M3N461Y0VSS854R6G5S86K)",
     "extracted": "2026-10-23",
-    "note": "Five values in use, measured across the whole light artboard. They are not an arithmetic ramp, so they are recorded as observed rather than fitted to a formula."
+    "revised": "2026-10-23 - re-swept page-wide",
+    "note": "Eight values, measured across ALL FOUR content artboards. The first pass swept only D5-0 (the app screens) and so missed 6px and 14px entirely, and wrongly recorded 8px as incidental. These are not a scale - 5, 6, 8, 10, 14, 18, 24 have no consistent ratio - so they are named by pixel value, as spacing is. The two exceptions are `pill` and `full`, which name a shape intent rather than a size.",
+    "coverage": "D5-0 (light app), 3JI-0 (dark app), 1O8-0 (light showcase), 2LV-0 (dark showcase). 12px, 16px, 20px and 32px are confirmed absent."
   },
 
   "tokens": {
-    "sm":   { "value": "5px",    "origin": "extracted", "usage": "Checkboxes. The only square-ish control in the system." },
-    "md":   { "value": "8px",    "origin": "extracted", "usage": "Rare. Two decorative rectangles on the light artboard and nothing else. Confirm before relying on it; it may be incidental rather than intentional." },
-    "lg":   { "value": "10px",   "origin": "extracted", "usage": "Inner tiles inside a card: transaction icon squares, avatar tiles, swatches." },
-    "pill": { "value": "18px",   "origin": "extracted", "usage": "Every interactive control — buttons, inputs, textareas, badges, tabs, switches, slider tracks and thumbs. At the system's control heights (20/28/32px) 18px exceeds half the height, so it renders as a true pill. This is the system's defining shape; using anything else on a control will look wrong." },
-    "xl":   { "value": "24px",   "origin": "extracted", "usage": "Cards, panels, sheets, dialogs. The outer container radius." },
+    "5":    { "value": "5px",    "origin": "extracted", "usage": "Checkboxes, and nothing else. The only square-ish control in the system." },
+    "6":    { "value": "6px",    "origin": "extracted", "usage": "Chart bars. Used on the weekday bars of the activity charts; ~28 occurrences, all in data visualisation." },
+    "8":    { "value": "8px",    "origin": "extracted", "usage": "Small tiles: colour swatches, compact grid cells. Widely used on the showcase boards - the first extraction called this incidental, which was wrong." },
+    "10":   { "value": "10px",   "origin": "extracted", "usage": "Inner tiles inside a card: transaction icon squares, stat blocks." },
+    "14":   { "value": "14px",   "origin": "extracted", "usage": "40x40 icon tiles, small bordered cards, chart tooltips, and 24px icon buttons. At 40px this reads as a rounded square rather than a circle, which is what distinguishes it from `pill`." },
+    "pill": { "value": "18px",   "origin": "extracted", "usage": "Every interactive control - buttons, inputs, textareas, badges, tabs, switches, slider tracks and thumbs. At the system's control heights (20/28/32px) 18px exceeds half the height, so it renders as a true pill. This is the system's defining shape; anything else on a control will look wrong." },
+    "24":   { "value": "24px",   "origin": "extracted", "usage": "Cards, panels, sheets, dialogs. The outer container radius." },
     "full": { "value": "9999px", "origin": "extracted", "usage": "Circles: radio dots, avatars, status dots." }
   },
 
@@ -19,9 +23,12 @@
     "$note": "Observed alongside the radii. Not yet tokens, but they are what makes 18px read as a pill.",
     "badge": "20px",
     "switch": "20px (32px wide, 2px border)",
+    "icon-button": "24px",
     "button-sm": "28px",
     "button-md": "32px",
     "input": "32px",
+    "table-header": "40px",
+    "icon-tile": "40px",
     "textarea": "64px (min)",
     "checkbox": "16px",
     "radio": "16px",

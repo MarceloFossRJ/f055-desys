@@ -160,12 +160,20 @@ Fonts (README has the line, with the exact weights); in KMP, pass real
 
 | Token | Value | For |
 |---|---|---|
-| `sm` | 5px | Checkboxes |
-| `md` | 8px | Rare; two decorative rects in the reference. Confirm before use |
-| `lg` | 10px | Inner tiles: icon squares, avatars, swatches |
-| `pill` | 18px | **Every interactive control** |
-| `xl` | 24px | Cards, panels, sheets, dialogs |
-| `full` | 9999px | Circles: radio dots, avatars, status dots |
+| `radius-5` | 5px | Checkboxes, and nothing else |
+| `radius-6` | 6px | Chart bars |
+| `radius-8` | 8px | Small tiles: swatches, compact grid cells |
+| `radius-10` | 10px | Inner tiles inside a card |
+| `radius-14` | 14px | 40px icon tiles, small bordered cards, **overlays** |
+| `radius-pill` | 18px | **Every interactive control** |
+| `radius-24` | 24px | Cards, panels, sheets, dialogs |
+| `radius-full` | 9999px | Circles: radio dots, avatars, status dots |
+
+These are not a scale — the values have no consistent ratio — so they are named
+by pixel value, except `pill` and `full`, which name a shape intent.
+
+**A floating panel uses `radius-14` with `shadow-overlay`, not `radius-24` with
+`shadow-card`.** Cards and overlays are different surfaces in this system.
 
 `pill` is the system's defining shape. At the reference's control heights
 (20/28/32px) 18px exceeds half the height, so controls render as true pills.
@@ -200,13 +208,15 @@ crisp edge, with the drop doing very little.
 | Token | For |
 |---|---|
 | `none` | Inputs and textareas. They sit flush; their fill distinguishes them |
+| `hairline` | An edge with no lift: swatches, chart cells, bordered grid items. The most-used level in the system |
 | `card` | Every card and panel |
-| `thumb` | A switch knob — the card drops, no ring |
-| `raised` | Slider thumbs, and the right choice for popovers and dropdowns |
+| `thumb` | A switch knob, an active tab — the card drops, no ring |
+| `raised` | Slider thumbs |
+| `overlay` | Dropdowns, popovers, menus, tooltips, date pickers |
 
-`card` is the only elevation that changes between themes: its ring flips from
-near-black at 5% to near-white at 10%, because a dark surface needs a light edge
-to read as raised. On web that is automatic via `.dark`.
+`hairline`, `card` and `overlay` flip their ring between themes — dark surfaces
+need a light edge to read as raised. `thumb` and `raised` do not vary. On web
+all of this is automatic via `.dark`.
 
 The ring is part of the shadow, not a CSS border, so it stays outside the box
 model and never shifts layout. **Do not reimplement it as a border** unless the
@@ -216,8 +226,8 @@ stroke.
 
 ## Components
 
-Seven base components are **specified, not implemented**: Button, Badge, Input,
-Card, Toggle, Table, Tabs. Each has a `README.md` under `components/<Name>/`
+Ten components are **specified, not implemented**: Button, Badge, Input, Card,
+Toggle, Table, Tabs, Calendar, Select, MultiSelect. Each has a `README.md` under `components/<Name>/`
 covering anatomy, variants, which token every part uses, and the decisions that
 are easy to get wrong — plus a `preview.html` that renders it from the real
 tokens.
@@ -228,8 +238,12 @@ from another design system; the spec records choices that are specific to F055
 (the pill on every control, the checkbox being the one square thing, `none` as a
 real elevation for inputs, tabular numerals on every numeric cell).
 
-If a component you need is not among the seven, say so rather than inventing
-one — the pattern for adding it is to write the spec first.
+If a component you need is not among the ten, say so rather than inventing one —
+the pattern for adding it is to write the spec first.
+
+**A floating panel (dropdown, popover, menu, tooltip, date picker) uses
+`popover` + `radius-14` + `shadow-overlay`.** Not card geometry. Select's README
+explains why.
 
 ### Sizes are not tokenised
 
@@ -304,8 +318,7 @@ Type, radius and spacing do not vary by mode at all.
    is 19.25px, because the reference sets them as percentages (162.5%, 137.5%)
    against 14px. Faithful, but worth normalising — 23/19px, or 24/20px for a 4px
    grid.
-4. **`radius-md` (8px) may be incidental** — it appears on two decorative
-   rectangles and nothing else.
+4. **`space-10` is thin** — two uses, both input inner padding.
 5. **`space-2.5` (10px) is nearly unused** — two occurrences, both as input
    inner padding. Kept because inputs matter, but it is not a general step.
 6. **Compose cannot reproduce the elevation shadows.** Each level is a hairline

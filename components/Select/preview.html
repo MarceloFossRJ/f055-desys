@@ -1,0 +1,83 @@
+<!-- @dsCard group="Forms" height=420 subtitle="Trigger shares the input treatment; panel floats on overlay" -->
+<div class="wrap">
+  <div class="field">
+    <label class="lbl" for="s-ccy">Preferred Currency</label>
+    <div class="trig" id="s-ccy">
+      <span class="val">USD — United States Dollar</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Placeholder and focus</span>
+    <div class="trig is-focus">
+      <span class="val ph">Select a topic</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Open</span>
+    <div class="trig open">
+      <span class="val">Market Order</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="panel">
+      <div class="opt sel">
+        <span>Market Order</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <div class="opt">Limit Order</div>
+      <div class="opt">Stop Loss</div>
+      <div class="sep"></div>
+      <div class="opt dis">Trailing Stop</div>
+    </div>
+  </div>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-6); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+
+  .trig {
+    display: flex; align-items: center; cursor: pointer;
+    height: 32px; padding-left: var(--space-10); padding-right: var(--space-8);
+    background: var(--input); border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+  }
+  .val {
+    flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--foreground);
+  }
+  .ph { color: var(--muted-foreground); }
+  .trig svg {
+    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+  .open svg { transform: rotate(180deg); }
+
+  .panel {
+    margin-top: var(--space-4);
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
+    padding-block: var(--space-6); padding-inline: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .opt {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-8);
+    height: 32px; padding-inline: var(--space-10); cursor: pointer;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  }
+  .sel { background: var(--accent); color: var(--accent-foreground); }
+  .opt svg {
+    width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .dis { color: var(--muted-foreground); cursor: not-allowed; }
+  .sep { height: 1px; background: var(--border); margin-block: var(--space-4); }
+</style>

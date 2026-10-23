@@ -76,11 +76,13 @@ export const fontSize = {
 };
 
 export const borderRadius = {
-    "sm": "5px",
-    "md": "8px",
-    "lg": "10px",
+    "5": "5px",
+    "6": "6px",
+    "8": "8px",
+    "10": "10px",
+    "14": "14px",
     "pill": "18px",
-    "xl": "24px",
+    "24": "24px",
     "full": "9999px"
 };
 
@@ -102,9 +104,11 @@ export const spacing = {
 // 10%); drive that with a dark: variant or the v4 stylesheet.
 export const boxShadow = {
     "none": "none",
+    "hairline": "0 0 0 1px #E5E5E5",
     "card": "0 0 0 1px #0A0A0A0D, 0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A",
     "thumb": "0 1px 3px 0 #0000001A, 0 1px 2px -1px #0000001A",
-    "raised": "0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A"
+    "raised": "0 0 0 1px #0000001A, 0 4px 6px -1px #0000001A, 0 2px 4px -2px #0000001A",
+    "overlay": "0 0 0 1px #0A0A0A0D, 0 10px 15px -3px #0000001A, 0 4px 6px -4px #0000001A"
 };
 
 export default { colors, fontFamily, fontSize, borderRadius, spacing, boxShadow };

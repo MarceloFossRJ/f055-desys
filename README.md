@@ -93,6 +93,14 @@ match Tailwind's defaults exactly. So do all eleven spacing steps (0.5 through
 no configuration; everything is written out anyway so the other three stacks
 share the same numbers.
 
+**Radius is eight values, not a scale.** 5, 6, 8, 10, 14, 18, 24 and full have
+no consistent ratio, so they are named by pixel value — with `pill` (18px) and
+`full` keeping intent names, because those denote a shape rather than a size.
+
+**Elevation is six levels, and `hairline` is the most-used of all** — a 1px ring
+in the border colour with no drop, for elements that need an edge but no lift.
+It is a shadow rather than a border so it costs no layout.
+
 **Spacing is a 2px grid, not 4px.** 2, 6, 10 and 14 are all in real use, and
 there is no 32px step — the scale jumps 24 → 40. 20px is the card unit: both a
 card's inner padding and the gap between its parts. Tokens are named by pixel
@@ -252,8 +260,8 @@ violations and the two commands that must be run after any token change.
 3. **Two type styles are fractional.** `prose` at 22.75px and `label` at
    19.25px. Round to 23/19, or normalise to 24/20 for a 4px grid.
 
-4. **`radius-md` (8px) may be incidental** — two decorative rectangles use it
-   and nothing else does. `space-2.5` (10px) is similarly thin, with two uses.
+4. **`space-10` is thin** — two uses, both as input inner padding. Kept because
+   inputs matter, but it is not a general step.
 
 5. **Compose cannot reproduce the elevation shadows.** Each level is a hairline
    ring plus coloured drops; Compose offers a single `shadow(dp, shape)`. The
@@ -263,7 +271,7 @@ violations and the two commands that must be run after any token change.
 
 ## Sizes are not tokenised
 
-Writing the seven component specs exposed one real gap: control geometry has no
+Writing the component specs exposed one real gap: control geometry has no
 tokens. Heights, icon sizes, the switch's dimensions, border widths and the
 focus geometry are all literals in the specs, listed under "Not yet tokenised"
 in each component README.

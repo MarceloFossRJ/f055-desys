@@ -1,0 +1,62 @@
+<!-- @dsCard group="Forms" height=400 subtitle="Circular day cells on a 7-column grid" -->
+<div class="wrap">
+  <div class="cal">
+    <div class="hd">
+      <button class="nav" aria-label="Previous month">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <span class="mo">October 2026</span>
+      <button class="nav" aria-label="Next month">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <div class="dow">
+      <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+    </div>
+
+    <div class="grid">
+      <span class="d out">27</span><span class="d out">28</span><span class="d out">29</span><span class="d out">30</span>
+      <span class="d">1</span><span class="d">2</span><span class="d">3</span>
+      <span class="d">4</span><span class="d">5</span><span class="d">6</span><span class="d">7</span>
+      <span class="d">8</span><span class="d">9</span><span class="d">10</span>
+      <span class="d">11</span><span class="d">12</span><span class="d">13</span><span class="d">14</span>
+      <span class="d">15</span><span class="d">16</span><span class="d">17</span>
+      <span class="d">18</span><span class="d">19</span><span class="d">20</span><span class="d">21</span>
+      <span class="d">22</span><span class="d sel">23</span><span class="d">24</span>
+      <span class="d">25</span><span class="d">26</span><span class="d">27</span><span class="d">28</span>
+      <span class="d">29</span><span class="d">30</span><span class="d">31</span>
+    </div>
+  </div>
+</div>
+<style>
+  .wrap { background: var(--background); color: var(--foreground); padding: var(--space-20); }
+  .cal { display: flex; flex-direction: column; gap: var(--space-16); max-width: 340px; }
+
+  .hd { display: flex; align-items: center; justify-content: space-between; height: 40px; }
+  .mo { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500; }
+  .nav {
+    width: 24px; height: 24px; display: grid; place-content: center; cursor: pointer;
+    border: 0; background: transparent; border-radius: var(--radius-14); color: var(--foreground);
+  }
+  .nav svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .dow { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .dow span {
+    text-align: center; color: var(--muted-foreground);
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-8); }
+  .d {
+    aspect-ratio: 1 / 1; display: grid; place-content: center; cursor: pointer;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-sans); font-size: 14px; line-height: 1;
+    color: var(--foreground);
+  }
+  .out { color: var(--muted-foreground); }
+  .sel { background: var(--primary); color: var(--primary-foreground); }
+</style>
