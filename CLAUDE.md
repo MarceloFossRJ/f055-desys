@@ -48,13 +48,27 @@ tokens/spacing.json
 tokens/elevation.json
 ```
 
-Then regenerate every platform output:
+Then regenerate every platform output and validate the result:
 
 ```sh
-python3 scripts/build_tokens.py
+python3 scripts/build_tokens.py   # regenerates everything under dist/
+python3 scripts/check_tokens.py   # validates component previews against the tokens
 ```
 
-Never hand-edit a file under `dist/` — the next build overwrites it.
+Never hand-edit a file under `dist/` — the next build overwrites it, and CI
+fails the moment the two diverge.
+
+**Both commands must be run before you finish any change to `tokens/` or
+`components/`, and the result committed.** `dist/` is generated *and* committed,
+so a token change that is not rebuilt leaves four consuming stacks reading stale
+values. The `tokens` GitHub Action enforces this: it rebuilds, fails if `dist/`
+comes back dirty, then runs the preview check.
+
+`check_tokens.py` catches two things that fail silently otherwise: a `var()`
+pointing at a token that does not exist (CSS drops the declaration and the
+element renders with an inherited value, which often looks almost right), and a
+raw colour literal in a preview, which means the spec and the tokens have
+diverged. It does not check sizes — control geometry has no tokens yet.
 
 ## Colour
 
