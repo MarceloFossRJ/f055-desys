@@ -1,0 +1,49 @@
+<!-- @dsCard group="Navigation" height=220 subtitle="Chevron separators, collapsed middle, current page in foreground" -->
+<div class="wrap">
+  <nav class="bc" aria-label="Breadcrumb">
+    <a class="crumb" href="#">Home</a>
+    <svg class="sep" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    <a class="crumb" href="#">Accounts</a>
+    <svg class="sep" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    <span class="crumb now" aria-current="page">Payments</span>
+  </nav>
+
+  <nav class="bc" aria-label="Breadcrumb">
+    <a class="crumb" href="#">Home</a>
+    <svg class="sep" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    <button class="more" aria-label="Show hidden levels">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+    </button>
+    <svg class="sep" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    <span class="crumb now" aria-current="page">Payments</span>
+  </nav>
+</div>
+<style>
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .bc { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-10); }
+
+  .crumb {
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    color: var(--muted-foreground); text-decoration: none;
+  }
+  .now { color: var(--foreground); }
+
+  .sep {
+    width: 14px; height: 14px; flex: none;
+    fill: none; stroke: var(--muted-foreground); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .more {
+    width: 28px; height: 28px; display: grid; place-content: center; cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: transparent; color: var(--muted-foreground);
+  }
+  .more svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+</style>

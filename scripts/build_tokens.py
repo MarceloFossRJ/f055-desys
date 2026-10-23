@@ -947,6 +947,7 @@ COLOR_USAGE = {
     "destructive-foreground": "Labels on destructive.",
     "border": "Hairlines and dividers. Deliberately low contrast (1.26:1) - a boundary, never an outline carrying meaning on its own.",
     "input": "Form field fills. A translucent wash, not a solid, so it composites over both card and background.",
+    "track": "The empty half of a slider, and the fill of an unchecked checkbox or radio - the off state of a control. A third alpha ramp, distinct from both border and input.",
     "ring": "Focus rings only. DERIVED, not extracted - the reference draws no focus state. Clears 3:1 on every neutral surface in both modes (dark: 5.20:1 on background, 3.97:1 on muted). MUST be used with ring-offset: on a primary or destructive button the ring and the surface are both red, so without the offset gap it is invisible.",
     "ring-offset": "The gap between a control and its focus ring, tracking background so the ring sits on the page rather than on the control. DERIVED. Standard usage is a 2px ring with a 2px offset.",
     "chart-1": "Lightest step of the data ramp. First series, or lowest value.",

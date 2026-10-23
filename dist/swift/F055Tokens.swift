@@ -33,6 +33,7 @@ public protocol F055Palette {
     var destructiveForeground: Color { get }
     var border: Color { get }
     var input: Color { get }
+    var track: Color { get }
     var ring: Color { get }
     var ringOffset: Color { get }
     var chart1: Color { get }
@@ -62,6 +63,7 @@ public struct F055LightPalette: F055Palette {
     public let destructiveForeground: Color = Color(.sRGB, red: 0.9961, green: 0.9490, blue: 0.9490, opacity: 1)
     public let border: Color = Color(.sRGB, red: 0.8980, green: 0.8980, blue: 0.8980, opacity: 1)
     public let input: Color = Color(.sRGB, red: 0.8980, green: 0.8980, blue: 0.8980, opacity: 0.5)
+    public let track: Color = Color(.sRGB, red: 0.8980, green: 0.8980, blue: 0.8980, opacity: 0.902)
     public let ring: Color = Color(.sRGB, red: 0.7569, green: 0.0000, blue: 0.0275, opacity: 1)
     public let ringOffset: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 1)
     public let chart1: Color = Color(.sRGB, red: 1.0000, green: 0.6353, blue: 0.6353, opacity: 1)
@@ -91,6 +93,7 @@ public struct F055DarkPalette: F055Palette {
     public let destructiveForeground: Color = Color(.sRGB, red: 0.9961, green: 0.9490, blue: 0.9490, opacity: 1)
     public let border: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 0.1)
     public let input: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 0.15)
+    public let track: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 0.1333)
     public let ring: Color = Color(.sRGB, red: 0.9843, green: 0.1725, blue: 0.2118, opacity: 1)
     public let ringOffset: Color = Color(.sRGB, red: 0.0392, green: 0.0392, blue: 0.0392, opacity: 1)
     public let chart1: Color = Color(.sRGB, red: 1.0000, green: 0.6353, blue: 0.6353, opacity: 1)
