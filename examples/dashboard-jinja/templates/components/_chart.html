@@ -1,0 +1,51 @@
+{# Two series, so two CATEGORICAL slots: series-1 and series-3. Not chart-1..5,
+   which is the sequential ramp. series-3 is the same value as muted-foreground,
+   which the axis labels also wear, so it carries a dashed mark against a filled
+   area -- the token's note requires it.
+
+   Every coordinate here was computed in app.py. The React version does the same
+   arithmetic in the browser; server-side it is plainly just data.
+
+   Axis labels take `type['caption']`, which the generated Python tokens give as
+   a whole CSS declaration string. That is the one thing this stack can do that
+   the React one cannot: a named type style applied directly, with no class. #}
+<div>
+  <svg viewBox="0 0 {{ chart.width }} {{ chart.height }}" class="w-full" role="img"
+       aria-label="Streams this period compared with the previous period">
+    <defs>
+      <linearGradient id="f055-area" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="var(--series-1)" stop-opacity="0.28" />
+        <stop offset="100%" stop-color="var(--series-1)" stop-opacity="0.02" />
+      </linearGradient>
+    </defs>
+
+    {% for t in chart.ticks %}
+      <line x1="{{ chart.pad_l }}" x2="{{ chart.width - chart.pad_r }}"
+            y1="{{ t.y }}" y2="{{ t.y }}" stroke="var(--border)" stroke-width="1" />
+      <text x="{{ chart.pad_l - 8 }}" y="{{ t.y + 4 }}" text-anchor="end"
+            class="fill-muted-foreground" style="{{ type['caption'] }}">{{ t.label }}</text>
+    {% endfor %}
+    {% for l in chart.labels %}
+      <text x="{{ l.x }}" y="{{ chart.height - 8 }}" text-anchor="middle"
+            class="fill-muted-foreground" style="{{ type['caption'] }}">{{ l.text }}</text>
+    {% endfor %}
+
+    <path d="{{ chart.previous }}" fill="none" stroke="var(--series-3)" stroke-width="2"
+          stroke-dasharray="4 4" stroke-linecap="round" />
+    <path d="{{ chart.area }}" fill="url(#f055-area)" />
+    <path d="{{ chart.current }}" fill="none" stroke="var(--series-1)" stroke-width="2"
+          stroke-linejoin="round" stroke-linecap="round" />
+  </svg>
+
+  {# Two series, so a legend is always present. #}
+  <div class="mt-2 flex items-center gap-4 pl-11">
+    <span class="flex items-center gap-1.5 text-xs text-muted-foreground">
+      <svg width="16" height="8" aria-hidden="true"><line x1="0" y1="4" x2="16" y2="4"
+        stroke="var(--series-1)" stroke-width="2" stroke-linecap="round" /></svg>This period
+    </span>
+    <span class="flex items-center gap-1.5 text-xs text-muted-foreground">
+      <svg width="16" height="8" aria-hidden="true"><line x1="0" y1="4" x2="16" y2="4"
+        stroke="var(--series-3)" stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round" /></svg>Previous period
+    </span>
+  </div>
+</div>

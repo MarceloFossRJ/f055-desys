@@ -209,11 +209,11 @@
     },
     "muted-foreground": {
       "light": {
-        "hex": "#737373",
-        "hex8": "#737373FF",
-        "rgba": "rgba(115, 115, 115, 1)",
-        "css": "oklch(0.556 0 0)",
-        "ref": "neutral.500",
+        "hex": "#525252",
+        "hex8": "#525252FF",
+        "rgba": "rgba(82, 82, 82, 1)",
+        "css": "oklch(0.439 0 0)",
+        "ref": "neutral.600",
         "alpha": 1.0
       },
       "dark": {
@@ -271,6 +271,24 @@
         "alpha": 1.0
       },
       "dark": {
+        "hex": "#E7000B",
+        "hex8": "#E7000BFF",
+        "rgba": "rgba(231, 0, 11, 1)",
+        "css": "oklch(0.577 0.245 27.325)",
+        "ref": "red.600",
+        "alpha": 1.0
+      }
+    },
+    "destructive-text": {
+      "light": {
+        "hex": "#E7000B",
+        "hex8": "#E7000BFF",
+        "rgba": "rgba(231, 0, 11, 1)",
+        "css": "oklch(0.577 0.245 27.325)",
+        "ref": "red.600",
+        "alpha": 1.0
+      },
+      "dark": {
         "hex": "#FB2C36",
         "hex8": "#FB2C36FF",
         "rgba": "rgba(251, 44, 54, 1)",
@@ -281,19 +299,19 @@
     },
     "destructive-foreground": {
       "light": {
-        "hex": "#FEF2F2",
-        "hex8": "#FEF2F2FF",
-        "rgba": "rgba(254, 242, 242, 1)",
-        "css": "oklch(0.971 0.013 17.38)",
-        "ref": "red.50",
+        "hex": "#FFFFFF",
+        "hex8": "#FFFFFFFF",
+        "rgba": "rgba(255, 255, 255, 1)",
+        "css": "oklch(1 0 0)",
+        "ref": "white",
         "alpha": 1.0
       },
       "dark": {
-        "hex": "#FEF2F2",
-        "hex8": "#FEF2F2FF",
-        "rgba": "rgba(254, 242, 242, 1)",
-        "css": "oklch(0.971 0.013 17.38)",
-        "ref": "red.50",
+        "hex": "#FFFFFF",
+        "hex8": "#FFFFFFFF",
+        "rgba": "rgba(255, 255, 255, 1)",
+        "css": "oklch(1 0 0)",
+        "ref": "white",
         "alpha": 1.0
       }
     },
@@ -313,6 +331,24 @@
         "css": "oklch(1 0 0 / 10%)",
         "ref": "white",
         "alpha": 0.1
+      }
+    },
+    "border-strong": {
+      "light": {
+        "hex": "#737373",
+        "hex8": "#737373FF",
+        "rgba": "rgba(115, 115, 115, 1)",
+        "css": "oklch(0.556 0 0)",
+        "ref": "neutral.500",
+        "alpha": 1.0
+      },
+      "dark": {
+        "hex": "#A1A1A1",
+        "hex8": "#A1A1A1FF",
+        "rgba": "rgba(161, 161, 161, 1)",
+        "css": "oklch(0.708 0 0)",
+        "ref": "neutral.400",
+        "alpha": 1.0
       }
     },
     "input": {

@@ -36,3 +36,9 @@ jobs:
 
       - name: Validate component previews
         run: python3 scripts/check_tokens.py
+
+      # Every rule this enforces was found by rendering the dashboard and
+      # measuring the live DOM. A rule that is only written down gets broken
+      # again, so it is a build gate instead.
+      - name: Measure text contrast in both themes
+        run: python3 scripts/check_contrast.py

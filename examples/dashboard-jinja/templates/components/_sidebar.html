@@ -1,0 +1,41 @@
+{% from "components/_ui.html" import lucide, avatar %}
+
+{%- macro nav_row(label, icon_name, active) -%}
+  <button {% if active %}aria-current="page"{% endif %}
+    class="flex h-(--control-button) w-full items-center gap-2 rounded-6 px-2 text-sm
+      transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset
+      {% if active %}bg-muted font-medium text-foreground
+      {% else %}text-muted-foreground hover:bg-accent hover:text-foreground{% endif %}">
+    {{ lucide(icon_name, cls='shrink-0') }}<span class="truncate">{{ label }}</span>
+  </button>
+{%- endmacro -%}
+
+<aside class="flex w-64 shrink-0 flex-col border-r border-border bg-card">
+  <div class="flex h-14 items-center gap-2 px-3">
+    <span class="grid size-(--control-avatar) shrink-0 place-content-center rounded-8
+                 bg-primary text-primary-foreground">{{ lucide('audio-lines') }}</span>
+    <span class="flex-1 truncate text-sm font-medium">F055 Records</span>
+  </div>
+
+  <div class="flex flex-1 flex-col gap-0.5 overflow-y-auto px-2 pb-2">
+    {{ nav_row('Quick Create', 'plus', False) }}
+    {{ nav_row('Inbox', 'inbox', False) }}
+    <div role="separator" class="my-2 h-px w-full bg-border"></div>
+    {% for label, icon_name, active in nav_main %}{{ nav_row(label, icon_name, active) }}{% endfor %}
+    <div class="px-2 pb-1 pt-3 text-xs font-medium text-muted-foreground">Library</div>
+    {% for label, icon_name, active in nav_library %}{{ nav_row(label, icon_name, active) }}{% endfor %}
+    <div class="flex-1"></div>
+    {% for label, icon_name, active in nav_footer %}{{ nav_row(label, icon_name, active) }}{% endfor %}
+  </div>
+
+  <div role="separator" class="h-px w-full bg-border"></div>
+  <div class="flex items-center gap-2 p-2">
+    {{ avatar('MF') }}
+    <span class="flex min-w-0 flex-col">
+      <span class="truncate text-sm font-medium">Marcelo Foss</span>
+      <span class="truncate text-xs text-muted-foreground">marcelo@f055.dev</span>
+    </span>
+    {{ lucide('sliders-horizontal', cls='ml-auto shrink-0 text-muted-foreground') }}
+  </div>
+</aside>

@@ -44,16 +44,18 @@ that a highlighted row reads as inside the panel rather than as a second panel.
 | Radio | `menuitemradio` `aria-checked` | Same, with a dot |
 | Label | `presentation` | 12 / 16 / 500 in `muted-foreground` |
 | Separator | `separator` | 1px `border`, `space-4` above and below |
-| Destructive | `menuitem` | Text in `destructive`; **hover keeps `accent`**, not a red fill |
+| Destructive | `menuitem` | `destructive-text`; **hover is an inset ring**, never a fill |
 
 The reserved icon slot matters: letting unchecked rows close up makes the whole
 list shift when a box is toggled.
 
 ## Destructive items
 
-Text in `destructive`, hover in `accent` like every other row. A red fill on
-hover would be indistinguishable from a primary action, since the brand is red —
-see `tokens/color.json` on the open `destructive` decision.
+Text in `destructive-text`, and hover shows an **inset `destructive` ring** with
+no fill. A red fill would be indistinguishable from a primary action, since the
+brand is red; and the ordinary `accent` fill cannot be used either, because
+`destructive-text` measures 4.38:1 on `accent` in light and 3.97:1 in dark —
+under AA. Ring, not tint, as Validation and Toast already do.
 
 **Put destructive items last, after a separator.** With only hue to carry the
 distinction, position does real work.

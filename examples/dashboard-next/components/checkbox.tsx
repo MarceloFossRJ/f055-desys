@@ -34,10 +34,10 @@ export function Checkbox({
       className={cn(
         'inline-grid size-(--control-checkbox) shrink-0 place-content-center rounded-5 border transition-colors cursor-pointer',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
-        // `border` is 1.03:1 against a light row -- the control vanishes. There is no
-        // token between `border` and `muted-foreground` that clears 3:1, so the heavier
-        // one wins: a visible control beats a subtle one. See README, 'What this exposed'.
-        on ? 'border-transparent bg-primary text-primary-foreground' : 'border-muted-foreground bg-track',
+        // `border` is 1.26:1 against a light row -- the control vanishes, which fails
+        // WCAG 1.4.11. `border-strong` exists for exactly this: the outline of a control
+        // a person has to see in order to operate it.
+        on ? 'border-transparent bg-primary text-primary-foreground' : 'border-border-strong bg-track',
         className,
       )}
     >

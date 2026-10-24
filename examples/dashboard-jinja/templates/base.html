@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en" class="{{ 'dark' if theme == 'dark' else '' }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}F055{% endblock %}</title>
+  {# tokens.css names the families and cannot load them. Self-hosted from
+     node_modules, so the app needs no network at run time. #}
+  <link rel="stylesheet" href="/static/css/fonts.css" />
+  <link rel="stylesheet" href="/static/css/app.css" />
+</head>
+<body class="bg-background text-foreground font-sans antialiased">
+  {% block body %}{% endblock %}
+</body>
+</html>

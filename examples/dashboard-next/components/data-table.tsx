@@ -15,7 +15,7 @@ const TABS = ['All releases', 'In review', 'Scheduled', 'Takedowns'] as const;
 function StatusCell({ status }: { status: Status }) {
   if (status === 'Takedown') {
     return (
-      <span className="inline-flex items-center gap-1.5 text-sm text-destructive">
+      <span className="inline-flex items-center gap-1.5 text-sm text-destructive-text">
         <span className="size-(--control-dot) rounded-full bg-destructive" aria-hidden="true" />
         Takedown
       </span>

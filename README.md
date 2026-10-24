@@ -300,6 +300,29 @@ Layout widths are deliberately absent. A 256px sidebar or a 1200px content
 column belongs to a screen, not to the system; see below on why no containers or
 breakpoints were taken from the reference.
 
+## Contrast is checked, not asserted
+
+`scripts/check_contrast.py` resolves the cascade in every component preview —
+inheriting `color` down and taking the background from the nearest painted
+ancestor — composites alpha, and measures every text node against WCAG AA in
+both themes. Standard library only, so CI needs no browser, and it is a build
+gate alongside the token checks.
+
+It found thirty failures the first time it ran, in three groups, and all three
+turned into token changes rather than into documentation:
+
+| What | Was | Now |
+|---|---|---|
+| `muted-foreground` in light | neutral.500 — 4.35:1 on muted, 4.24:1 on input | **neutral.600** — 7.17 and 6.98 |
+| A destructive button's own label | red.50 on red.500/600 — **3.48:1 in dark** | white on red.600 — 4.77 both themes |
+| Destructive used as ink | the same token as the fill | **`destructive-text`**, red.600 / red.500 |
+
+The first of those reverses a call made earlier the same day. The reasoning had
+been that 4.35 vs 4.5 is a rounding-level miss on an extracted value, better
+prohibited than corrected. The measurement showed the pair in seven components —
+avatar initials, chip initials, card labels, placeholder text — so it was not an
+edge case to prohibit but a value the system leans on.
+
 ## Data colour
 
 Two families doing two different jobs. `chart-1..5` is a **sequential** ramp for
@@ -314,9 +337,20 @@ carries a hard requirement — a distinct mark type — and there is no fourth.
 
 ## Examples
 
-`examples/dashboard-next/` is the first screen actually built on this system — a
-dashboard on Next.js + Tailwind v4 + lucide-react, modelled on shadcn's
-dashboard-01. `npm install && npm run dev` inside that folder.
+Two implementations of the same screen, a dashboard modelled on shadcn's
+dashboard-01:
+
+| | Stack | Run |
+|---|---|---|
+| `examples/dashboard-next/` | Next.js + Tailwind v4 + lucide-react | `npm install && npm run dev` |
+| `examples/dashboard-jinja/` | Python + FastAPI + Jinja2 + Tailwind v4 | `pip install -r requirements.txt && npm run build && uvicorn app:app` |
+
+The second one exists to test whether the system survives a stack that is not
+React. It does — the size roles, the colour tokens and the named type styles all
+travelled unchanged, and the server-rendered page carries no client JavaScript
+at all. What did not travel is the components: the Jinja macros and the React
+components share every token and no code. That was the prediction in "On
+components" below, and building the second implementation confirmed it.
 
 It exists to be a test, and it found things. The token file dropped into
 Tailwind v4 with no adapter, and `track` and `muted-subtle` both earned their
