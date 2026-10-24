@@ -1,2 +1,4 @@
 build/
 .gradle/
+# PNGs here are render-test output, not committed artwork.
+composeApp/build/reports/f055/*.png

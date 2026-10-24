@@ -10,6 +10,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -17,16 +22,26 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import design.f055.tokens.*
 
+/** Test tags, shared with LoginRenderTest so the names cannot drift apart. */
+object LoginTags {
+    const val CARD = "login-card"
+    const val TITLE = "login-title"
+    const val EMAIL = "login-email"
+    const val PASSWORD = "login-password"
+    const val SUBMIT = "login-submit"
+    const val GOOGLE = "login-google"
+    const val ERROR = "login-error"
+}
+
 /**
  * Login — the same screen as examples/dashboard-next and examples/login-rails,
  * on Compose Multiplatform.
  *
- * NOT COMPILED. This repo's sandbox has no Kotlin toolchain and no network for
- * Gradle, so unlike the three HTML implementations this one has never been run.
- * What IS checked, by scripts/check_kotlin_tokens.py on every build, is that
- * every F055 token referenced below exists in dist/kotlin — which catches the
- * failure a design system actually causes. It does not catch a Compose mistake.
- * Treat it as a starting point, not as a verified screen.
+ * Verified by LoginRenderTest, which renders this screen headlessly and asserts
+ * its geometry against the tokens themselves — the button IS F055Control.button
+ * tall, not merely close to it. That test runs in CI, and with one Gradle
+ * command locally. It cannot run in the sandbox this repo is developed in,
+ * where Maven Central is blocked at the gateway; see README.md.
  *
  * Deliberate differences from the web, because the platform differs rather than
  * because the system does:
@@ -75,11 +90,17 @@ fun LoginScreen(
                         RoundedCornerShape(F055Radius.s24),
                     )
                     .background(colors.card, RoundedCornerShape(F055Radius.s24))
-                    .padding(F055Space.s24),
+                    .padding(F055Space.s24)
+                    .testTag(LoginTags.CARD),
                 verticalArrangement = Arrangement.spacedBy(F055Space.s24),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(F055Space.s6)) {
-                    Text("Login to your account", style = type.panelTitle, color = colors.cardForeground)
+                    Text(
+                        "Login to your account",
+                        style = type.panelTitle,
+                        color = colors.cardForeground,
+                        modifier = Modifier.testTag(LoginTags.TITLE),
+                    )
                     Text(
                         "Enter your email below to login to your account",
                         style = type.prose,
@@ -95,6 +116,7 @@ fun LoginScreen(
                             placeholder = "m@example.com",
                             keyboardType = KeyboardType.Email,
                             imeAction = ImeAction.Next,
+                            tag = LoginTags.EMAIL,
                         )
                     }
 
@@ -119,11 +141,12 @@ fun LoginScreen(
                             imeAction = ImeAction.Done,
                             isError = errorMessage != null,
                             visualTransformation = PasswordVisualTransformation(),
+                            tag = LoginTags.PASSWORD,
                         )
                     }
 
-                    PrimaryButton("Login") { onSubmit(email, password) }
-                    OutlineButton("Login with Google", onClick = onGoogle)
+                    PrimaryButton("Login", LoginTags.SUBMIT) { onSubmit(email, password) }
+                    OutlineButton("Login with Google", LoginTags.GOOGLE, onClick = onGoogle)
                 }
             }
 
@@ -171,7 +194,12 @@ private fun Field(
             // Ring, not tint: one hue, so an invalid field keeps its fill and
             // gains an outline. destructive-text, not destructive -- the fill
             // and the ink are different tokens.
-            Text(error, style = type.text, color = colors.destructiveText)
+            Text(
+                error,
+                style = type.text,
+                color = colors.destructiveText,
+                modifier = Modifier.testTag(LoginTags.ERROR),
+            )
         }
     }
 }
@@ -186,6 +214,7 @@ private fun TokenField(
     isError: Boolean = false,
     visualTransformation: androidx.compose.ui.text.input.VisualTransformation =
         androidx.compose.ui.text.input.VisualTransformation.None,
+    tag: String = "",
 ) {
     val colors = LocalF055Colors.current
     val type = LocalF055Type.current
@@ -199,7 +228,7 @@ private fun TokenField(
         placeholder = placeholder?.let { { Text(it, style = type.text, color = colors.mutedForeground) } },
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
         shape = RoundedCornerShape(F055Radius.s8),
-        modifier = Modifier.fillMaxWidth().heightIn(min = F055Control.button),
+        modifier = Modifier.fillMaxWidth().heightIn(min = F055Control.button).testTag(tag),
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = colors.input,
             unfocusedContainerColor = colors.input,
@@ -213,12 +242,12 @@ private fun TokenField(
 }
 
 @Composable
-private fun PrimaryButton(label: String, onClick: () -> Unit) {
+private fun PrimaryButton(label: String, tag: String, onClick: () -> Unit) {
     val colors = LocalF055Colors.current
     val type = LocalF055Type.current
     Button(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth().height(F055Control.button),
+        modifier = Modifier.fillMaxWidth().height(F055Control.button).testTag(tag),
         shape = RoundedCornerShape(F055Radius.pill),
         colors = ButtonDefaults.buttonColors(
             containerColor = colors.primary,
@@ -229,12 +258,12 @@ private fun PrimaryButton(label: String, onClick: () -> Unit) {
 }
 
 @Composable
-private fun OutlineButton(label: String, onClick: () -> Unit) {
+private fun OutlineButton(label: String, tag: String, onClick: () -> Unit) {
     val colors = LocalF055Colors.current
     val type = LocalF055Type.current
     OutlinedButton(
         onClick = onClick,
-        modifier = Modifier.fillMaxWidth().height(F055Control.button),
+        modifier = Modifier.fillMaxWidth().height(F055Control.button).testTag(tag),
         shape = RoundedCornerShape(F055Radius.pill),
         border = androidx.compose.foundation.BorderStroke(F055Elevation.ringWidth, colors.border),
         colors = ButtonDefaults.outlinedButtonColors(
@@ -245,5 +274,9 @@ private fun OutlineButton(label: String, onClick: () -> Unit) {
     ) { Text(label, style = type.button) }
 }
 
-/** Keeps the click affordance and the semantics together in one place. */
-private fun Modifier.clickableRole(onClick: () -> Unit): Modifier = this
+/**
+ * A text link. Kept as one helper so the affordance and the semantics stay
+ * together; Compose has no <a>, so the role has to be stated.
+ */
+private fun Modifier.clickableRole(onClick: () -> Unit): Modifier =
+    this.semantics { role = Role.Button }.clickable(onClick = onClick)

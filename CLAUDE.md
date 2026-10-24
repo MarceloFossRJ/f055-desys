@@ -279,6 +279,27 @@ is for.
 Layout widths are deliberately absent. A 256px sidebar or a 1200px column
 belongs to a screen, not to the system.
 
+## The native outputs
+
+`dist/kotlin` and `dist/swift` are the two outputs no browser renders and no
+test imported, until now. Three things cover them, and they cover different
+depths:
+
+- **`check_kotlin_tokens.py`** — every `F055Radius.x`, `F055Control.x`,
+  `colors.x`, `type.x` a Kotlin source names exists. Runs anywhere.
+- **`check_native_values.py`** — the numbers match `dist/tokens.flat.json`.
+  Not circular: the native outputs go through `px()`, dp/sp conversion,
+  camelCase renaming and ARGB packing, which is where a unit slip or a dropped
+  alpha channel lives. 241 comparisons. Runs anywhere.
+- **`examples/login-compose` `:composeApp:desktopTest`** — compiles the
+  generated Kotlin, lays the screen out, asserts geometry against the token
+  objects, renders PNGs. **Needs Maven Central, so it runs in CI and not in the
+  sandbox**, where the egress proxy refuses it.
+
+**Assert against the token, never the number.** `assertDp(F055Control.button, …)`
+fails when the token moves; `assertDp(32.dp, …)` does not, which is the whole
+point of having a token.
+
 ## Contrast is a build gate
 
 `scripts/check_contrast.py` resolves the cascade, composites alpha and measures
