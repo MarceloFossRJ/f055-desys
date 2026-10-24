@@ -37,6 +37,7 @@ interface F055Colors {
     val destructiveForeground: Color
     val border: Color
     val input: Color
+    val mutedSubtle: Color
     val track: Color
     val ring: Color
     val ringOffset: Color
@@ -66,6 +67,7 @@ object F055Light : F055Colors {
     val destructiveForeground: Color = Color(0xFFFEF2F2)
     val border: Color = Color(0xFFE5E5E5)
     val input: Color = Color(0x80E5E5E5)
+    val mutedSubtle: Color = Color(0x80F5F5F5)
     val track: Color = Color(0xE6E5E5E5)
     val ring: Color = Color(0xFFC10007)
     val ringOffset: Color = Color(0xFFFFFFFF)
@@ -95,6 +97,7 @@ object F055Dark : F055Colors {
     val destructiveForeground: Color = Color(0xFFFEF2F2)
     val border: Color = Color(0x1AFFFFFF)
     val input: Color = Color(0x26FFFFFF)
+    val mutedSubtle: Color = Color(0x80262626)
     val track: Color = Color(0x22FFFFFF)
     val ring: Color = Color(0xFFFB2C36)
     val ringOffset: Color = Color(0xFF0A0A0A)
