@@ -1,0 +1,49 @@
+<!-- @dsCard group="Navigation" height=400 subtitle="Nav, with the active item driven by scroll position" -->
+<div class="wrap">
+  <div class="demo">
+    <nav class="nav" aria-label="On this page">
+      <span class="glabel">On this page</span>
+      <a class="item" href="#a">Overview</a>
+      <a class="item on" href="#b" aria-current="true">Payout schedule</a>
+      <a class="item sub" href="#b1">Thresholds</a>
+      <a class="item sub" href="#b2">Currencies</a>
+      <a class="item" href="#c">Tax documents</a>
+      <a class="item is-focus" href="#d">Security</a>
+    </nav>
+
+    <div class="doc">
+      <div class="sec dim"><span class="h">Overview</span><span class="p"></span><span class="p short"></span></div>
+      <div class="sec"><span class="h">Payout schedule</span><span class="p"></span><span class="p"></span><span class="p short"></span></div>
+      <div class="sec dim"><span class="h">Tax documents</span><span class="p"></span></div>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap { background: var(--background); color: var(--foreground); padding: var(--space-20); }
+  .demo { display: flex; gap: var(--space-24); align-items: flex-start; }
+
+  .nav { display: flex; flex-direction: column; gap: var(--space-2); width: 200px; flex: none; }
+  .glabel {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    color: var(--muted-foreground); padding-inline: var(--space-10); margin-bottom: var(--space-4);
+  }
+  .item {
+    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: transparent; color: var(--foreground); text-decoration: none;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400;
+  }
+  .sub { padding-left: var(--space-24); color: var(--muted-foreground); font-size: 14px; }
+  .on { background: var(--muted); font-weight: 500; }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .doc { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-16); }
+  .sec { display: flex; flex-direction: column; gap: var(--space-8); }
+  .dim { opacity: .4; }
+  .h {
+    font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 500;
+  }
+  .p { height: 8px; border-radius: var(--radius-pill); background: var(--muted); }
+  .short { width: 60%; }
+</style>

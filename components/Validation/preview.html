@@ -1,0 +1,67 @@
+<!-- @dsCard group="Forms" height=460 subtitle="Icon plus text; the field keeps its fill" -->
+<div class="wrap">
+  <div class="field">
+    <label class="lbl" for="v1">Email</label>
+    <div class="input err"><span class="val">artist@studio</span></div>
+    <p class="msg err-t">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      Enter a full email address, including the domain.
+    </p>
+  </div>
+
+  <div class="field">
+    <label class="lbl" for="v2">IBAN</label>
+    <div class="input ok"><span class="val">DE89 3704 0044 0532 0130 00</span></div>
+    <p class="msg ok-t">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+      Account verified.
+    </p>
+  </div>
+
+  <div class="field">
+    <label class="lbl" for="v3">Display name</label>
+    <div class="input"><span class="val">Marcelo</span></div>
+    <p class="msg">Shown to anyone you share a report with.</p>
+  </div>
+
+  <div class="field">
+    <label class="lbl" for="v4">Focused with an error</label>
+    <div class="input err is-focus"><span class="val">artist@studio</span></div>
+    <p class="msg err-t">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      Enter a full email address, including the domain.
+    </p>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-6); max-width: 340px; }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+
+  .input {
+    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
+  }
+  /* The fill never changes — only the ring is added. */
+  .err { box-shadow: 0 0 0 1px var(--destructive); }
+  .ok  { box-shadow: 0 0 0 1px var(--border); }
+  .val { flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: 20px; }
+  .is-focus { box-shadow: 0 0 0 1px var(--destructive), 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .msg {
+    margin: 0; display: flex; align-items: flex-start; gap: var(--space-6);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    color: var(--muted-foreground);
+  }
+  .msg svg {
+    width: 16px; height: 16px; flex: none; translate: 0 2px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .err-t { color: var(--destructive); }
+  .ok-t { color: var(--foreground); }
+</style>

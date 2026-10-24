@@ -1,0 +1,104 @@
+<!-- @dsCard group="Overlays" height=440 subtitle="The tooltip's geometry, with interactive content" -->
+<div class="wrap">
+  <div class="col">
+    <span class="cap">Tooltip — the reference's own instance</span>
+    <div class="tip">
+      <span class="swatch"></span>
+      <span class="tl">Visitors</span>
+      <span class="tv">237</span>
+    </div>
+  </div>
+
+  <div class="col">
+    <span class="cap">Popover — interactive content</span>
+    <div class="pop">
+      <div class="phd">
+        <span class="pt">Payout threshold</span>
+        <button class="x" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <p class="pb">Payouts run once your balance clears this amount. Changes apply from
+        the next cycle.</p>
+      <div class="pf">
+        <button class="gb">Cancel</button>
+        <button class="gb pri">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <span class="cap">Menu — the same shell as Select's panel</span>
+    <div class="pop menu">
+      <div class="opt">Edit details</div>
+      <div class="opt">Duplicate</div>
+      <div class="sep"></div>
+      <div class="opt dang">Delete</div>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .col { display: flex; flex-direction: column; gap: var(--space-6); align-items: flex-start; }
+  .cap {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground);
+  }
+
+  .tip {
+    display: flex; align-items: center; gap: var(--space-8); min-width: 128px;
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
+    padding: var(--space-6) var(--space-10);
+  }
+  .swatch { width: 4px; align-self: stretch; border-radius: 2px; background: var(--chart-1); }
+  .tl {
+    flex: 1; font-family: var(--font-sans); font-size: 12px; line-height: 1;
+    color: var(--muted-foreground);
+  }
+  .tv {
+    font-family: var(--font-mono); font-size: 12px; line-height: 1; font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pop {
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
+    padding: var(--space-16); max-width: 300px;
+    display: flex; flex-direction: column; gap: var(--space-12);
+  }
+  .menu { padding: var(--space-6); gap: var(--space-2); min-width: 180px; }
+
+  .phd { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-12); }
+  .pt { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+  .x {
+    width: 28px; height: 28px; flex: none; display: grid; place-content: center; cursor: pointer;
+    border: 0; border-radius: var(--radius-pill); background: var(--muted); color: var(--foreground);
+  }
+  .x svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .pb {
+    margin: 0; font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    color: var(--muted-foreground);
+  }
+  .pf { display: flex; justify-content: flex-end; gap: var(--space-8); }
+  .gb {
+    height: 28px; padding-inline: var(--space-12); cursor: pointer;
+    border: 1px solid var(--border); border-radius: var(--radius-pill);
+    background: var(--popover); color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .pri { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+
+  .opt {
+    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    border-radius: var(--radius-pill); cursor: pointer;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  }
+  .dang { color: var(--destructive); }
+  .sep { height: 1px; background: var(--border); margin-block: var(--space-4); }
+</style>
