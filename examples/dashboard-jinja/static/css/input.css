@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* The real generated token file, imported unmodified. Same rule as the Next.js
+   example: a copy here would let the two drift. */
+@import "../../../../dist/web/tokens.css";
+
+/* Tailwind v4 scans for class names. A Python app has none of the extensions it
+   looks for by default, so point it at the templates. */
+@source "../../templates";

@@ -253,5 +253,7 @@ def jinja_globals() -> dict:
         "type": _Ns(TYPE),
         "radius": _Ns(RADIUS),
         "space": _Ns(SPACING),
+        "size": _Ns(SIZE),
+        "control": _Ns(CONTROL),
         "elevation": _Ns(ELEVATION),
     }

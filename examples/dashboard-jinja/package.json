@@ -1,0 +1,18 @@
+{
+  "name": "f055-dashboard-jinja-css",
+  "private": true,
+  "description": "Tailwind is a CSS build step and lucide-static is the icon source. Both come from npm because neither has a Python port; the app itself is Python.",
+  "scripts": {
+    "css": "tailwindcss -i static/css/input.css -o static/css/app.css --minify",
+    "css:watch": "tailwindcss -i static/css/input.css -o static/css/app.css --watch",
+    "fonts": "python3 build_fonts.py",
+    "build": "npm run fonts && npm run css"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.3",
+    "tailwindcss": "4.3.3",
+    "lucide-static": "1.61.0",
+    "@fontsource/roboto": "5.3.0",
+    "@fontsource/geist-mono": "5.3.0"
+  }
+}

@@ -1,0 +1,70 @@
+{# Primitives, built from the specs in components/<Name>/README.md.
+
+   A Jinja macro is the closest this stack has to a component. It takes no
+   props object and has no variants library -- which is the interesting part:
+   if the system needs one to be usable, it is not really a token system. #}
+
+{%- macro lucide(name, size=None, cls='') -%}
+  {#- `size` defaults to --control-icon, read from the generated Python tokens.
+      control.icon is the string "16px", so strip the unit for the attribute. -#}
+  {%- set px = (size or control.icon)|replace('px','') -%}
+  <svg class="{{ cls }}" width="{{ px }}" height="{{ px }}" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+       stroke-linejoin="round" aria-hidden="true">{{ icon(name)|safe }}</svg>
+{%- endmacro -%}
+
+{%- macro button(label, variant='outline', size='md', icon_name=None, extra='') -%}
+  <button class="inline-flex items-center justify-center gap-1.5 rounded-pill border font-medium
+    whitespace-nowrap transition-colors cursor-pointer text-sm
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+    focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset
+    {% if size == 'sm' %}h-(--control-button-sm) px-3{% else %}h-(--control-button) px-4{% endif %}
+    {% if variant == 'primary' %}border-transparent bg-primary text-primary-foreground hover:opacity-90
+    {% elif variant == 'destructive' %}border-transparent bg-destructive text-destructive-foreground hover:opacity-90
+    {% elif variant == 'ghost' %}border-transparent bg-transparent hover:bg-accent
+    {% else %}border-border bg-card text-foreground shadow-thumb hover:bg-accent{% endif %}
+    {{ extra }}">
+    {%- if icon_name %}{{ lucide(icon_name) }}{% endif -%}
+    {{ label }}
+  </button>
+{%- endmacro -%}
+
+{%- macro icon_button(name, label, extra='') -%}
+  <button aria-label="{{ label }}" class="inline-grid size-(--control-button) place-content-center
+    rounded-6 text-muted-foreground cursor-pointer hover:bg-accent hover:text-foreground
+    transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+    focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset {{ extra }}">
+    {{ lucide(name) }}
+  </button>
+{%- endmacro -%}
+
+{%- macro badge(label, tone='outline', icon_name=None) -%}
+  <span class="inline-flex items-center gap-1 rounded-pill px-2 py-0.5 text-xs font-medium whitespace-nowrap
+    {% if tone == 'muted' %}bg-muted text-accent-foreground
+    {% elif tone == 'primary' %}bg-primary text-primary-foreground
+    {% else %}border border-border text-foreground{% endif %}">
+    {%- if icon_name %}{{ lucide(icon_name, size=control['icon-xs']) }}{% endif -%}
+    {{ label }}
+  </span>
+{%- endmacro -%}
+
+{%- macro checkbox(checked, label, indeterminate=False) -%}
+  {#- `border-strong`, not `border`: an unchecked box outlined in `border` is
+      1.26:1 against a light row and fails WCAG 1.4.11. -#}
+  <button type="button" role="checkbox"
+    aria-checked="{{ 'mixed' if indeterminate else ('true' if checked else 'false') }}"
+    aria-label="{{ label }}"
+    class="inline-grid size-(--control-checkbox) shrink-0 place-content-center rounded-5 border
+      transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset
+      {% if checked or indeterminate %}border-transparent bg-primary text-primary-foreground
+      {% else %}border-border-strong bg-track{% endif %}">
+    {%- if indeterminate %}{{ lucide('minus', size=control['icon-xs']) }}
+    {%- elif checked %}{{ lucide('check', size=control['icon-xs']) }}{% endif -%}
+  </button>
+{%- endmacro -%}
+
+{%- macro avatar(initials) -%}
+  <span class="inline-grid size-(--control-avatar) shrink-0 place-content-center rounded-full
+    bg-muted text-xs font-medium text-accent-foreground">{{ initials }}</span>
+{%- endmacro -%}

@@ -337,9 +337,20 @@ carries a hard requirement — a distinct mark type — and there is no fourth.
 
 ## Examples
 
-`examples/dashboard-next/` is the first screen actually built on this system — a
-dashboard on Next.js + Tailwind v4 + lucide-react, modelled on shadcn's
-dashboard-01. `npm install && npm run dev` inside that folder.
+Two implementations of the same screen, a dashboard modelled on shadcn's
+dashboard-01:
+
+| | Stack | Run |
+|---|---|---|
+| `examples/dashboard-next/` | Next.js + Tailwind v4 + lucide-react | `npm install && npm run dev` |
+| `examples/dashboard-jinja/` | Python + FastAPI + Jinja2 + Tailwind v4 | `pip install -r requirements.txt && npm run build && uvicorn app:app` |
+
+The second one exists to test whether the system survives a stack that is not
+React. It does — the size roles, the colour tokens and the named type styles all
+travelled unchanged, and the server-rendered page carries no client JavaScript
+at all. What did not travel is the components: the Jinja macros and the React
+components share every token and no code. That was the prediction in "On
+components" below, and building the second implementation confirmed it.
 
 It exists to be a test, and it found things. The token file dropped into
 Tailwind v4 with no adapter, and `track` and `muted-subtle` both earned their
