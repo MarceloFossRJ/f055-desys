@@ -15,6 +15,7 @@
     "neutral.200":  { "hex": "#E5E5E5", "oklch": "oklch(0.922 0 0)" },
     "neutral.400":  { "hex": "#A1A1A1", "oklch": "oklch(0.708 0 0)" },
     "neutral.500":  { "hex": "#737373", "oklch": "oklch(0.556 0 0)" },
+    "neutral.600":  { "hex": "#525252", "oklch": "oklch(0.439 0 0)" },
     "neutral.800":  { "hex": "#262626", "oklch": "oklch(0.269 0 0)" },
     "neutral.900":  { "hex": "#171717", "oklch": "oklch(0.205 0 0)" },
     "neutral.950":  { "hex": "#0A0A0A", "oklch": "oklch(0.145 0 0)" },
@@ -91,9 +92,10 @@
       "origin": "extracted"
     },
     "muted-foreground": {
-      "light": { "ref": "neutral.500" },
+      "light": { "ref": "neutral.600" },
       "dark":  { "ref": "neutral.400" },
-      "origin": "extracted"
+      "origin": "extracted-dark-corrected-light",
+      "note": "The light value is DARKENED one step from the extracted neutral.500. Reversed on 2026-10-24 after scripts/check_contrast.py measured every text node in all 40 previews: the extracted value is 4.74:1 on card but 4.35:1 on muted and 4.24:1 on input, both under the 4.5 AA floor, and 22 of the 30 failures were that pair. The first reading was that this is a rounding-level miss worth prohibiting rather than fixing; the measurement showed the pair is idiomatic -- avatar initials, chip initials, card labels, placeholder text -- so prohibiting it would have meant redesigning seven components to avoid a value the system leans on. neutral.600 clears every surface (7.81 card, 7.17 muted, 6.98 input) and is close to what Material uses for secondary text; shadcn ships the lighter value and carries the same shortfall. Dark is unchanged: neutral.400 already measures 5.86:1 on muted."
     },
     "accent": {
       "light": { "ref": "neutral.100" },
@@ -104,24 +106,38 @@
     "accent-foreground": {
       "light": { "ref": "neutral.950" },
       "dark":  { "ref": "neutral.50" },
-      "origin": "derived"
+      "origin": "derived",
+      "note": "The ink for anything sitting on `muted` or `accent` -- 18.16:1 light, 14.50:1 dark. This is the system's answer to secondary text inside a muted container, which `muted-foreground` cannot carry at AA: use this and let size or weight carry the hierarchy instead of colour. The pairing existed from the first extraction and went unused until the dashboard hit the problem on a tab strip."
     },
     "destructive": {
       "light": { "ref": "red.600" },
+      "dark":  { "ref": "red.600" },
+      "origin": "derived",
+      "note": "Same value in both themes since 2026-10-24. It used to step to red.500 in dark, which left a destructive button's OWN LABEL at 3.48:1 -- the control was unreadable, not merely low-contrast. red.600 carries white at 4.77:1 in both themes and still clears 3:1 as a fill (4.77 on white, 3.76 on the dark card). Destructive TEXT on a muted or accent surface is a separate case and still measures 4.38:1: do not put it there -- a destructive row hovers to `muted-subtle`, not `accent`. OPEN DECISION remains. The reference never declares destructive — 'Danger Zone' uses plain foreground. Because the brand is red, destructive and primary collide. These values sit one step brighter than primary so they read as hotter, but a non-red destructive (amber/orange) is the stronger option if destructive actions need to be unmistakable."
+    },
+    "destructive-text": {
+      "light": { "ref": "red.600" },
       "dark":  { "ref": "red.500" },
       "origin": "derived",
-      "note": "OPEN DECISION. The reference never declares destructive — 'Danger Zone' uses plain foreground. Because the brand is red, destructive and primary collide. These values sit one step brighter than primary so they read as hotter, but a non-red destructive (amber/orange) is the stronger option if destructive actions need to be unmistakable."
+      "note": "Destructive used as INK on a neutral surface: an error message, a destructive menu item, an invalid field's label. Split from `destructive` on 2026-10-24 because one token cannot do both jobs in dark mode -- a FILL has to be dark enough for white ink to read on it (red.600, 4.77:1), while INK has to be bright enough to read on a dark page (red.500: 5.20 on background, 4.71 on card). Holding both at red.600 left every error message in dark mode at 3.76-4.15:1. Same shape as the chart/series split. On `muted` or `accent` it measures 4.38 light and 3.97 dark, so it does not go there: a destructive row shows hover as an inset `destructive` ring, not a tint -- the ring-not-tint rule Validation and Toast already follow."
     },
     "destructive-foreground": {
-      "light": { "ref": "red.50" },
-      "dark":  { "ref": "red.50" },
-      "origin": "derived"
+      "light": { "ref": "white" },
+      "dark":  { "ref": "white" },
+      "origin": "derived",
+      "note": "White, not red.50. On a red.600 fill red.50 gives 4.36:1 -- under AA for a 14px/500 button label -- and white gives 4.77:1. The two are visually indistinguishable at label size; only one of them passes."
     },
     "border": {
       "light": { "ref": "neutral.200" },
       "dark":  { "ref": "white", "alpha": 0.10 },
       "origin": "extracted",
       "note": "Dark border is a white alpha, not a solid neutral — it must stay alpha so it composites over card and background alike."
+    },
+    "border-strong": {
+      "light": { "ref": "neutral.500" },
+      "dark":  { "ref": "neutral.400" },
+      "origin": "derived",
+      "note": "The outline of a small control that has to be IDENTIFIABLE: an unchecked checkbox or radio, an unselected segment. `border` is decorative and measures 1.26:1 on card and 1.16:1 on muted in light mode, so a control outlined in it is invisible and fails WCAG 1.4.11, which asks 3:1 for anything needed to identify a component. Nothing in the palette sits between the two: neutral.400 reaches only 2.58:1 on card. So this is the same value as muted-foreground (4.74 / 4.35 / 4.24 on card, muted and input; 6.94 dark on card), aliased under its own name so the intent is explicit and the rule is checkable. Use `border` for separators and decorative hairlines, `border-strong` for anything a person has to see in order to operate."
     },
     "input": {
       "light": { "ref": "neutral.200", "alpha": 0.50 },

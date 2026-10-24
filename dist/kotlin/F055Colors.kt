@@ -34,8 +34,10 @@ interface F055Colors {
     val accent: Color
     val accentForeground: Color
     val destructive: Color
+    val destructiveText: Color
     val destructiveForeground: Color
     val border: Color
+    val borderStrong: Color
     val input: Color
     val mutedSubtle: Color
     val track: Color
@@ -63,12 +65,14 @@ object F055Light : F055Colors {
     val secondary: Color = Color(0xFFF4F4F5)
     val secondaryForeground: Color = Color(0xFF18181B)
     val muted: Color = Color(0xFFF5F5F5)
-    val mutedForeground: Color = Color(0xFF737373)
+    val mutedForeground: Color = Color(0xFF525252)
     val accent: Color = Color(0xFFF5F5F5)
     val accentForeground: Color = Color(0xFF0A0A0A)
     val destructive: Color = Color(0xFFE7000B)
-    val destructiveForeground: Color = Color(0xFFFEF2F2)
+    val destructiveText: Color = Color(0xFFE7000B)
+    val destructiveForeground: Color = Color(0xFFFFFFFF)
     val border: Color = Color(0xFFE5E5E5)
+    val borderStrong: Color = Color(0xFF737373)
     val input: Color = Color(0x80E5E5E5)
     val mutedSubtle: Color = Color(0x80F5F5F5)
     val track: Color = Color(0xE6E5E5E5)
@@ -99,9 +103,11 @@ object F055Dark : F055Colors {
     val mutedForeground: Color = Color(0xFFA1A1A1)
     val accent: Color = Color(0xFF262626)
     val accentForeground: Color = Color(0xFFFAFAFA)
-    val destructive: Color = Color(0xFFFB2C36)
-    val destructiveForeground: Color = Color(0xFFFEF2F2)
+    val destructive: Color = Color(0xFFE7000B)
+    val destructiveText: Color = Color(0xFFFB2C36)
+    val destructiveForeground: Color = Color(0xFFFFFFFF)
     val border: Color = Color(0x1AFFFFFF)
+    val borderStrong: Color = Color(0xFFA1A1A1)
     val input: Color = Color(0x26FFFFFF)
     val mutedSubtle: Color = Color(0x80262626)
     val track: Color = Color(0x22FFFFFF)

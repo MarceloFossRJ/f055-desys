@@ -108,6 +108,9 @@
     width: 100%; height: 100%; fill: none; stroke: var(--muted-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
-  .dang { color: var(--destructive); }
-  .dang:hover { background: var(--accent); color: var(--destructive); }
+  .dang { color: var(--destructive-text); }
+  /* Rings rather than tints. destructive-text on `accent` measures 4.38 light
+     and 3.97 dark -- under AA -- so the hover keeps the panel surface and shows
+     an inset ring instead, the same pattern Validation and Toast use. */
+  .dang:hover { background: transparent; box-shadow: inset 0 0 0 1px var(--destructive); }
 </style>

@@ -300,6 +300,29 @@ Layout widths are deliberately absent. A 256px sidebar or a 1200px content
 column belongs to a screen, not to the system; see below on why no containers or
 breakpoints were taken from the reference.
 
+## Contrast is checked, not asserted
+
+`scripts/check_contrast.py` resolves the cascade in every component preview —
+inheriting `color` down and taking the background from the nearest painted
+ancestor — composites alpha, and measures every text node against WCAG AA in
+both themes. Standard library only, so CI needs no browser, and it is a build
+gate alongside the token checks.
+
+It found thirty failures the first time it ran, in three groups, and all three
+turned into token changes rather than into documentation:
+
+| What | Was | Now |
+|---|---|---|
+| `muted-foreground` in light | neutral.500 — 4.35:1 on muted, 4.24:1 on input | **neutral.600** — 7.17 and 6.98 |
+| A destructive button's own label | red.50 on red.500/600 — **3.48:1 in dark** | white on red.600 — 4.77 both themes |
+| Destructive used as ink | the same token as the fill | **`destructive-text`**, red.600 / red.500 |
+
+The first of those reverses a call made earlier the same day. The reasoning had
+been that 4.35 vs 4.5 is a rounding-level miss on an extracted value, better
+prohibited than corrected. The measurement showed the pair in seven components —
+avatar initials, chip initials, card labels, placeholder text — so it was not an
+edge case to prohibit but a value the system leans on.
+
 ## Data colour
 
 Two families doing two different jobs. `chart-1..5` is a **sequential** ramp for

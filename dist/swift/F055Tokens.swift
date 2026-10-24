@@ -30,8 +30,10 @@ public protocol F055Palette {
     var accent: Color { get }
     var accentForeground: Color { get }
     var destructive: Color { get }
+    var destructiveText: Color { get }
     var destructiveForeground: Color { get }
     var border: Color { get }
+    var borderStrong: Color { get }
     var input: Color { get }
     var mutedSubtle: Color { get }
     var track: Color { get }
@@ -60,12 +62,14 @@ public struct F055LightPalette: F055Palette {
     public let secondary: Color = Color(.sRGB, red: 0.9569, green: 0.9569, blue: 0.9608, opacity: 1)
     public let secondaryForeground: Color = Color(.sRGB, red: 0.0941, green: 0.0941, blue: 0.1059, opacity: 1)
     public let muted: Color = Color(.sRGB, red: 0.9608, green: 0.9608, blue: 0.9608, opacity: 1)
-    public let mutedForeground: Color = Color(.sRGB, red: 0.4510, green: 0.4510, blue: 0.4510, opacity: 1)
+    public let mutedForeground: Color = Color(.sRGB, red: 0.3216, green: 0.3216, blue: 0.3216, opacity: 1)
     public let accent: Color = Color(.sRGB, red: 0.9608, green: 0.9608, blue: 0.9608, opacity: 1)
     public let accentForeground: Color = Color(.sRGB, red: 0.0392, green: 0.0392, blue: 0.0392, opacity: 1)
     public let destructive: Color = Color(.sRGB, red: 0.9059, green: 0.0000, blue: 0.0431, opacity: 1)
-    public let destructiveForeground: Color = Color(.sRGB, red: 0.9961, green: 0.9490, blue: 0.9490, opacity: 1)
+    public let destructiveText: Color = Color(.sRGB, red: 0.9059, green: 0.0000, blue: 0.0431, opacity: 1)
+    public let destructiveForeground: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 1)
     public let border: Color = Color(.sRGB, red: 0.8980, green: 0.8980, blue: 0.8980, opacity: 1)
+    public let borderStrong: Color = Color(.sRGB, red: 0.4510, green: 0.4510, blue: 0.4510, opacity: 1)
     public let input: Color = Color(.sRGB, red: 0.8980, green: 0.8980, blue: 0.8980, opacity: 0.5)
     public let mutedSubtle: Color = Color(.sRGB, red: 0.9608, green: 0.9608, blue: 0.9608, opacity: 0.5)
     public let track: Color = Color(.sRGB, red: 0.8980, green: 0.8980, blue: 0.8980, opacity: 0.902)
@@ -97,9 +101,11 @@ public struct F055DarkPalette: F055Palette {
     public let mutedForeground: Color = Color(.sRGB, red: 0.6314, green: 0.6314, blue: 0.6314, opacity: 1)
     public let accent: Color = Color(.sRGB, red: 0.1490, green: 0.1490, blue: 0.1490, opacity: 1)
     public let accentForeground: Color = Color(.sRGB, red: 0.9804, green: 0.9804, blue: 0.9804, opacity: 1)
-    public let destructive: Color = Color(.sRGB, red: 0.9843, green: 0.1725, blue: 0.2118, opacity: 1)
-    public let destructiveForeground: Color = Color(.sRGB, red: 0.9961, green: 0.9490, blue: 0.9490, opacity: 1)
+    public let destructive: Color = Color(.sRGB, red: 0.9059, green: 0.0000, blue: 0.0431, opacity: 1)
+    public let destructiveText: Color = Color(.sRGB, red: 0.9843, green: 0.1725, blue: 0.2118, opacity: 1)
+    public let destructiveForeground: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 1)
     public let border: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 0.1)
+    public let borderStrong: Color = Color(.sRGB, red: 0.6314, green: 0.6314, blue: 0.6314, opacity: 1)
     public let input: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 0.15)
     public let mutedSubtle: Color = Color(.sRGB, red: 0.1490, green: 0.1490, blue: 0.1490, opacity: 0.5)
     public let track: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 0.1333)

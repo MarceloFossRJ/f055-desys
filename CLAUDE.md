@@ -241,11 +241,17 @@ nine findings; four change how you use this system:
   `chart-1..5` is **sequential**, for magnitude; `series-1..3` is **categorical**,
   for identity. Picking a `chart-*` step for a second series is the mistake this
   split exists to prevent. (Fixed 2026-10-24; see Data colour below.)
-- **Never put `muted-foreground` on `muted` in light mode** — 4.35:1, under AA.
-  On `card` it is 4.74:1. If a container is muted, the secondary ink has to change
-  or the container does.
-- **`border` cannot outline a small control**: 1.03:1 on a light row. Use
-  `muted-foreground` until a control-border token exists.
+- **`border` is decorative; `border-strong` is operable.** `border` measures
+  1.26:1 on card — fine for a separator, invisible as a control outline, and a
+  failure of WCAG 1.4.11. Anything a person must see in order to operate it —
+  an unchecked checkbox or radio, an unselected segment — takes `border-strong`.
+- **Destructive is two tokens.** `destructive` is the FILL and carries
+  `destructive-foreground` (white, 4.77:1). `destructive-text` is destructive as
+  INK on a neutral surface. One token could not do both: a fill has to be dark
+  enough for white to read on it, ink has to be bright enough to read on a dark
+  page. Neither goes on `muted` or `accent` — a destructive row rings, never tints.
+- **`muted-foreground` is neutral.600 in light, not the extracted neutral.500.**
+  Corrected after measurement; it now clears every surface including `input`.
 
 Radius gained a third tier there: **tooltip 8 · panel 14 · card and dialog 24.**
 
@@ -272,6 +278,18 @@ is for.
 
 Layout widths are deliberately absent. A 256px sidebar or a 1200px column
 belongs to a screen, not to the system.
+
+## Contrast is a build gate
+
+`scripts/check_contrast.py` resolves the cascade in every preview, composites
+alpha and measures every text node against WCAG AA in both themes. Standard
+library only. **Run it before claiming a component is done** — it found thirty
+failures the first time, across seven components, and every one became a token
+change rather than a note in a README.
+
+Two of those reversed earlier decisions in this file. That is the point of
+measuring: an extracted value is evidence about the reference, not proof that
+the reference was accessible.
 
 ## Data colour
 
