@@ -1,0 +1,73 @@
+<!-- @dsCard group="Navigation" height=300 subtitle="Brand, horizontal nav, actions — on a hairline rule" -->
+<div class="wrap">
+  <header class="bar">
+    <span class="brand">Ledger</span>
+    <nav class="links" aria-label="Main">
+      <a class="item on" href="#" aria-current="page">Dashboard</a>
+      <a class="item" href="#">Transactions</a>
+      <a class="item" href="#">Investments</a>
+      <a class="item" href="#">Reports</a>
+    </nav>
+    <div class="acts">
+      <button class="ib" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+      <button class="btn">Add funds</button>
+    </div>
+  </header>
+
+  <header class="bar">
+    <span class="brand">Ledger</span>
+    <nav class="links" aria-label="Main">
+      <a class="item" href="#">Dashboard</a>
+      <a class="item on is-focus" href="#" aria-current="page">Transactions</a>
+    </nav>
+    <div class="acts"><button class="btn sec">Sign in</button></div>
+  </header>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-24);
+  }
+
+  .bar {
+    display: flex; align-items: center; gap: var(--space-24);
+    padding: var(--space-12) var(--space-20);
+    background: var(--background);
+    box-shadow: inset 0 -1px 0 0 var(--border);
+  }
+  .brand {
+    font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 500;
+    flex: none;
+  }
+  .links { display: flex; align-items: center; gap: var(--space-2); flex: 1; min-width: 0; }
+
+  .item {
+    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: transparent; color: var(--foreground); text-decoration: none;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400;
+    white-space: nowrap;
+  }
+  .on { background: var(--muted); font-weight: 500; }
+
+  .acts { display: flex; align-items: center; gap: var(--space-8); flex: none; }
+  .ib {
+    width: 32px; height: 32px; display: grid; place-content: center; cursor: pointer;
+    border: 0; background: transparent; color: var(--foreground);
+    border-radius: var(--radius-8); box-shadow: var(--shadow-hairline);
+  }
+  .ib svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .btn {
+    height: 32px; padding-inline: var(--space-12); cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: var(--primary); color: var(--primary-foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    white-space: nowrap;
+  }
+  .sec { background: var(--secondary); color: var(--secondary-foreground); }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+</style>

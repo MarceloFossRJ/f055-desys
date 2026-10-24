@@ -1,0 +1,83 @@
+<!-- @dsCard group="Navigation" height=420 subtitle="Items that do not fit collapse into a More menu" -->
+<div class="wrap">
+  <div class="demo">
+    <span class="cap">Room for everything</span>
+    <nav class="links wide" aria-label="Main">
+      <a class="item on" href="#" aria-current="page">Dashboard</a>
+      <a class="item" href="#">Transactions</a>
+      <a class="item" href="#">Investments</a>
+    </nav>
+  </div>
+
+  <div class="demo">
+    <span class="cap">Constrained — three items collapsed</span>
+    <nav class="links narrow" aria-label="Main">
+      <a class="item on" href="#" aria-current="page">Dashboard</a>
+      <a class="item" href="#">Transactions</a>
+      <button class="more" aria-expanded="false">
+        More
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+    </nav>
+  </div>
+
+  <div class="demo">
+    <span class="cap">Menu open</span>
+    <nav class="links narrow" aria-label="Main">
+      <a class="item on" href="#" aria-current="page">Dashboard</a>
+      <a class="item" href="#">Transactions</a>
+      <button class="more open" aria-expanded="true">
+        More
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+    </nav>
+    <div class="panel">
+      <a class="opt" href="#">Investments</a>
+      <a class="opt" href="#">Reports</a>
+      <a class="opt" href="#">Documents</a>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-20);
+  }
+  .demo { display: flex; flex-direction: column; gap: var(--space-6); align-items: flex-start; }
+  .cap {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground);
+  }
+
+  .links { display: flex; align-items: center; gap: var(--space-2); }
+  .wide { width: 420px; }
+  .narrow { width: 300px; }
+
+  .item, .more {
+    display: flex; align-items: center; gap: var(--space-4);
+    height: 32px; padding-inline: var(--space-10); cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: transparent; color: var(--foreground); text-decoration: none;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400;
+    white-space: nowrap;
+  }
+  .on { background: var(--muted); font-weight: 500; }
+  .more svg {
+    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .open svg { transform: rotate(180deg); }
+
+  .panel {
+    margin-top: var(--space-4); width: fit-content; min-width: 160px;
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
+    padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .opt {
+    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    border-radius: var(--radius-pill); text-decoration: none; color: inherit;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  }
+</style>
