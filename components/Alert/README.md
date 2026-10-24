@@ -70,4 +70,4 @@ Do not auto-dismiss anything carrying a warning or a destructive consequence.
 
 ## Not yet tokenised
 
-Icon size (16), button height (28), the 2px icon nudge.
+The 2px icon nudge.

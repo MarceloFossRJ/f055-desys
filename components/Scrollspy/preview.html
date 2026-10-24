@@ -25,14 +25,14 @@
 
   .nav { display: flex; flex-direction: column; gap: var(--space-2); width: 200px; flex: none; }
   .glabel {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
     color: var(--muted-foreground); padding-inline: var(--space-10); margin-bottom: var(--space-4);
   }
   .item {
-    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    display: flex; align-items: center; height: var(--size-32); padding-inline: var(--space-10);
     border: 1px solid transparent; border-radius: var(--radius-pill);
     background: transparent; color: var(--foreground); text-decoration: none;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 400;
   }
   .sub { padding-left: var(--space-24); color: var(--muted-foreground); font-size: 14px; }
   .on { background: var(--muted); font-weight: 500; }
@@ -42,8 +42,8 @@
   .sec { display: flex; flex-direction: column; gap: var(--space-8); }
   .dim { opacity: .4; }
   .h {
-    font-family: var(--font-sans); font-size: 16px; line-height: 24px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 16px; line-height: var(--size-24); font-weight: 500;
   }
-  .p { height: 8px; border-radius: var(--radius-pill); background: var(--muted); }
+  .p { height: var(--size-8); border-radius: var(--radius-pill); background: var(--muted); }
   .short { width: 60%; }
 </style>

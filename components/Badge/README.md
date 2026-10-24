@@ -33,4 +33,4 @@ stack in a column.
 
 ## Not yet tokenised
 
-The 20px height and the 6px status dot.
+Nothing — every dimension is a `--control-*` token.

@@ -73,4 +73,4 @@ the system's own rules rather than another library's, but they are untested.
 
 ## Not yet tokenised
 
-Trigger and option heights (32), chevron and tick sizes (16), separator width.
+Separator width (1px).

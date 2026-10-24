@@ -55,4 +55,4 @@ they cannot act on.
 
 ## Not yet tokenised
 
-Field height (32), toggle size (16), the 0.6px tracking.
+The 0.6px tracking.

@@ -6,6 +6,7 @@ import { AreaChart } from '@/components/chart';
 import { DataTable } from '@/components/data-table';
 import { Badge, Button, Card, IconButton } from '@/components/ui';
 import { streams, stats } from '@/lib/data';
+import { ICON } from '@/lib/tokens';
 import { cn } from '@/lib/cn';
 
 const RANGES = ['Last 3 months', 'Last 30 days', 'Last 7 days'] as const;
@@ -25,7 +26,7 @@ export function Dashboard() {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex h-14 shrink-0 items-center gap-3 border-b border-border px-4">
-          <IconButton label="Toggle sidebar" onClick={() => setCollapsed((c) => !c)}><PanelLeft size={16} /></IconButton>
+          <IconButton label="Toggle sidebar" onClick={() => setCollapsed((c) => !c)}><PanelLeft size={ICON.md} /></IconButton>
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm">
             <span className="text-muted-foreground">Catalog</span>
             <span className="text-muted-foreground" aria-hidden="true">/</span>
@@ -33,15 +34,15 @@ export function Dashboard() {
           </nav>
           <div className="ml-auto flex items-center gap-2">
             <label className="relative hidden sm:block">
-              <Search size={16} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <Search size={ICON.md} className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <input
                 placeholder="Search releases"
                 aria-label="Search releases"
-                className="h-8 w-56 rounded-8 bg-input pl-8 pr-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
+                className="h-(--control-button) w-56 rounded-8 bg-input pl-8 pr-3 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
               />
             </label>
             <IconButton label={dark ? 'Switch to light mode' : 'Switch to dark mode'} onClick={() => setDark((d) => !d)}>
-              {dark ? <Sun size={16} /> : <Moon size={16} />}
+              {dark ? <Sun size={ICON.md} /> : <Moon size={ICON.md} />}
             </IconButton>
           </div>
         </header>
@@ -55,14 +56,14 @@ export function Dashboard() {
                   <div className="flex items-start justify-between gap-2">
                     <span className="text-sm text-muted-foreground">{s.label}</span>
                     <Badge tone="outline" className="gap-1">
-                      {s.up ? <TrendingUp size={12} /> : <TrendingDown size={12} />}
+                      {s.up ? <TrendingUp size={ICON.xs} /> : <TrendingDown size={ICON.xs} />}
                       {s.delta}
                     </Badge>
                   </div>
                   <span className="type-display">{s.value}</span>
                   <span className="flex items-center gap-1.5 text-sm font-medium">
                     {s.note}
-                    {s.up ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
+                    {s.up ? <TrendingUp size={ICON.sm} /> : <TrendingDown size={ICON.sm} />}
                   </span>
                   <span className="text-sm text-muted-foreground">{s.sub}</span>
                 </Card>
@@ -84,7 +85,7 @@ export function Dashboard() {
                       onClick={() => setRange(r)}
                       aria-pressed={r === range}
                       className={cn(
-                        'h-8 border border-border px-3 text-sm transition-colors cursor-pointer -ml-px first:ml-0',
+                        'h-(--control-button) border border-border px-3 text-sm transition-colors cursor-pointer -ml-px first:ml-0',
                         'focus-visible:outline-none focus-visible:relative focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
                         i === 0 && 'rounded-l-pill',
                         i === RANGES.length - 1 && 'rounded-r-pill',

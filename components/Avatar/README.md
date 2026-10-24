@@ -64,4 +64,4 @@ beside it.
 
 ## Not yet tokenised
 
-All three sizes, the −8px overlap, the 2px stack ring.
+The −8px overlap and the 2px stack ring.

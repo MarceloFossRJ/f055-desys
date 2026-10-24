@@ -68,17 +68,17 @@
   }
 
   .x {
-    width: 24px; height: 24px; flex: none; display: grid; place-content: center; cursor: pointer;
+    width: var(--size-24); height: var(--size-24); flex: none; display: grid; place-content: center; cursor: pointer;
     border: 0; border-radius: var(--radius-6); background: transparent;
   }
   .x:hover { background: var(--accent); }
   .x svg {
-    width: 16px; height: 16px; fill: none; stroke: var(--muted-foreground);
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: var(--muted-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
 
   .t18 {
-    font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 18px; line-height: var(--size-28); font-weight: 500;
     letter-spacing: -0.45px;
   }
   .sub {
@@ -88,21 +88,21 @@
 
   .fld { display: flex; flex-direction: column; gap: var(--space-6); }
   .lab {
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
   }
   .inp {
-    width: 100%; height: 32px; padding: 0 var(--space-12);
+    width: 100%; height: var(--size-32); padding: 0 var(--space-12);
     border: 1px solid transparent; border-radius: var(--radius-8);
     background: var(--input); color: var(--foreground);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
   .inp::placeholder { color: var(--muted-foreground); }
   .ta { height: auto; padding: var(--space-8) var(--space-12); resize: vertical; }
 
   .btn {
-    height: 32px; padding-inline: var(--space-16); cursor: pointer;
+    height: var(--size-32); padding-inline: var(--space-16); cursor: pointer;
     border: 1px solid transparent; border-radius: var(--radius-pill);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
   }
   .out { background: var(--card); color: var(--foreground); border-color: var(--border); }
   .pri { background: var(--primary); color: var(--primary-foreground); }

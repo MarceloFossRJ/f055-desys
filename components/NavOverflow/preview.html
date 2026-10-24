@@ -46,7 +46,7 @@
   }
   .demo { display: flex; flex-direction: column; gap: var(--space-6); align-items: flex-start; }
   .cap {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground);
   }
 
@@ -56,15 +56,15 @@
 
   .item, .more {
     display: flex; align-items: center; gap: var(--space-4);
-    height: 32px; padding-inline: var(--space-10); cursor: pointer;
+    height: var(--size-32); padding-inline: var(--space-10); cursor: pointer;
     border: 1px solid transparent; border-radius: var(--radius-pill);
     background: transparent; color: var(--foreground); text-decoration: none;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 400;
     white-space: nowrap;
   }
   .on { background: var(--muted); font-weight: 500; }
   .more svg {
-    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    width: var(--size-16); height: var(--size-16); flex: none; fill: none; stroke: var(--muted-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
   .open svg { transform: rotate(180deg); }
@@ -76,8 +76,8 @@
     padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-2);
   }
   .opt {
-    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    display: flex; align-items: center; height: var(--size-32); padding-inline: var(--space-10);
     border-radius: var(--radius-pill); text-decoration: none; color: inherit;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
 </style>

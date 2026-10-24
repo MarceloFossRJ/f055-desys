@@ -48,4 +48,4 @@ with padding or a pseudo-element rather than growing the circle.
 
 ## Not yet tokenised
 
-The 28px size and the 16px icon.
+Nothing — `--control-icon-button` and `--control-icon`.

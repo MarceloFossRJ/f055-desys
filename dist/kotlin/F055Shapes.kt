@@ -44,6 +44,50 @@ object F055Space {
 }
 
 /**
+ * Size: control heights, icon boxes and indicator dimensions.
+ *
+ * Named by pixel value, as radius and spacing are. Compose has no implicit
+ * control sizing, so these are the values that keep a button the same height
+ * here as in the web and iOS builds.
+ */
+object F055Size {
+    val s4: Dp = 4.dp
+    val s6: Dp = 6.dp
+    val s8: Dp = 8.dp
+    val s12: Dp = 12.dp
+    val s14: Dp = 14.dp
+    val s16: Dp = 16.dp
+    val s20: Dp = 20.dp
+    val s24: Dp = 24.dp
+    val s28: Dp = 28.dp
+    val s32: Dp = 32.dp
+    val s40: Dp = 40.dp
+    val s64: Dp = 64.dp
+}
+
+/** What each size is FOR, so a button is not remembered as 32. */
+object F055Control {
+    val dot: Dp = F055Size.s6
+    val track: Dp = F055Size.s4
+    val pip: Dp = F055Size.s8
+    val iconXs: Dp = F055Size.s12
+    val iconSm: Dp = F055Size.s14
+    val icon: Dp = F055Size.s16
+    val iconLg: Dp = F055Size.s20
+    val checkbox: Dp = F055Size.s16
+    val sliderThumb: Dp = F055Size.s16
+    val badge: Dp = F055Size.s20
+    val switch: Dp = F055Size.s20
+    val iconButton: Dp = F055Size.s24
+    val buttonSm: Dp = F055Size.s28
+    val button: Dp = F055Size.s32
+    val avatar: Dp = F055Size.s32
+    val tile: Dp = F055Size.s40
+    val rowHeader: Dp = F055Size.s40
+    val textareaMin: Dp = F055Size.s64
+}
+
+/**
  * Elevation.
  *
  * HONEST LIMITATION: Compose cannot reproduce these shadows. Each level in the

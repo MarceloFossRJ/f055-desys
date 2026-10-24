@@ -415,11 +415,11 @@
         "alpha": 1.0
       },
       "dark": {
-        "hex": "#FFA2A2",
-        "hex8": "#FFA2A2FF",
-        "rgba": "rgba(255, 162, 162, 1)",
-        "css": "oklch(0.808 0.114 19.571)",
-        "ref": "red.300",
+        "hex": "#9F0712",
+        "hex8": "#9F0712FF",
+        "rgba": "rgba(159, 7, 18, 1)",
+        "css": "oklch(0.444 0.177 26.899)",
+        "ref": "red.800",
         "alpha": 1.0
       }
     },
@@ -433,11 +433,11 @@
         "alpha": 1.0
       },
       "dark": {
-        "hex": "#FB2C36",
-        "hex8": "#FB2C36FF",
-        "rgba": "rgba(251, 44, 54, 1)",
-        "css": "oklch(0.637 0.237 25.331)",
-        "ref": "red.500",
+        "hex": "#C10007",
+        "hex8": "#C10007FF",
+        "rgba": "rgba(193, 0, 7, 1)",
+        "css": "oklch(0.505 0.213 27.518)",
+        "ref": "red.700",
         "alpha": 1.0
       }
     },
@@ -469,11 +469,11 @@
         "alpha": 1.0
       },
       "dark": {
-        "hex": "#C10007",
-        "hex8": "#C10007FF",
-        "rgba": "rgba(193, 0, 7, 1)",
-        "css": "oklch(0.505 0.213 27.518)",
-        "ref": "red.700",
+        "hex": "#FB2C36",
+        "hex8": "#FB2C36FF",
+        "rgba": "rgba(251, 44, 54, 1)",
+        "css": "oklch(0.637 0.237 25.331)",
+        "ref": "red.500",
         "alpha": 1.0
       }
     },
@@ -487,11 +487,65 @@
         "alpha": 1.0
       },
       "dark": {
-        "hex": "#9F0712",
-        "hex8": "#9F0712FF",
-        "rgba": "rgba(159, 7, 18, 1)",
-        "css": "oklch(0.444 0.177 26.899)",
-        "ref": "red.800",
+        "hex": "#FFA2A2",
+        "hex8": "#FFA2A2FF",
+        "rgba": "rgba(255, 162, 162, 1)",
+        "css": "oklch(0.808 0.114 19.571)",
+        "ref": "red.300",
+        "alpha": 1.0
+      }
+    },
+    "series-1": {
+      "light": {
+        "hex": "#C10007",
+        "hex8": "#C10007FF",
+        "rgba": "rgba(193, 0, 7, 1)",
+        "css": "oklch(0.505 0.213 27.518)",
+        "ref": "red.700",
+        "alpha": 1.0
+      },
+      "dark": {
+        "hex": "#FB2C36",
+        "hex8": "#FB2C36FF",
+        "rgba": "rgba(251, 44, 54, 1)",
+        "css": "oklch(0.637 0.237 25.331)",
+        "ref": "red.500",
+        "alpha": 1.0
+      }
+    },
+    "series-2": {
+      "light": {
+        "hex": "#0A0A0A",
+        "hex8": "#0A0A0AFF",
+        "rgba": "rgba(10, 10, 10, 1)",
+        "css": "oklch(0.145 0 0)",
+        "ref": "neutral.950",
+        "alpha": 1.0
+      },
+      "dark": {
+        "hex": "#FAFAFA",
+        "hex8": "#FAFAFAFF",
+        "rgba": "rgba(250, 250, 250, 1)",
+        "css": "oklch(0.985 0 0)",
+        "ref": "neutral.50",
+        "alpha": 1.0
+      }
+    },
+    "series-3": {
+      "light": {
+        "hex": "#737373",
+        "hex8": "#737373FF",
+        "rgba": "rgba(115, 115, 115, 1)",
+        "css": "oklch(0.556 0 0)",
+        "ref": "neutral.500",
+        "alpha": 1.0
+      },
+      "dark": {
+        "hex": "#A1A1A1",
+        "hex8": "#A1A1A1FF",
+        "rgba": "rgba(161, 161, 161, 1)",
+        "css": "oklch(0.708 0 0)",
+        "ref": "neutral.400",
         "alpha": 1.0
       }
     }
@@ -805,6 +859,160 @@
       "tailwindStep": "10",
       "origin": "extracted",
       "usage": "Largest separation - between major blocks, and the artboard's own gutter."
+    }
+  },
+  "size": {
+    "4": {
+      "value": "4px",
+      "origin": "extracted",
+      "usage": "Slider and progress track thickness, accent swatch width."
+    },
+    "6": {
+      "value": "6px",
+      "origin": "extracted",
+      "usage": "Status dots. The smallest thing the system draws."
+    },
+    "8": {
+      "value": "8px",
+      "origin": "extracted",
+      "usage": "Scrollspy pips, legend swatches."
+    },
+    "12": {
+      "value": "12px",
+      "origin": "extracted",
+      "usage": "The smallest icon: inside a badge, or beside 12px text."
+    },
+    "14": {
+      "value": "14px",
+      "origin": "extracted",
+      "usage": "Chevrons and affordance icons that sit beside a 14px label without competing with it."
+    },
+    "16": {
+      "value": "16px",
+      "origin": "extracted",
+      "usage": "The default icon, and the checkbox, radio and slider thumb. By far the most used dimension in the system."
+    },
+    "20": {
+      "value": "20px",
+      "origin": "extracted",
+      "usage": "Badge and switch height; the largest icon."
+    },
+    "24": {
+      "value": "24px",
+      "origin": "extracted",
+      "usage": "Icon button, close button, avatar inside a dense row."
+    },
+    "28": {
+      "value": "28px",
+      "origin": "extracted",
+      "usage": "Small button, compact tab."
+    },
+    "32": {
+      "value": "32px",
+      "origin": "extracted",
+      "usage": "Default button, input, select, standard avatar. The system's default control height."
+    },
+    "40": {
+      "value": "40px",
+      "origin": "extracted",
+      "usage": "Icon tile, table header row, large avatar."
+    },
+    "64": {
+      "value": "64px",
+      "origin": "extracted",
+      "usage": "Textarea minimum height. The only value here above 40."
+    }
+  },
+  "control": {
+    "dot": {
+      "ref": "6",
+      "value": "6px",
+      "usage": "A status dot."
+    },
+    "track": {
+      "ref": "4",
+      "value": "4px",
+      "usage": "Slider groove, progress bar, strength segment."
+    },
+    "pip": {
+      "ref": "8",
+      "value": "8px",
+      "usage": "A scrollspy or carousel position marker."
+    },
+    "icon-xs": {
+      "ref": "12",
+      "value": "12px",
+      "usage": "Icon inside a badge or beside 12px text."
+    },
+    "icon-sm": {
+      "ref": "14",
+      "value": "14px",
+      "usage": "A chevron or affordance beside a 14px label."
+    },
+    "icon": {
+      "ref": "16",
+      "value": "16px",
+      "usage": "The default icon. Use this unless there is a reason not to."
+    },
+    "icon-lg": {
+      "ref": "20",
+      "value": "20px",
+      "usage": "An icon that carries a card or an empty state."
+    },
+    "checkbox": {
+      "ref": "16",
+      "value": "16px",
+      "usage": "Checkbox and radio."
+    },
+    "slider-thumb": {
+      "ref": "16",
+      "value": "16px",
+      "usage": "Slider and range thumb."
+    },
+    "badge": {
+      "ref": "20",
+      "value": "20px",
+      "usage": "Badge and chip height."
+    },
+    "switch": {
+      "ref": "20",
+      "value": "20px",
+      "usage": "Switch height. Width is 32px - the one control that is not square or text-sized."
+    },
+    "icon-button": {
+      "ref": "24",
+      "value": "24px",
+      "usage": "Icon-only button, close button."
+    },
+    "button-sm": {
+      "ref": "28",
+      "value": "28px",
+      "usage": "Small button, compact tab."
+    },
+    "button": {
+      "ref": "32",
+      "value": "32px",
+      "usage": "Default button, input, select, textarea row."
+    },
+    "avatar": {
+      "ref": "32",
+      "value": "32px",
+      "usage": "Standard avatar."
+    },
+    "tile": {
+      "ref": "40",
+      "value": "40px",
+      "usage": "Icon tile in an empty state, a spinner surround, a large avatar."
+    },
+    "row-header": {
+      "ref": "40",
+      "value": "40px",
+      "usage": "Table header row height."
+    },
+    "textarea-min": {
+      "ref": "64",
+      "value": "64px",
+      "usage": "Textarea minimum height."
     }
   },
   "elevation": {

@@ -50,4 +50,4 @@ Do not use a breadcrumb with fewer than three levels; two levels is a back link.
 
 ## Not yet tokenised
 
-Separator size (14), ellipsis button (28), icon size (16).
+Nothing — every dimension is a `--control-*` token.

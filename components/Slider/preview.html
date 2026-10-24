@@ -41,18 +41,18 @@
   .head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
   .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
   .val {
-    font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 600;
+    font-family: var(--font-sans); font-size: 18px; line-height: var(--size-28); font-weight: 600;
     font-variant-numeric: tabular-nums;
   }
 
-  .sl { position: relative; display: flex; align-items: center; height: 16px; }
+  .sl { position: relative; display: flex; align-items: center; height: var(--size-16); }
   .track {
-    position: relative; flex: 1; height: 4px; overflow: hidden;
+    position: relative; flex: 1; height: var(--size-4); overflow: hidden;
     background: var(--track); border-radius: var(--radius-pill);
   }
   .fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--primary); }
   .thumb {
-    position: absolute; translate: -50% 0; width: 16px; height: 16px;
+    position: absolute; translate: -50% 0; width: var(--size-16); height: var(--size-16);
     background: var(--background); border-radius: var(--radius-pill);
     box-shadow: var(--shadow-raised); cursor: grab;
   }
@@ -60,7 +60,7 @@
 
   .ends { display: flex; justify-content: space-between; }
   .cap {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground); font-variant-numeric: tabular-nums;
   }
 </style>

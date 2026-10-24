@@ -61,4 +61,4 @@ Do not show one for under about 300ms. A flash of spinner reads as a glitch.
 
 ## Not yet tokenised
 
-Both sizes (12, 16), stroke widths, the one-second duration.
+Stroke widths (2, 2.5) and the one-second duration.

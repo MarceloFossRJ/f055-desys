@@ -75,4 +75,4 @@ Never block submission on it. It is advice.
 
 ## Not yet tokenised
 
-Segment height (4), segment count (4).
+Segment count (4). The segment height is `--control-track`.

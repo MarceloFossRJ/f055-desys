@@ -34,32 +34,32 @@
   .mono { font-family: var(--font-mono); font-size: 12px; }
 
   .sw {
-    width: 32px; height: 20px; flex: none; display: flex; align-items: center;
+    width: var(--size-32); height: var(--size-20); flex: none; display: flex; align-items: center;
     border-radius: var(--radius-pill); border: 2px solid transparent;
     background: var(--muted); transition: none;
   }
   .sw.on { background: var(--primary); border-color: var(--primary); justify-content: flex-end; }
   .sw i {
-    width: 16px; height: 16px; border-radius: var(--radius-full);
+    width: var(--size-16); height: var(--size-16); border-radius: var(--radius-full);
     background: var(--background); box-shadow: var(--shadow-thumb);
   }
 
   .cb {
-    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    width: var(--size-16); height: var(--size-16); flex: none; display: grid; place-content: center;
     border-radius: var(--radius-5); border: 1px solid var(--border); background: transparent;
   }
   .cb.on { background: var(--primary); border-color: var(--primary); }
   .cb svg {
-    width: 14px; height: 14px; fill: none; stroke: var(--primary-foreground);
+    width: var(--size-14); height: var(--size-14); fill: none; stroke: var(--primary-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
 
   .rd {
-    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    width: var(--size-16); height: var(--size-16); flex: none; display: grid; place-content: center;
     border-radius: var(--radius-full); border: 1px solid var(--border);
   }
   .rd.on { background: var(--primary); border-color: var(--primary); }
-  .rd i { width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--primary-foreground); }
+  .rd i { width: var(--size-8); height: var(--size-8); border-radius: var(--radius-full); background: var(--primary-foreground); }
 
   .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
 </style>

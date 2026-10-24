@@ -153,10 +153,34 @@
       "origin": "derived",
       "note": "The gap between a control and its focus ring. Tracks background by design, so the ring always sits on the page colour rather than on the control. This is what makes a focus ring legible on a primary or destructive button, where ring and surface are both red (1.00:1 without it)."
     },
-    "chart-1": { "light": { "ref": "red.300" }, "dark": { "ref": "red.300" }, "origin": "extracted" },
-    "chart-2": { "light": { "ref": "red.500" }, "dark": { "ref": "red.500" }, "origin": "extracted" },
-    "chart-3": { "light": { "ref": "red.600" }, "dark": { "ref": "red.600" }, "origin": "extracted" },
-    "chart-4": { "light": { "ref": "red.700" }, "dark": { "ref": "red.700" }, "origin": "extracted" },
-    "chart-5": { "light": { "ref": "red.800" }, "dark": { "ref": "red.800" }, "origin": "extracted" }
+    "chart-1": {
+      "light": { "ref": "red.300" },
+      "dark":  { "ref": "red.800" },
+      "origin": "extracted-light-derived-dark",
+      "note": "SEQUENTIAL ramp, step 1 of 5 - the step NEAREST the surface, meaning the lowest value. The dark ramp is the light one reversed, which is what makes the scale read the same way in both themes: contrast against the surface climbs monotonically from 1.92:1 to 8.36:1 in light and from 2.15:1 to 9.34:1 in dark. Before 2026-10-24 these five were theme-invariant, which left chart-1 at 1.87:1 on light and chart-4/5 at 2.71:1 and 2.08:1 on dark - unusable at either end. Use for magnitude only: heatmaps, intensity, a single series. For categories use series-*."
+    },
+    "chart-2": { "light": { "ref": "red.500" }, "dark": { "ref": "red.700" }, "origin": "extracted-light-derived-dark", "note": "Sequential step 2 of 5. See chart-1." },
+    "chart-3": { "light": { "ref": "red.600" }, "dark": { "ref": "red.600" }, "origin": "extracted",                     "note": "Sequential step 3 of 5 - the midpoint, and the only step whose value is the same in both themes." },
+    "chart-4": { "light": { "ref": "red.700" }, "dark": { "ref": "red.500" }, "origin": "extracted-light-derived-dark", "note": "Sequential step 4 of 5. See chart-1." },
+    "chart-5": { "light": { "ref": "red.800" }, "dark": { "ref": "red.300" }, "origin": "extracted-light-derived-dark", "note": "Sequential step 5 of 5 - the most prominent step, the highest value. See chart-1." },
+
+    "series-1": {
+      "light": { "ref": "red.700" },
+      "dark":  { "ref": "red.500" },
+      "origin": "derived",
+      "note": "CATEGORICAL slot 1 of 3, and the only one carrying the brand hue. Assign slots in order and never cycle them: colour follows the entity, not its rank, so a filter that removes a series must not repaint the survivors. Validated all-pairs: worst CVD separation 11.3 deltaE deutan (light) / 13.1 (dark) against a target of 8, normal-vision 21.4 / 24.8 against a floor of 15, and all three slots clear 3:1 on card in both themes."
+    },
+    "series-2": {
+      "light": { "ref": "neutral.950" },
+      "dark":  { "ref": "neutral.50" },
+      "origin": "derived",
+      "note": "CATEGORICAL slot 2 of 3 - full ink. A one-hue system has no second hue to reach for, so the second series is carried by weight instead. Identical in value to `foreground`, aliased separately so a chart does not have to borrow a text token."
+    },
+    "series-3": {
+      "light": { "ref": "neutral.500" },
+      "dark":  { "ref": "neutral.400" },
+      "origin": "derived",
+      "note": "CATEGORICAL slot 3 of 3 - muted ink. THIS SLOT REQUIRES A DISTINCT MARK TYPE (dashed against solid, hollow against filled). It is the same value as `muted-foreground`, which is also what axis labels and legend text wear, so hue alone cannot separate this series from the chart's own furniture. There is no slot 4: the palette has one hue, and a fourth series must fold into 'Other' or become a facet."
+    }
   }
 }

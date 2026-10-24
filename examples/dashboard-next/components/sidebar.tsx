@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { Avatar, Separator } from '@/components/ui';
 import { Tooltip } from '@/components/tooltip';
+import { ICON } from '@/lib/tokens';
 import { cn } from '@/lib/cn';
 
 /* Sidebar — NOT YET SPECIFIED in the design system.
@@ -42,13 +43,13 @@ function Row({ item, collapsed }: { item: Item; collapsed: boolean }) {
     <button
       aria-current={item.active ? 'page' : undefined}
       className={cn(
-        'flex h-8 w-full items-center gap-2 rounded-6 px-2 text-sm transition-colors cursor-pointer',
+        'flex h-(--control-button) w-full items-center gap-2 rounded-6 px-2 text-sm transition-colors cursor-pointer',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
         collapsed && 'justify-center px-0',
         item.active ? 'bg-muted font-medium text-foreground' : 'text-muted-foreground hover:bg-accent hover:text-foreground',
       )}
     >
-      <Icon size={16} className="shrink-0" />
+      <Icon size={ICON.md} className="shrink-0" />
       {!collapsed && <span className="truncate">{item.label}</span>}
     </button>
   );
@@ -80,8 +81,8 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
       )}
     >
       <div className={cn('flex h-14 items-center gap-2 px-3', collapsed && 'justify-center px-0')}>
-        <span className="grid size-8 shrink-0 place-content-center rounded-8 bg-primary text-primary-foreground">
-          <AudioLines size={16} />
+        <span className="grid size-(--control-avatar) shrink-0 place-content-center rounded-8 bg-primary text-primary-foreground">
+          <AudioLines size={ICON.md} />
         </span>
         {!collapsed && (
           <>
@@ -89,9 +90,9 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
             <button
               onClick={onToggle}
               aria-label="Collapse sidebar"
-              className="grid size-8 place-content-center rounded-6 text-muted-foreground hover:bg-accent hover:text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
+              className="grid size-(--control-button) place-content-center rounded-6 text-muted-foreground hover:bg-accent hover:text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
             >
-              <ChevronsLeft size={16} />
+              <ChevronsLeft size={ICON.md} />
             </button>
           </>
         )}
@@ -116,7 +117,7 @@ export function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle:
             <span className="truncate text-xs text-muted-foreground">marcelo@f055.dev</span>
           </span>
         )}
-        {!collapsed && <SlidersHorizontal size={16} className="ml-auto shrink-0 text-muted-foreground" />}
+        {!collapsed && <SlidersHorizontal size={ICON.md} className="ml-auto shrink-0 text-muted-foreground" />}
       </div>
     </aside>
   );

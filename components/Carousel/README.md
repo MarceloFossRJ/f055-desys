@@ -69,4 +69,4 @@ Each dot is a real button naming its slide. Arrows get `aria-label` and go
 
 ## Not yet tokenised
 
-Nav button size (28), dot size (6), the peek opacity.
+The peek opacity.

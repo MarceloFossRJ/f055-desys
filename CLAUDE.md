@@ -68,7 +68,8 @@ comes back dirty, then runs the preview check.
 pointing at a token that does not exist (CSS drops the declaration and the
 element renders with an inherited value, which often looks almost right), and a
 raw colour literal in a preview, which means the spec and the tokens have
-diverged. It does not check sizes — control geometry has no tokens yet.
+diverged. Sizes are tokens as of 2026-10-24, so a dimension written as a literal
+in a preview is now a deviation too, though the checker does not yet catch it.
 
 ## Colour
 
@@ -236,11 +237,10 @@ nine findings; four change how you use this system:
   the `@theme` block. `rounded-xl` used to resolve to Tailwind's 12px, which is
   not an F055 radius. Off-system utilities now produce no CSS at all. Use
   `rounded-5/6/8/10/14/pill/24/full` and `shadow-hairline/card/thumb/raised/overlay`.
-- **`chart-*` is effectively one usable colour.** `chart-1` fails 3:1 on light
-  (1.87), `chart-4` and `chart-5` fail on dark (2.71, 2.08). Only `chart-2` and
-  `chart-3` pass both, and they are adjacent reds. For more than one series, pair
-  one red with `muted-foreground` **and a different mark type**. These are the only
-  tokens with identical light and dark values; they should step like `ring` does.
+- **Data colour is two families now, and they are not interchangeable.**
+  `chart-1..5` is **sequential**, for magnitude; `series-1..3` is **categorical**,
+  for identity. Picking a `chart-*` step for a second series is the mistake this
+  split exists to prevent. (Fixed 2026-10-24; see Data colour below.)
 - **Never put `muted-foreground` on `muted` in light mode** — 4.35:1, under AA.
   On `card` it is 4.74:1. If a container is muted, the secondary ink has to change
   or the container does.
@@ -248,6 +248,60 @@ nine findings; four change how you use this system:
   `muted-foreground` until a control-border token exists.
 
 Radius gained a third tier there: **tooltip 8 · panel 14 · card and dialog 24.**
+
+## Size
+
+`--size-4 … --size-64` are the raw steps; `--control-<role>` says what each one
+is FOR. **Reach for the role.** A button is `--control-button`, not `--size-32`;
+when a density variant arrives, the role moves and the call sites do not.
+
+In Tailwind these are **not** utilities — Tailwind has no `--size-*` namespace,
+and routing them through `--spacing-*` would silently redefine `p-32` from 128px
+to 32px, which is the same class of bug as the `rounded-xl` one above. Use the
+custom-property form:
+
+```
+h-(--control-button)   size-(--control-icon)   size-(--control-dot)
+```
+
+In the other stacks they are ordinary constants: `F055Control.button` (Kotlin,
+Swift), `CONTROL["button"]` (Python, Ruby), `control.button` (JS). React cannot
+put a CSS variable in a prop, so `examples/dashboard-next/lib/tokens.ts` imports
+`control` from the generated JS for lucide's `size` — that is what the JS output
+is for.
+
+Layout widths are deliberately absent. A 256px sidebar or a 1200px column
+belongs to a screen, not to the system.
+
+## Data colour
+
+Two families, two jobs. Do not substitute one for the other.
+
+**`chart-1..5` — sequential.** Magnitude: heatmaps, intensity, a single series.
+The dark ramp is the light one **reversed**, so step 1 is always the step nearest
+the surface and step 5 always the most prominent. Contrast against the surface
+climbs monotonically in both themes (light 1.92 → 8.36, dark 2.15 → 9.34).
+
+**`series-1..3` — categorical.** Identity. Assign **in order, never cycled** —
+colour follows the entity, not its rank, so removing a series must not repaint
+the survivors.
+
+| slot | light | dark | note |
+|---|---|---|---|
+| `series-1` | red.700 | red.500 | the only slot with the brand hue |
+| `series-2` | neutral.950 | neutral.50 | full ink |
+| `series-3` | neutral.500 | neutral.400 | **needs a distinct mark type** |
+
+`series-3` is the same value as `muted-foreground`, which axis labels and legend
+text also wear, so hue alone cannot separate it from the chart's own furniture.
+Give it a dashed line against a solid, or a hollow marker against a filled one.
+
+**There is no `series-4`.** The palette has one hue. A fourth series folds into
+"Other" or becomes a facet.
+
+Validated all-pairs: worst CVD separation 11.3 ΔE deutan (light) and 13.1 (dark)
+against a target of 8; normal-vision 21.4 and 24.8 against a floor of 15; all
+three slots clear 3:1 on `card` in both themes.
 
 ## Components
 

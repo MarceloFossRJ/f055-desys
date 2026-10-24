@@ -21,7 +21,7 @@ export function Button({ variant = 'outline', size = 'md', className, ...p }: Bu
         'whitespace-nowrap transition-colors cursor-pointer',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
         'disabled:opacity-50 disabled:cursor-not-allowed',
-        size === 'sm' ? 'h-7 px-3 text-sm' : 'h-8 px-4 text-sm',
+        size === 'sm' ? 'h-(--control-button-sm) px-3 text-sm' : 'h-(--control-button) px-4 text-sm',
         variant === 'primary' && 'border-transparent bg-primary text-primary-foreground hover:opacity-90',
         variant === 'outline' && 'border-border bg-card text-foreground shadow-thumb hover:bg-accent',
         variant === 'ghost' && 'border-transparent bg-transparent text-foreground hover:bg-accent',
@@ -39,7 +39,7 @@ export function IconButton({ className, label, ...p }: React.ButtonHTMLAttribute
       {...p}
       aria-label={label}
       className={cn(
-        'inline-grid size-8 place-content-center rounded-6 text-muted-foreground cursor-pointer',
+        'inline-grid size-(--control-button) place-content-center rounded-6 text-muted-foreground cursor-pointer',
         'hover:bg-accent hover:text-foreground transition-colors',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
         className,
@@ -78,7 +78,7 @@ export function Avatar({ initials, className }: { initials: string; className?: 
   return (
     <span
       className={cn(
-        'inline-grid size-8 shrink-0 place-content-center rounded-full bg-muted text-xs font-medium text-muted-foreground',
+        'inline-grid size-(--control-avatar) shrink-0 place-content-center rounded-full bg-muted text-xs font-medium text-muted-foreground',
         className,
       )}
     >

@@ -43,7 +43,7 @@
   }
   .col { display: flex; flex-direction: column; gap: var(--space-6); align-items: flex-start; }
   .cap {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground);
   }
 
@@ -53,7 +53,7 @@
     border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
     padding: var(--space-6) var(--space-10);
   }
-  .swatch { width: 4px; align-self: stretch; border-radius: 2px; background: var(--chart-1); }
+  .swatch { width: var(--size-4); align-self: stretch; border-radius: 2px; background: var(--series-1); }
   .tl {
     flex: 1; font-family: var(--font-sans); font-size: 12px; line-height: 1;
     color: var(--muted-foreground);
@@ -74,30 +74,30 @@
   .phd { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-12); }
   .pt { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
   .x {
-    width: 28px; height: 28px; flex: none; display: grid; place-content: center; cursor: pointer;
+    width: var(--size-28); height: var(--size-28); flex: none; display: grid; place-content: center; cursor: pointer;
     border: 0; border-radius: var(--radius-pill); background: var(--muted); color: var(--foreground);
   }
   .x svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
   .pb {
-    margin: 0; font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    margin: 0; font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
     color: var(--muted-foreground);
   }
   .pf { display: flex; justify-content: flex-end; gap: var(--space-8); }
   .gb {
-    height: 28px; padding-inline: var(--space-12); cursor: pointer;
+    height: var(--size-28); padding-inline: var(--space-12); cursor: pointer;
     border: 1px solid var(--border); border-radius: var(--radius-pill);
     background: var(--popover); color: var(--foreground);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
   }
   .pri { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
 
   .opt {
-    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    display: flex; align-items: center; height: var(--size-32); padding-inline: var(--space-10);
     border-radius: var(--radius-pill); cursor: pointer;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
   .dang { color: var(--destructive); }
   .sep { height: 1px; background: var(--border); margin-block: var(--space-4); }

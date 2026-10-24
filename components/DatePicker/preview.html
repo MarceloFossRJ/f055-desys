@@ -55,14 +55,14 @@
 
   .trig {
     display: flex; align-items: center; gap: var(--space-8); cursor: pointer;
-    height: 32px; padding-inline: var(--space-10);
+    height: var(--size-32); padding-inline: var(--space-10);
     background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
   }
   .lead {
-    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    width: var(--size-16); height: var(--size-16); flex: none; fill: none; stroke: var(--muted-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
-  .val { flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: 20px; }
+  .val { flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); }
   .ph { color: var(--muted-foreground); }
   .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
 
@@ -73,21 +73,21 @@
     padding: var(--space-16);
     display: flex; flex-direction: column; gap: var(--space-12);
   }
-  .chd { display: flex; align-items: center; justify-content: space-between; height: 32px; }
-  .mo { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500; }
+  .chd { display: flex; align-items: center; justify-content: space-between; height: var(--size-32); }
+  .mo { font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500; }
   .nav {
-    width: 24px; height: 24px; display: grid; place-content: center; cursor: pointer;
+    width: var(--size-24); height: var(--size-24); display: grid; place-content: center; cursor: pointer;
     border: 0; background: transparent; border-radius: var(--radius-14); color: var(--foreground);
   }
   .nav svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
 
   .dow { display: grid; grid-template-columns: repeat(7, 1fr); }
   .dow span {
     text-align: center; color: var(--muted-foreground);
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
   }
   .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-4); }
   .d {
@@ -100,10 +100,10 @@
 
   .foot { display: flex; justify-content: flex-end; gap: var(--space-8); }
   .gb {
-    height: 28px; padding-inline: var(--space-12); cursor: pointer;
+    height: var(--size-28); padding-inline: var(--space-12); cursor: pointer;
     border: 1px solid var(--border); border-radius: var(--radius-pill);
     background: var(--popover); color: var(--foreground);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
   }
   .pri { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
 </style>

@@ -44,7 +44,9 @@ be a checkbox or a switch.
 
 ## Not yet tokenised
 
-Every size here: 32×20, 16×16, the 8px dot, the 14px tick, and the switch's 2px
-border. This component needs more hard-coded geometry than any other, which is
-the strongest argument for a `size` token family if a second implementation
-lands.
+The switch's 2px border.
+
+Every other dimension here is now a size token — `--control-switch` (20),
+`--control-checkbox` (16), `--control-pip` (8), `--control-icon-sm` (14). This
+component needed more hard-coded geometry than any other, which is what made it
+the strongest argument for the family.

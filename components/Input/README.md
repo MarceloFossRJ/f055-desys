@@ -47,4 +47,5 @@ error text at 14px or above.
 
 ## Not yet tokenised
 
-Heights (32 / 64), border width, and the icon size.
+Border width (1px). Heights are `--control-button` and
+`--control-textarea-min`.

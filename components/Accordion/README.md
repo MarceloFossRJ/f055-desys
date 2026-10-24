@@ -55,4 +55,4 @@ Round the group, not the items: `radius-14` on the container with
 
 ## Not yet tokenised
 
-Chevron size (16), divider width (1).
+Divider width (1px).

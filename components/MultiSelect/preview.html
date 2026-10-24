@@ -45,29 +45,29 @@
 
   .trig {
     display: flex; align-items: center; gap: var(--space-8); cursor: pointer;
-    min-height: 32px; padding: var(--space-4) var(--space-8) var(--space-4) var(--space-10);
+    min-height: var(--size-32); padding: var(--space-4) var(--space-8) var(--space-4) var(--space-10);
     background: var(--input); border: 1px solid transparent;
     border-radius: var(--radius-pill);
   }
   .ph {
-    flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
     color: var(--muted-foreground);
   }
   .chips { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
   .chip {
     display: inline-flex; align-items: center; gap: var(--space-4);
-    height: 20px; padding-inline: var(--space-8);
+    height: var(--size-20); padding-inline: var(--space-8);
     border-radius: var(--radius-pill);
     background: var(--secondary); color: var(--secondary-foreground);
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
   }
   .chip svg {
-    width: 12px; height: 12px; flex: none; cursor: pointer;
+    width: var(--size-12); height: var(--size-12); flex: none; cursor: pointer;
     fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
   .chev {
-    width: 16px; height: 16px; flex: none; align-self: center;
+    width: var(--size-16); height: var(--size-16); flex: none; align-self: center;
     fill: none; stroke: var(--muted-foreground); stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
@@ -83,17 +83,17 @@
   }
   .opt {
     display: flex; align-items: center; gap: var(--space-10);
-    height: 32px; padding-inline: var(--space-10); cursor: pointer;
+    height: var(--size-32); padding-inline: var(--space-10); cursor: pointer;
     border-radius: var(--radius-pill);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
   .cb {
-    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    width: var(--size-16); height: var(--size-16); flex: none; display: grid; place-content: center;
     border-radius: var(--radius-5); border: 1px solid var(--border);
   }
   .on { background: var(--primary); border-color: var(--primary); }
   .cb svg {
-    width: 14px; height: 14px; fill: none; stroke: var(--primary-foreground);
+    width: var(--size-14); height: var(--size-14); fill: none; stroke: var(--primary-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
 </style>

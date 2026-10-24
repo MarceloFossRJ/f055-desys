@@ -61,4 +61,4 @@ resizes is noise, and the reference defines no motion at all.
 
 ## Not yet tokenised
 
-Item height (32), chevron size (16), minimum panel width (160).
+Minimum panel width (160).

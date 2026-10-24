@@ -64,4 +64,4 @@ scroll.
 
 ## Not yet tokenised
 
-Item height (32), the `space-24` indent for nested items.
+Nothing — the nested indent is `space-24`.

@@ -37,11 +37,11 @@
 
   .seg {
     display: inline-flex; align-items: center; justify-content: center; gap: var(--space-6);
-    height: 32px; padding-inline: var(--space-12); cursor: pointer;
+    height: var(--size-32); padding-inline: var(--space-12); cursor: pointer;
     background: var(--card); color: var(--foreground);
     border: 1px solid var(--border);
     border-radius: 0;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
     position: relative;
   }
   /* Only the outer edges are rounded; inner corners stay square. */
@@ -57,9 +57,9 @@
      segments share one hairline rather than stacking two. */
   .seg + .seg { border-left: 0; }
 
-  .icon { width: 32px; padding-inline: 0; }
+  .icon { width: var(--size-32); padding-inline: 0; }
   .icon svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor;
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
   .on { background: var(--secondary); color: var(--secondary-foreground); }

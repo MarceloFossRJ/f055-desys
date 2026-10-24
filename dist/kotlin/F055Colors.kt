@@ -46,6 +46,9 @@ interface F055Colors {
     val chart3: Color
     val chart4: Color
     val chart5: Color
+    val series1: Color
+    val series2: Color
+    val series3: Color
 }
 
 object F055Light : F055Colors {
@@ -76,6 +79,9 @@ object F055Light : F055Colors {
     val chart3: Color = Color(0xFFE7000B)
     val chart4: Color = Color(0xFFC10007)
     val chart5: Color = Color(0xFF9F0712)
+    val series1: Color = Color(0xFFC10007)
+    val series2: Color = Color(0xFF0A0A0A)
+    val series3: Color = Color(0xFF737373)
 }
 
 object F055Dark : F055Colors {
@@ -101,11 +107,14 @@ object F055Dark : F055Colors {
     val track: Color = Color(0x22FFFFFF)
     val ring: Color = Color(0xFFFB2C36)
     val ringOffset: Color = Color(0xFF0A0A0A)
-    val chart1: Color = Color(0xFFFFA2A2)
-    val chart2: Color = Color(0xFFFB2C36)
+    val chart1: Color = Color(0xFF9F0712)
+    val chart2: Color = Color(0xFFC10007)
     val chart3: Color = Color(0xFFE7000B)
-    val chart4: Color = Color(0xFFC10007)
-    val chart5: Color = Color(0xFF9F0712)
+    val chart4: Color = Color(0xFFFB2C36)
+    val chart5: Color = Color(0xFFFFA2A2)
+    val series1: Color = Color(0xFFFB2C36)
+    val series2: Color = Color(0xFFFAFAFA)
+    val series3: Color = Color(0xFFA1A1A1)
 }
 
 val LocalF055Colors = staticCompositionLocalOf<F055Colors> { F055Light }

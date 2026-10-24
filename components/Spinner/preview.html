@@ -31,8 +31,8 @@
   }
   .row { display: flex; align-items: center; gap: var(--space-12); flex-wrap: wrap; }
 
-  .sp { width: 16px; height: 16px; flex: none; display: grid; place-content: center; color: var(--foreground); }
-  .sm { width: 12px; height: 12px; }
+  .sp { width: var(--size-16); height: var(--size-16); flex: none; display: grid; place-content: center; color: var(--foreground); }
+  .sm { width: var(--size-12); height: var(--size-12); }
   .onb { color: var(--primary-foreground); }
   .sp svg, .tile svg {
     width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2;
@@ -42,17 +42,17 @@
   .sm svg { stroke-width: 2.5; }
 
   .tile {
-    width: 40px; height: 40px; flex: none; display: grid; place-content: center;
+    width: var(--size-40); height: var(--size-40); flex: none; display: grid; place-content: center;
     background: var(--muted); border-radius: var(--radius-14); color: var(--foreground);
   }
-  .tile svg { width: 16px; height: 16px; }
+  .tile svg { width: var(--size-16); height: var(--size-16); }
 
   .btn {
     display: inline-flex; align-items: center; gap: var(--space-6);
-    height: 32px; padding-inline: var(--space-12);
+    height: var(--size-32); padding-inline: var(--space-12);
     border: 1px solid transparent; border-radius: var(--radius-pill);
     background: var(--primary); color: var(--primary-foreground); opacity: .7;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
     cursor: not-allowed;
   }
   .out { background: var(--card); color: var(--foreground); border-color: var(--border); }
@@ -61,7 +61,7 @@
   @media (prefers-reduced-motion: reduce) { .sp svg, .tile svg { animation: none; } }
 
   .cap {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground);
   }
   .mono { font-family: var(--font-mono); }

@@ -79,5 +79,4 @@ cross-fade draws attention to the moment of loading.
 
 ## Not yet tokenised
 
-Bar heights (12, 16, 32, 40), the 384px max width, the −0.45px tracking, the
-pulse duration.
+The 384px max width, the −0.45px tracking, and the pulse duration.

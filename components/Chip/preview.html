@@ -41,17 +41,17 @@
 
   .chip {
     display: inline-flex; align-items: center; gap: var(--space-4);
-    height: 20px; padding-inline: var(--space-8);
+    height: var(--size-20); padding-inline: var(--space-8);
     border: 1px solid transparent; border-radius: var(--radius-pill);
     background: var(--secondary); color: var(--secondary-foreground);
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
     white-space: nowrap;
   }
   .sel { background: var(--primary); color: var(--primary-foreground); }
-  .lg { height: 28px; padding-inline: var(--space-10); font-size: 14px; line-height: 20px; }
+  .lg { height: var(--size-28); padding-inline: var(--space-10); font-size: 14px; line-height: var(--size-20); }
 
   .ico {
-    width: 12px; height: 12px; flex: none; fill: none; stroke: currentColor;
+    width: var(--size-12); height: var(--size-12); flex: none; fill: none; stroke: currentColor;
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
 
@@ -59,26 +59,26 @@
      left padding and the circle fills the full height. */
   .chip:has(.av) { padding-left: 2px; }
   .av {
-    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    width: var(--size-16); height: var(--size-16); flex: none; display: grid; place-content: center;
     border-radius: var(--radius-full); overflow: hidden;
     background: var(--muted); color: var(--muted-foreground);
   }
-  .md { width: 24px; height: 24px; }
+  .md { width: var(--size-24); height: var(--size-24); }
   .ini { font-family: var(--font-sans); font-size: 9px; line-height: 1; font-weight: 500; }
   .md .ini { font-size: 11px; }
 
   .x {
-    width: 12px; height: 12px; flex: none; display: grid; place-content: center;
+    width: var(--size-12); height: var(--size-12); flex: none; display: grid; place-content: center;
     padding: 0; border: 0; background: none; cursor: pointer; color: inherit;
     border-radius: var(--radius-full);
   }
   .x svg {
-    width: 12px; height: 12px; fill: none; stroke: currentColor;
+    width: var(--size-12); height: var(--size-12); fill: none; stroke: currentColor;
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
 
   .cap {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground); margin-left: var(--space-4);
   }
 </style>

@@ -21,9 +21,9 @@
   .row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-8); }
   .badge {
     display: inline-flex; align-items: center; gap: var(--space-4);
-    height: 20px; padding-inline: var(--space-8);
+    height: var(--size-20); padding-inline: var(--space-8);
     border-radius: var(--radius-pill); border: 1px solid transparent;
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
     white-space: nowrap;
   }
   .primary     { background: var(--primary);     color: var(--primary-foreground); }
@@ -31,5 +31,5 @@
   .outline     { background: transparent;        color: var(--foreground); border-color: var(--border); }
   .destructive { background: var(--destructive); color: var(--destructive-foreground); }
   .num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
-  .dot { width: 6px; height: 6px; border-radius: var(--radius-full); background: var(--chart-3); }
+  .dot { width: var(--size-6); height: var(--size-6); border-radius: var(--radius-full); background: var(--chart-3); }
 </style>

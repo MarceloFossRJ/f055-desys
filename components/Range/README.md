@@ -64,4 +64,4 @@ express months.
 
 ## Not yet tokenised
 
-Track height (4), thumb size (16).
+Nothing — `--control-track` and `--control-slider-thumb`.
