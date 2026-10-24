@@ -163,7 +163,7 @@ Fonts (README has the line, with the exact weights); in KMP, pass real
 |---|---|---|
 | `radius-5` | 5px | Checkboxes, and nothing else |
 | `radius-6` | 6px | Chart bars |
-| `radius-8` | 8px | Small tiles: swatches, compact grid cells |
+| `radius-8` | 8px | Small tiles: swatches, compact grid cells, toolbar icon buttons |
 | `radius-10` | 10px | Inner tiles inside a card |
 | `radius-14` | 14px | 40px icon tiles, small bordered cards, **overlays** |
 | `radius-pill` | 18px | **Every interactive control** |
@@ -227,9 +227,15 @@ stroke.
 
 ## Components
 
-Fifteen components are **specified, not implemented**: Button, ButtonGroup,
-CloseButton, Badge, Input, Select, MultiSelect, Slider, Toggle, Calendar, Card,
-Table, ListGroup, Tabs, Breadcrumb. Each has a `README.md` under `components/<Name>/`
+Twenty components are **specified, not implemented**: Button, ButtonGroup,
+CloseButton, Toolbar, Badge, Input, Select, MultiSelect, Slider, Toggle,
+Calendar, Card, Table, ListGroup, Nav, NavBar, NavOverflow, Tabs, Breadcrumb,
+Pagination.
+
+Three are **derived, not extracted** — the reference contains no multi-select,
+no horizontal nav bar, no overflow control and no pagination: MultiSelect,
+NavBar, NavOverflow and Pagination. Their READMEs say so. Treat them as
+provisional against anything a designer produces. Each has a `README.md` under `components/<Name>/`
 covering anatomy, variants, which token every part uses, and the decisions that
 are easy to get wrong — plus a `preview.html` that renders it from the real
 tokens.
@@ -240,12 +246,30 @@ from another design system; the spec records choices that are specific to F055
 (the pill on every control, the checkbox being the one square thing, `none` as a
 real elevation for inputs, tabular numerals on every numeric cell).
 
-If a component you need is not among the fifteen, say so rather than inventing one —
+If a component you need is not among the twenty, say so rather than inventing one —
 the pattern for adding it is to write the spec first.
 
 **A floating panel (dropdown, popover, menu, tooltip, date picker) uses
 `popover` + `radius-14` + `shadow-overlay`.** Not card geometry. Select's README
 explains why.
+
+**Every control is `box-sizing: border-box`.** Heights in the specs are the
+rendered height, border included. Without it a 32px control with a 1px border
+renders at 34px, and one with block padding is far worse.
+
+**An icon-only button has three shapes depending on where it sits.** In a
+toolbar it is `radius-8` with `shadow-hairline` and no fill; alone on a surface
+(CloseButton) it is a `muted` pill; inline in text (Breadcrumb overflow) it is a
+transparent pill. Toolbar's README has the table.
+
+**Current location is `muted`; a chosen value is `primary`.** Nav, NavBar, Tabs
+and Pagination all mark where you are with a `muted` pill and a weight shift.
+Calendar marks a selected date with `primary`, because a date is data. Do not
+mark a current page in red.
+
+**Nav, ListGroup and Tabs look alike and mean different things.** Nav is
+destinations in page chrome; ListGroup is rows inside a page; Tabs switch
+between views of one thing. Nav's README has the test.
 
 **Rows separated by space are a ListGroup; rows separated by hairlines are a
 Table.** If you are adding a `border-bottom` between list rows, you want a
@@ -341,8 +365,9 @@ steps *down*. That asymmetry is intentional: it is what clears the 3:1 non-text
 minimum on dark surfaces (5.20:1 on background, 3.97:1 on muted). Do not
 "correct" it to match primary.
 
-`Archivo` is declared in the Paper file's font list but used on zero nodes. It
-is deliberately not a token.
+`Archivo` was declared in the Paper file's font list and used on zero nodes, so
+it was never tokenised. It has since been removed from the file, which settles
+the question.
 
 ## Why the system looks the way it does
 

@@ -309,9 +309,12 @@ screen in a real stack.
 Light reference: artboard `D5-0` · Dark: `3JI-0` · Palette cards: `1O9-0` /
 `2LV-0` · Type specimen: `1PS-0`, in Paper file `01M5M3N461Y0VSS854R6G5S86K`.
 
-`Archivo` is declared in that file's font list and used on zero nodes. It is
-deliberately not a token — worth confirming whether it was meant to be a display
-face before anyone adds it.
+`Archivo` was declared in that file's font list and used on zero nodes, so it was
+never tokenised. It has since been removed from the file, which settles it.
+
+The file also had a fifth artboard, "Hello World" (1440×900) — the one place a
+horizontal nav bar would plausibly have lived. It was deleted before it could be
+examined, which is why NavBar is derived rather than extracted.
 
 The browsable version of this system — the same tokens with live component
 previews in both themes — is published as a Claude design-system artifact. Its
