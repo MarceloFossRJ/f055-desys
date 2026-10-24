@@ -44,6 +44,12 @@ jobs:
       - name: Measure text contrast in the component previews
         run: python3 scripts/check_contrast.py
 
+      # examples/login-compose is never compiled -- there is no Kotlin
+      # toolchain here. This is the part a design system is responsible for:
+      # every token the Compose source names must exist in dist/kotlin.
+      - name: Check Kotlin token references
+        run: python3 scripts/check_kotlin_tokens.py
+
   # The specs being accessible says nothing about the screens assembled from
   # them. This job builds both examples and measures the pages themselves --
   # Tailwind's real output, React's and Jinja's real markup.
@@ -72,7 +78,21 @@ jobs:
           npm run build
           python3 snapshot.py out
 
+      # Rails itself is not installed: the views are real Rails views and
+      # render.rb supplies the handful of ActionView methods they use, so the
+      # output can still be measured. See that example's README.
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+
+      - name: Render the Rails views
+        working-directory: examples/login-rails
+        run: |
+          npm ci
+          npm run build
+          ruby render.rb out
+
       # Fails if a screen's stylesheet did not parse, so a clean pass cannot be
       # a silent one.
-      - name: Measure text contrast in both screens
+      - name: Measure text contrast in every screen
         run: python3 scripts/check_contrast.py

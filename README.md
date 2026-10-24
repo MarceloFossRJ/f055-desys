@@ -346,15 +346,42 @@ violations and the two commands that must be run after any token change.
 
 ## Examples
 
-Two implementations of the same screen, a dashboard modelled on shadcn's
-dashboard-01:
+A dashboard modelled on shadcn's dashboard-01, and a login screen modelled on
+login-01, across the four target stacks:
 
-| | Stack | Run |
-|---|---|---|
-| `examples/dashboard-next/` | Next.js + Tailwind v4 + lucide-react | `npm install && npm run dev` |
-| `examples/dashboard-jinja/` | Python + FastAPI + Jinja2 + Tailwind v4 | `pip install -r requirements.txt && npm run build && uvicorn app:app` |
+| | Stack | Screens | Run |
+|---|---|---|---|
+| `examples/dashboard-next/` | TypeScript · Next.js · Tailwind | dashboard, login | `npm install && npm run dev` |
+| `examples/dashboard-jinja/` | Python · FastAPI · Jinja2 · Tailwind | dashboard, login | `pip install -r requirements.txt && npm run build && uvicorn app:app` |
+| `examples/login-rails/` | Ruby on Rails · ERB · Tailwind | login, password-reset mailer | `npm run build && ruby render.rb out` |
+| `examples/login-compose/` | Kotlin · Compose Multiplatform | login | **not compiled — see below** |
 
-The same region of the same screen, built twice:
+The same login screen, built three times:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/login-three-stacks-dark.png">
+  <img alt="The same login card rendered by the Next.js, Jinja and Rails builds, indistinguishable" src="docs/images/login-three-stacks-light.png">
+</picture>
+
+Measured rather than eyeballed: card 384×357 at radius 24, field 336×32 at
+radius 8, title 18/28 weight 500 at −0.45px tracking, zero unresolved `var()` —
+identical in all three.
+
+![The login error state beside the password-reset email](docs/images/login-error-and-email.png)
+
+The mailer is where `dist/ruby/f055_tokens.rb` stops being optional: email
+clients strip `<style>`, so every rule is inline, built from the same token file
+the web app compiles its classes from.
+
+### The Compose one is not verified
+
+There is no Kotlin toolchain in this sandbox, so `examples/login-compose` has
+never been compiled or run, unlike the three above. `scripts/check_kotlin_tokens.py`
+verifies on every build that every token its source names exists in
+`dist/kotlin` — which catches a renamed token, and nothing else. A pass there
+does not mean the screen works, and its README says so.
+
+The same region of the dashboard, built twice:
 
 ![The stat cards and chart card, rendered identically by the Next.js build and the Jinja build](docs/images/two-stacks.png)
 

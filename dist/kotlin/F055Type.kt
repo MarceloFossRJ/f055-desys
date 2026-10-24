@@ -23,6 +23,7 @@ interface F055Type {
     val display: TextStyle
     val heading: TextStyle
     val title: TextStyle
+    val panelTitle: TextStyle
     val cardTitle: TextStyle
     val body: TextStyle
     val text: TextStyle
@@ -59,6 +60,14 @@ fun f055Type(sans: FontFamily, mono: FontFamily): F055Type = object : F055Type {
         lineHeight = 28.sp,
         fontWeight = FontWeight(600),
         fontFeatureSettings = "tnum",
+    )
+
+    val panelTitle: TextStyle = TextStyle(
+        fontFamily = sans,
+        fontSize = 18.sp,
+        lineHeight = 28.sp,
+        fontWeight = FontWeight(500),
+        letterSpacing = -0.45.sp,
     )
 
     val cardTitle: TextStyle = TextStyle(

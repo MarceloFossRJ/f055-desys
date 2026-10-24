@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* The real generated token file, imported unmodified. A copy here would let the
+   two drift, which is the whole thing this example is meant to rule out. */
+@import "../../../../../dist/web/tokens.css";
+
+/* Tailwind scans by file extension and does not know about .erb. */
+@source "../../views";

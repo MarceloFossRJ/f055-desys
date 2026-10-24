@@ -15,11 +15,13 @@ OUT = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "out").resolve()
 OUT.mkdir(parents=True, exist_ok=True)
 
 client = TestClient(app)
-for theme in ("light", "dark"):
-    r = client.get("/", params={"theme": theme})
-    r.raise_for_status()
-    (OUT / f"{theme}.html").write_text(r.text)
-    print(f"{theme}.html  {len(r.text):,} bytes")
+for route, stem in (("/", ""), ("/login", "login-")):
+    for theme in ("light", "dark"):
+        r = client.get(route, params={"theme": theme})
+        r.raise_for_status()
+        name = f"{stem}{theme}.html"
+        (OUT / name).write_text(r.text)
+        print(f"{name}  {len(r.text):,} bytes")
 
 shutil.copytree(pathlib.Path("static"), OUT / "static", dirs_exist_ok=True)
 print(f"static/ copied -> {OUT}")

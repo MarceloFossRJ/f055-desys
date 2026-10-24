@@ -1,7 +1,7 @@
 <!-- @dsCard group="Overlay" height=440 subtitle="An edge panel for flows too long for a Dialog — derived" -->
 <div class="wrap">
   <div class="page">
-    <span class="t18">Releases</span>
+    <span class="type-panel-title">Releases</span>
     <span class="sub">Behind the scrim.</span>
   </div>
 
@@ -10,7 +10,7 @@
   <aside class="dr" role="dialog" aria-modal="true" aria-labelledby="drt">
     <header class="hd">
       <span class="lines">
-        <span class="t18" id="drt">New release</span>
+        <span class="type-panel-title" id="drt">New release</span>
         <span class="sub">Step 2 of 3 — Metadata</span>
       </span>
       <button class="x" aria-label="Close">
@@ -77,10 +77,6 @@
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
 
-  .t18 {
-    font-family: var(--font-sans); font-size: 18px; line-height: var(--size-28); font-weight: 500;
-    letter-spacing: -0.45px;
-  }
   .sub {
     font-family: var(--font-sans); font-size: 14px; line-height: 22.75px;
     color: var(--muted-foreground);
@@ -88,13 +84,13 @@
 
   .fld { display: flex; flex-direction: column; gap: var(--space-6); }
   .lab {
-    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
   }
   .inp {
     width: 100%; height: var(--size-32); padding: 0 var(--space-12);
     border: 1px solid transparent; border-radius: var(--radius-8);
     background: var(--input); color: var(--foreground);
-    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
   }
   .inp::placeholder { color: var(--muted-foreground); }
   .ta { height: auto; padding: var(--space-8) var(--space-12); resize: vertical; }
@@ -102,7 +98,7 @@
   .btn {
     height: var(--size-32); padding-inline: var(--space-16); cursor: pointer;
     border: 1px solid transparent; border-radius: var(--radius-pill);
-    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
   }
   .out { background: var(--card); color: var(--foreground); border-color: var(--border); }
   .pri { background: var(--primary); color: var(--primary-foreground); }

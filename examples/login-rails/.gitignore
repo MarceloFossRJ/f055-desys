@@ -1,0 +1,6 @@
+node_modules/
+out/
+public/assets/application.css
+public/assets/fonts.css
+public/assets/fonts/
+*.tgz

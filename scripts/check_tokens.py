@@ -48,6 +48,14 @@ COLOR_LITERAL = re.compile(r"#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?|oklch|oklab)\s
 CLASS_ATTR = re.compile(r'class="([^"]*)"')
 CLASS_RULE = re.compile(r"\.([A-Za-z][A-Za-z0-9_-]*)")
 
+# Classes the generated stylesheet defines -- the `type-*` named styles. A
+# preview may use these without redeclaring them; that is the whole point of a
+# named style, and hand-copying one is the drift this checker exists to stop.
+TOKEN_CLASSES = set(re.findall(
+    r"^\.([a-z][a-z0-9-]*)\s*\{",
+    (pathlib.Path(__file__).resolve().parent.parent / "dist" / "web" / "tokens.css").read_text(),
+    re.M))
+
 
 def css_root_properties() -> set[str]:
     """Custom properties declared in the :root block of the shipped stylesheet.
@@ -109,7 +117,7 @@ def main() -> int:
                           f"-- colour is fully tokenised, use var(--token)")
 
         style = text[text.index("<style>"):] if "<style>" in text else ""
-        declared = set(CLASS_RULE.findall(style))
+        declared = set(CLASS_RULE.findall(style)) | TOKEN_CLASSES
         for attr in CLASS_ATTR.findall(text):
             for cls in attr.split():
                 if cls not in declared:

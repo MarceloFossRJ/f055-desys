@@ -13,8 +13,12 @@
        stroke-linejoin="round" aria-hidden="true">{{ icon(name)|safe }}</svg>
 {%- endmacro -%}
 
-{%- macro button(label, variant='outline', size='md', icon_name=None, extra='') -%}
-  <button class="inline-flex items-center justify-center gap-1.5 rounded-pill border font-medium
+{#- `type` defaults to "button". A <button> with no type inside a <form> is a
+    SUBMIT button, so the login screen's "Login with Google" was submitting the
+    credentials form instead of starting OAuth. The safe default is the inert
+    one; a submit says so. -#}
+{%- macro button(label, variant='outline', size='md', icon_name=None, extra='', type='button') -%}
+  <button type="{{ type }}" class="inline-flex items-center justify-center gap-1.5 rounded-pill border font-medium
     whitespace-nowrap transition-colors cursor-pointer text-sm
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
     focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset

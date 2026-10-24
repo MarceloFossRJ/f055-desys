@@ -52,6 +52,7 @@ class TextStyle:
     font_size: str
     line_height: str
     font_weight: int
+    letter_spacing: Optional[str] = None
     text_transform: Optional[str] = None
     tabular: bool = False
 
@@ -64,6 +65,8 @@ class TextStyle:
             f"line-height: {self.line_height}",
             f"font-weight: {self.font_weight}",
         ]
+        if self.letter_spacing:
+            parts.append(f"letter-spacing: {self.letter_spacing}")
         if self.text_transform:
             parts.append(f"text-transform: {self.text_transform}")
         if self.tabular:
@@ -147,21 +150,22 @@ DARK: Dict[str, Color] = {
 SCHEMES: Dict[str, Dict[str, Color]] = {"light": LIGHT, "dark": DARK}
 
 TYPE: Dict[str, TextStyle] = {
-    "display": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="30px", line_height="36px", font_weight=600, text_transform=None, tabular=True),
-    "heading": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="24px", line_height="32px", font_weight=500, text_transform=None, tabular=False),
-    "title": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="18px", line_height="28px", font_weight=600, text_transform=None, tabular=True),
-    "card-title": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="16px", line_height="24px", font_weight=500, text_transform=None, tabular=False),
-    "body": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="16px", line_height="24px", font_weight=400, text_transform=None, tabular=False),
-    "text": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="14px", line_height="20px", font_weight=400, text_transform=None, tabular=False),
-    "prose": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="14px", line_height="22.75px", font_weight=400, text_transform=None, tabular=False),
-    "label": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="14px", line_height="19.25px", font_weight=500, text_transform=None, tabular=False),
-    "button": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="14px", line_height="20px", font_weight=500, text_transform=None, tabular=False),
-    "caption": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="12px", line_height="16px", font_weight=400, text_transform=None, tabular=False),
-    "eyebrow": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="12px", line_height="16px", font_weight=500, text_transform='uppercase', tabular=False),
-    "badge": TextStyle(family="\"Roboto\", system-ui, sans-serif", font_size="12px", line_height="16px", font_weight=500, text_transform=None, tabular=False),
-    "code": TextStyle(family="\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace", font_size="12px", line_height="16px", font_weight=500, text_transform=None, tabular=False),
-    "code-value": TextStyle(family="\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace", font_size="12px", line_height="16px", font_weight=400, text_transform=None, tabular=False),
-    "numeric": TextStyle(family="\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace", font_size="12px", line_height="16px", font_weight=500, text_transform=None, tabular=True),
+    "display": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="30px", line_height="36px", font_weight=600, letter_spacing=None, text_transform=None, tabular=True),
+    "heading": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="24px", line_height="32px", font_weight=500, letter_spacing=None, text_transform=None, tabular=False),
+    "title": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="18px", line_height="28px", font_weight=600, letter_spacing=None, text_transform=None, tabular=True),
+    "panel-title": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="18px", line_height="28px", font_weight=500, letter_spacing='-0.45px', text_transform=None, tabular=False),
+    "card-title": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="16px", line_height="24px", font_weight=500, letter_spacing=None, text_transform=None, tabular=False),
+    "body": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="16px", line_height="24px", font_weight=400, letter_spacing=None, text_transform=None, tabular=False),
+    "text": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="14px", line_height="20px", font_weight=400, letter_spacing=None, text_transform=None, tabular=False),
+    "prose": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="14px", line_height="22.75px", font_weight=400, letter_spacing=None, text_transform=None, tabular=False),
+    "label": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="14px", line_height="19.25px", font_weight=500, letter_spacing=None, text_transform=None, tabular=False),
+    "button": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="14px", line_height="20px", font_weight=500, letter_spacing=None, text_transform=None, tabular=False),
+    "caption": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="12px", line_height="16px", font_weight=400, letter_spacing=None, text_transform=None, tabular=False),
+    "eyebrow": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="12px", line_height="16px", font_weight=500, letter_spacing=None, text_transform='uppercase', tabular=False),
+    "badge": TextStyle(family="'Roboto', system-ui, sans-serif", font_size="12px", line_height="16px", font_weight=500, letter_spacing=None, text_transform=None, tabular=False),
+    "code": TextStyle(family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace", font_size="12px", line_height="16px", font_weight=500, letter_spacing=None, text_transform=None, tabular=False),
+    "code-value": TextStyle(family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace", font_size="12px", line_height="16px", font_weight=400, letter_spacing=None, text_transform=None, tabular=False),
+    "numeric": TextStyle(family="'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace", font_size="12px", line_height="16px", font_weight=500, letter_spacing=None, text_transform=None, tabular=True),
 }
 
 RADIUS: Dict[str, str] = {

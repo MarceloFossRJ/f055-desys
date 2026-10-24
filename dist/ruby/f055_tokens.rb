@@ -23,11 +23,12 @@ module F055
     end
 
     TextStyle = Struct.new(:family, :font_size, :line_height, :font_weight,
-                           :text_transform, :tabular) do
+                           :letter_spacing, :text_transform, :tabular) do
       # An inline style declaration, for mail and PDF where classes do not apply.
       def css
         parts = ["font-family: #{family}", "font-size: #{font_size}",
                  "line-height: #{line_height}", "font-weight: #{font_weight}"]
+        parts << "letter-spacing: #{letter_spacing}" if letter_spacing
         parts << "text-transform: #{text_transform}" if text_transform
         parts << "font-variant-numeric: tabular-nums" if tabular
         "#{parts.join('; ')};"
@@ -109,21 +110,22 @@ module F055
     SCHEMES = { light: LIGHT, dark: DARK }.freeze
 
     TYPE = {
-      display: TextStyle.new("\"Roboto\", system-ui, sans-serif", "30px", "36px", 600, nil, true).freeze,
-      heading: TextStyle.new("\"Roboto\", system-ui, sans-serif", "24px", "32px", 500, nil, false).freeze,
-      title: TextStyle.new("\"Roboto\", system-ui, sans-serif", "18px", "28px", 600, nil, true).freeze,
-      card_title: TextStyle.new("\"Roboto\", system-ui, sans-serif", "16px", "24px", 500, nil, false).freeze,
-      body: TextStyle.new("\"Roboto\", system-ui, sans-serif", "16px", "24px", 400, nil, false).freeze,
-      text: TextStyle.new("\"Roboto\", system-ui, sans-serif", "14px", "20px", 400, nil, false).freeze,
-      prose: TextStyle.new("\"Roboto\", system-ui, sans-serif", "14px", "22.75px", 400, nil, false).freeze,
-      label: TextStyle.new("\"Roboto\", system-ui, sans-serif", "14px", "19.25px", 500, nil, false).freeze,
-      button: TextStyle.new("\"Roboto\", system-ui, sans-serif", "14px", "20px", 500, nil, false).freeze,
-      caption: TextStyle.new("\"Roboto\", system-ui, sans-serif", "12px", "16px", 400, nil, false).freeze,
-      eyebrow: TextStyle.new("\"Roboto\", system-ui, sans-serif", "12px", "16px", 500, "uppercase", false).freeze,
-      badge: TextStyle.new("\"Roboto\", system-ui, sans-serif", "12px", "16px", 500, nil, false).freeze,
-      code: TextStyle.new("\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace", "12px", "16px", 500, nil, false).freeze,
-      code_value: TextStyle.new("\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace", "12px", "16px", 400, nil, false).freeze,
-      numeric: TextStyle.new("\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace", "12px", "16px", 500, nil, true).freeze,
+      display: TextStyle.new("'Roboto', system-ui, sans-serif", "30px", "36px", 600, nil, nil, true).freeze,
+      heading: TextStyle.new("'Roboto', system-ui, sans-serif", "24px", "32px", 500, nil, nil, false).freeze,
+      title: TextStyle.new("'Roboto', system-ui, sans-serif", "18px", "28px", 600, nil, nil, true).freeze,
+      panel_title: TextStyle.new("'Roboto', system-ui, sans-serif", "18px", "28px", 500, "-0.45px", nil, false).freeze,
+      card_title: TextStyle.new("'Roboto', system-ui, sans-serif", "16px", "24px", 500, nil, nil, false).freeze,
+      body: TextStyle.new("'Roboto', system-ui, sans-serif", "16px", "24px", 400, nil, nil, false).freeze,
+      text: TextStyle.new("'Roboto', system-ui, sans-serif", "14px", "20px", 400, nil, nil, false).freeze,
+      prose: TextStyle.new("'Roboto', system-ui, sans-serif", "14px", "22.75px", 400, nil, nil, false).freeze,
+      label: TextStyle.new("'Roboto', system-ui, sans-serif", "14px", "19.25px", 500, nil, nil, false).freeze,
+      button: TextStyle.new("'Roboto', system-ui, sans-serif", "14px", "20px", 500, nil, nil, false).freeze,
+      caption: TextStyle.new("'Roboto', system-ui, sans-serif", "12px", "16px", 400, nil, nil, false).freeze,
+      eyebrow: TextStyle.new("'Roboto', system-ui, sans-serif", "12px", "16px", 500, nil, "uppercase", false).freeze,
+      badge: TextStyle.new("'Roboto', system-ui, sans-serif", "12px", "16px", 500, nil, nil, false).freeze,
+      code: TextStyle.new("'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace", "12px", "16px", 500, nil, nil, false).freeze,
+      code_value: TextStyle.new("'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace", "12px", "16px", 400, nil, nil, false).freeze,
+      numeric: TextStyle.new("'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace", "12px", "16px", 500, nil, nil, true).freeze,
     }.freeze
 
     RADIUS = {

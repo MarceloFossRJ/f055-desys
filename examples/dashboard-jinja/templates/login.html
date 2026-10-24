@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% from "components/_ui.html" import button %}
+{% block title %}F055 — Login{% endblock %}
+
+{% block body %}
+<main class="flex min-h-dvh items-center justify-center bg-background p-6">
+  {# 384px: the width the reference uses for every centred panel, already in
+     Dialog, Drawer, Toast and the empty state. A login card is that object. #}
+  <div class="w-full max-w-[384px]">
+    <div class="flex flex-col gap-6 rounded-24 bg-card p-6 shadow-card">
+      <header class="flex flex-col gap-1.5">
+        {# Named styles, not literals. `panel-title` is the system's only
+           negative tracking; `prose` its 22.75px long-form line-height. #}
+        <h1 class="type-panel-title">Login to your account</h1>
+        <p class="type-prose text-muted-foreground">
+          Enter your email below to login to your account</p>
+      </header>
+
+      <form class="flex flex-col gap-4" method="post" action="/login">
+        <div class="flex flex-col gap-1.5">
+          <label for="email" class="text-sm font-medium">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email"
+            placeholder="m@example.com"
+            class="h-(--control-button) w-full rounded-8 bg-input px-3 text-sm
+              placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2
+              focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset" />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <div class="flex items-center justify-between gap-2">
+            <label for="password" class="text-sm font-medium">Password</label>
+            {# No link colour in this system, so the underline carries it. #}
+            <a href="#" class="text-sm text-muted-foreground underline underline-offset-4
+              hover:text-foreground rounded-5 focus-visible:outline-none focus-visible:ring-2
+              focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset">
+              Forgot your password?</a>
+          </div>
+          <input id="password" name="password" type="password" required autocomplete="current-password"
+            {% if error %}aria-invalid="true" aria-describedby="password-error"{% endif %}
+            class="h-(--control-button) w-full rounded-8 bg-input px-3 text-sm
+              placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2
+              focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset
+              {% if error %}ring-1 ring-destructive{% endif %}" />
+          {% if error %}
+            {# Ring, not tint: one hue, so an invalid field keeps its fill and
+               gains an outline. The Validation spec's rule. #}
+            <p id="password-error" class="text-sm text-destructive-text">
+              That email and password do not match.</p>
+          {% endif %}
+        </div>
+
+        {{ button('Login', variant='primary', extra='w-full', type='submit') }}
+        {{ button('Login with Google', extra='w-full') }}
+      </form>
+    </div>
+
+    <p class="mt-4 text-center text-sm text-muted-foreground">
+      Don't have an account?
+      <a href="#" class="underline underline-offset-4 hover:text-foreground rounded-5
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+        focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset">Sign up</a>
+    </p>
+  </div>
+</main>
+{% endblock %}
