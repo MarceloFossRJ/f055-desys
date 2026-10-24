@@ -1,0 +1,27 @@
+{
+  "name": "f055-dashboard-next",
+  "private": true,
+  "version": "0.1.0",
+  "description": "First real screen built on the F055 design system. Next.js + Tailwind v4 + lucide-react.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@fontsource/geist-mono": "^5.3.0",
+    "@fontsource/roboto": "^5.3.0",
+    "lucide-react": "1.61.0",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "22.13.0",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.7.3"
+  }
+}

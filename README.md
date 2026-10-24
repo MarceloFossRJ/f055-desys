@@ -290,6 +290,22 @@ Survivable for one implementation, a liability across four — it is exactly the
 kind of value that drifts when the same component is written in Compose and in
 React by different hands. Worth adding before the second implementation.
 
+## Examples
+
+`examples/dashboard-next/` is the first screen actually built on this system — a
+dashboard on Next.js + Tailwind v4 + lucide-react, modelled on shadcn's
+dashboard-01. `npm install && npm run dev` inside that folder.
+
+It exists to be a test, and it found things. The token file dropped into
+Tailwind v4 with no adapter, and `track` and `muted-subtle` both earned their
+keep. But `rounded-xl` turned out to resolve to Tailwind's own 12px rather than
+any F055 radius — the generator now clears Tailwind's radius, shadow and text
+scales so an off-system utility fails loudly instead of quietly. The five chart
+tokens turned out to yield one usable colour once measured against 3:1 in both
+themes. `muted-foreground` on `muted` fails AA in light. And `border` is too
+faint to outline a checkbox. That example's README has the full list with the
+measurements.
+
 ## On components
 
 Tokens travel across all four stacks. Components do not: a button in Jinja2,

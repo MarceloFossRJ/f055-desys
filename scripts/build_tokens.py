@@ -137,7 +137,9 @@ def build_web_css() -> None:
  * Family       -> font-sans, font-mono
  * Size         -> text-xs … text-3xl (these match Tailwind's own defaults; declared
  *                 here so the values are explicit and shared with the other stacks)
- * Radius       -> rounded-sm, rounded-lg, rounded-pill, rounded-xl, rounded-full
+ * Radius       -> rounded-5, rounded-6, rounded-8, rounded-10, rounded-14,
+ *                 rounded-pill, rounded-24, rounded-full. Tailwind's own radius
+ *                 scale is cleared, so rounded-xl and friends produce nothing.
  * Elevation    -> shadow-card, shadow-raised, shadow-thumb, shadow-none
  * Spacing      -> p-5, gap-1.5 … Tailwind's default scale already produces every
  *                 step the reference uses, so nothing is overridden; --space-* is
@@ -170,6 +172,15 @@ def build_web_css() -> None:
 }}
 
 @theme inline {{
+  /* Clear Tailwind's own radius, shadow and text scales before declaring ours.
+     Without this they coexist: `rounded-xl` silently resolves to Tailwind's
+     12px, which is not an F055 radius at all, and nothing flags it. Cleared,
+     an off-system utility produces no CSS -- a loud failure instead of a
+     plausible wrong value. */
+  --radius-*: initial;
+  --shadow-*: initial;
+  --text-*: initial;
+
 {theme_colors}
 
 {fonts}

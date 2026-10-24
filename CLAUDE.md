@@ -226,6 +226,29 @@ platform forces you to — Compose does, and `F055Elevation` documents that
 trade-off. SwiftUI stacks the drops faithfully but draws the ring as an inset
 stroke.
 
+## Examples
+
+`examples/dashboard-next/` is the first real screen: a dashboard on Next.js +
+Tailwind v4 + lucide-react, modelled on shadcn's dashboard-01. Its README lists
+nine findings; four change how you use this system:
+
+- **Tailwind's own `--radius-*`, `--shadow-*` and `--text-*` are now cleared** in
+  the `@theme` block. `rounded-xl` used to resolve to Tailwind's 12px, which is
+  not an F055 radius. Off-system utilities now produce no CSS at all. Use
+  `rounded-5/6/8/10/14/pill/24/full` and `shadow-hairline/card/thumb/raised/overlay`.
+- **`chart-*` is effectively one usable colour.** `chart-1` fails 3:1 on light
+  (1.87), `chart-4` and `chart-5` fail on dark (2.71, 2.08). Only `chart-2` and
+  `chart-3` pass both, and they are adjacent reds. For more than one series, pair
+  one red with `muted-foreground` **and a different mark type**. These are the only
+  tokens with identical light and dark values; they should step like `ring` does.
+- **Never put `muted-foreground` on `muted` in light mode** — 4.35:1, under AA.
+  On `card` it is 4.74:1. If a container is muted, the secondary ink has to change
+  or the container does.
+- **`border` cannot outline a small control**: 1.03:1 on a light row. Use
+  `muted-foreground` until a control-border token exists.
+
+Radius gained a third tier there: **tooltip 8 · panel 14 · card and dialog 24.**
+
 ## Components
 
 Forty components are **specified, not implemented**: Button, ButtonGroup,
