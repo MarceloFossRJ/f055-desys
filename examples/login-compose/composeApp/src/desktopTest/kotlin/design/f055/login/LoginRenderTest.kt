@@ -111,7 +111,13 @@ class LoginRenderTest {
                     Box(Modifier.fillMaxSize()) { LoginScreen() }
                 }
             }
-            val bytes = scene.use { it.render().encodeToData()!!.bytes }
+            // try/finally rather than use{}: close() is the documented API and
+            // not every version declares AutoCloseable.
+            val bytes = try {
+                scene.render().encodeToData()!!.bytes
+            } finally {
+                scene.close()
+            }
             val file = File(out, if (dark) "login-dark.png" else "login-light.png")
             file.writeBytes(bytes)
             assertTrue(file.length() > 2_000, "${file.name} looks empty (${file.length()} bytes)")

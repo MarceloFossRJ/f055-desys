@@ -287,7 +287,10 @@ depths:
 
 - **`check_kotlin_tokens.py`** — every `F055Radius.x`, `F055Control.x`,
   `colors.x`, `type.x` a Kotlin source names exists. Runs anywhere.
-- **`check_native_values.py`** — the numbers match `dist/tokens.flat.json`.
+- **`check_native_values.py`** — the numbers match `dist/tokens.flat.json`, and
+  every interface member an object implements says `override`. The generated
+  Kotlin shipped ~130 declarations missing `override` and therefore never
+  compiled; the names and the numbers were right, the file was not valid.
   Not circular: the native outputs go through `px()`, dp/sp conversion,
   camelCase renaming and ARGB packing, which is where a unit slip or a dropped
   alpha channel lives. 241 comparisons. Runs anywhere.

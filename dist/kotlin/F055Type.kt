@@ -39,7 +39,7 @@ interface F055Type {
 }
 
 fun f055Type(sans: FontFamily, mono: FontFamily): F055Type = object : F055Type {
-    val display: TextStyle = TextStyle(
+    override val display: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 30.sp,
         lineHeight = 36.sp,
@@ -47,14 +47,14 @@ fun f055Type(sans: FontFamily, mono: FontFamily): F055Type = object : F055Type {
         fontFeatureSettings = "tnum",
     )
 
-    val heading: TextStyle = TextStyle(
+    override val heading: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 24.sp,
         lineHeight = 32.sp,
         fontWeight = FontWeight(500),
     )
 
-    val title: TextStyle = TextStyle(
+    override val title: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 18.sp,
         lineHeight = 28.sp,
@@ -62,7 +62,7 @@ fun f055Type(sans: FontFamily, mono: FontFamily): F055Type = object : F055Type {
         fontFeatureSettings = "tnum",
     )
 
-    val panelTitle: TextStyle = TextStyle(
+    override val panelTitle: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 18.sp,
         lineHeight = 28.sp,
@@ -70,84 +70,84 @@ fun f055Type(sans: FontFamily, mono: FontFamily): F055Type = object : F055Type {
         letterSpacing = -0.45.sp,
     )
 
-    val cardTitle: TextStyle = TextStyle(
+    override val cardTitle: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         fontWeight = FontWeight(500),
     )
 
-    val body: TextStyle = TextStyle(
+    override val body: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         fontWeight = FontWeight(400),
     )
 
-    val text: TextStyle = TextStyle(
+    override val text: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         fontWeight = FontWeight(400),
     )
 
-    val prose: TextStyle = TextStyle(
+    override val prose: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 14.sp,
         lineHeight = 22.75.sp,
         fontWeight = FontWeight(400),
     )
 
-    val label: TextStyle = TextStyle(
+    override val label: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 14.sp,
         lineHeight = 19.25.sp,
         fontWeight = FontWeight(500),
     )
 
-    val button: TextStyle = TextStyle(
+    override val button: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         fontWeight = FontWeight(500),
     )
 
-    val caption: TextStyle = TextStyle(
+    override val caption: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight(400),
     )
 
-    val eyebrow: TextStyle = TextStyle(
+    override val eyebrow: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight(500),
     )
 
-    val badge: TextStyle = TextStyle(
+    override val badge: TextStyle = TextStyle(
         fontFamily = sans,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight(500),
     )
 
-    val code: TextStyle = TextStyle(
+    override val code: TextStyle = TextStyle(
         fontFamily = mono,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight(500),
     )
 
-    val codeValue: TextStyle = TextStyle(
+    override val codeValue: TextStyle = TextStyle(
         fontFamily = mono,
         fontSize = 12.sp,
         lineHeight = 16.sp,
         fontWeight = FontWeight(400),
     )
 
-    val numeric: TextStyle = TextStyle(
+    override val numeric: TextStyle = TextStyle(
         fontFamily = mono,
         fontSize = 12.sp,
         lineHeight = 16.sp,

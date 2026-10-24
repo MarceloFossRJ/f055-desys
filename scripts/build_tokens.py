@@ -584,7 +584,12 @@ def build_kotlin_colors() -> None:
         return f"Color(0x{c['hex8'][7:9]}{c['hex8'][1:7]})"
 
     def vals(mode: str) -> str:
-        return "\n".join(f"    val {camel(n)}: Color = {kc(RESOLVED[n][mode])}" for n in NAMES)
+        # `override`, because these objects implement F055Colors. Without it
+        # Kotlin refuses the file outright -- "hides member of supertype and
+        # needs 'override' modifier" -- which nothing noticed for as long as
+        # nothing compiled the generated Kotlin.
+        return "\n".join(
+            f"    override val {camel(n)}: Color = {kc(RESOLVED[n][mode])}" for n in NAMES)
 
     iface = "\n".join(f"    val {camel(n)}: Color" for n in NAMES)
 
@@ -695,7 +700,7 @@ def build_kotlin_type() -> None:
         feat = '\n        fontFeatureSettings = "tnum",' if s.get("tabular") else ""
         ls = (f"\n        letterSpacing = {px(s['letterSpacing']):g}.sp,"
               if s.get("letterSpacing") else "")
-        return f"""    val {camel(name)}: TextStyle = TextStyle(
+        return f"""    override val {camel(name)}: TextStyle = TextStyle(
         fontFamily = {fam},
         fontSize = {px(s['fontSize']):g}.sp,
         lineHeight = {px(s['lineHeight']):g}.sp,

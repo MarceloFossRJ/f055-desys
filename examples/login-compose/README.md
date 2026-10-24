@@ -49,9 +49,12 @@ their contrast the way `check_contrast.py` measures the other three. Colour and
 radius are asserted statically, through the token values, rather than by
 sampling the rendered image.
 
-Android is not a build target here. Adding `androidTarget()` is two lines, but
-it requires the Android SDK, which would mean installing it on every CI run.
-The source is unchanged either way.
+**Desktop is the only build target here, deliberately.** It is the one that
+compiles and renders headlessly on a Linux CI runner with no device, simulator
+or SDK. Apple targets cannot build off a Mac at all, and declaring them makes
+Gradle fetch a Kotlin/Native toolchain the host can never use. The source is
+plain Compose Multiplatform; `composeApp/build.gradle.kts` lists the two lines
+that add Android, iOS or web where you build them.
 
 ## Where it differs from the web, and why
 
@@ -74,6 +77,26 @@ destructive fill and destructive ink.
 
 There is no Google mark on the Google button, for the same reason as on the web:
 drawing someone else's logo is not ours to do.
+
+## The first thing compiling it found
+
+The generated Kotlin had never compiled, and could not have.
+
+`F055Light` and `F055Dark` implement `F055Colors`, and `f055Type()` returns an
+anonymous `object : F055Type`. All three declared their members as plain `val`
+with **no `override`** — about 130 declarations across two files, every one a
+hard error:
+
+> `'background' hides member of supertype 'F055Colors' and needs 'override' modifier`
+
+Nothing caught it because nothing had ever compiled those files. The token
+checks passed, because the names and numbers were right; the file simply was
+not valid Kotlin. `scripts/check_native_values.py` now verifies that every
+interface member an object implements says `override`, so this cannot come back
+without a build.
+
+This is the payoff from making the example buildable, and it arrived on the
+first CI run.
 
 ## What building this exposed
 

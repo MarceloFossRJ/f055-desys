@@ -7,15 +7,22 @@ plugins {
 }
 
 kotlin {
-    // Desktop (JVM) is what CI builds, because it is the only target that
-    // renders headlessly without a device or a simulator. iOS and web are
-    // declared because the source is the same; Android needs the SDK, which
-    // would make every CI run install it -- add androidTarget() when you have
-    // one locally.
+    // Desktop (JVM) only, deliberately.
+    //
+    // This module exists to VERIFY the design system, and desktop is the only
+    // target that compiles and renders headlessly on a Linux CI runner with no
+    // device, simulator or SDK. Apple targets cannot build off a Mac at all,
+    // and declaring them makes Gradle fetch the Kotlin/Native toolchain on a
+    // host that can never use it.
+    //
+    // The source is plain Compose Multiplatform and is not desktop-specific.
+    // To ship it, add the targets where you build:
+    //
+    //     androidTarget()                       // needs the Android SDK
+    //     iosArm64(); iosSimulatorArm64()       // needs a Mac
+    //     js(IR) { browser() }
+    //
     jvm("desktop")
-    iosArm64()
-    iosSimulatorArm64()
-    js(IR) { browser() }
 
     sourceSets {
         val commonMain by getting {

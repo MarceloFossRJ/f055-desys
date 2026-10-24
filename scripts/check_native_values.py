@@ -201,10 +201,61 @@ def check_type(errors: list) -> int:
     return n
 
 
+IMPL = re.compile(r"\bobject\s+(\w+)?\s*:\s*(F055\w+)\s*\{")
+
+
+def check_overrides(errors: list) -> int:
+    """Every interface member an object implements must say `override`.
+
+    Kotlin rejects the file otherwise -- "hides member of supertype and needs
+    'override' modifier". The generator emitted 130 such declarations across
+    F055Colors.kt and F055Type.kt and nothing noticed, because until the Compose
+    example got a real build nothing ever compiled the generated Kotlin. This is
+    a structural check, not a type check, but it catches that whole class.
+    """
+    blob = "\n".join(p.read_text() for p in sorted(KT.glob("*.kt")))
+    n = 0
+    for m in IMPL.finditer(blob):
+        obj, iface = m.group(1) or "<anonymous>", m.group(2)
+        members = members_of_interface(blob, iface)
+        if not members:
+            errors.append(f"kotlin: interface {iface} has no members, or was not parsed")
+            continue
+        depth, i = 1, m.end()
+        while i < len(blob) and depth:
+            depth += (blob[i] == "{") - (blob[i] == "}")
+            i += 1
+        body = blob[m.end():i]
+        for name in sorted(members):
+            n += 1
+            if re.search(rf"\boverride\s+val\s+{name}\b", body):
+                continue
+            if re.search(rf"(?<!override )\bval\s+{name}\b", body):
+                errors.append(
+                    f"kotlin {obj} : {iface}: `val {name}` needs `override` -- "
+                    f"this file does not compile")
+            else:
+                errors.append(f"kotlin {obj} : {iface}: does not implement {name}")
+    return n
+
+
+def members_of_interface(blob: str, name: str) -> set:
+    m = re.search(rf"\binterface\s+{name}\s*\{{", blob)
+    if not m:
+        return set()
+    depth, i = 1, m.end()
+    while i < len(blob) and depth:
+        depth += (blob[i] == "{") - (blob[i] == "}")
+        i += 1
+    return set(re.findall(r"\bval\s+(\w+)\s*:", blob[m.end():i]))
+
+
 def main() -> int:
     errors: list = []
-    n = check_dimensions(errors) + check_colours(errors) + check_type(errors)
-    print(f"Native token values: {n} comparisons against dist/tokens.flat.json.")
+    n = (check_dimensions(errors) + check_colours(errors)
+         + check_type(errors) + check_overrides(errors))
+    print(f"Native tokens: {n} checks against dist/tokens.flat.json and the "
+          f"interfaces the outputs declare.")
     if n < 200:
         print(f"Only {n} comparisons ran -- the parser is not finding the outputs, "
               f"so a pass here would mean nothing.")
