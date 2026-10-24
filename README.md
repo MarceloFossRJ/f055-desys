@@ -1,25 +1,40 @@
 # F055 Design System
 
 Tokens extracted from the Paper file **F055 Desys 1**, generated out to four
-target stacks.
+target stacks, with 40 component specs and two working implementations.
 
-**Defined: colour, typography, radius, spacing, elevation** — everything the
-reference contains. Motion is not defined and cannot be extracted from a static
-file; nor can page containers, grid gutters or breakpoints. Components are not
-started — see the note at the end.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/dashboard-dark.png">
+  <img alt="The F055 dashboard: sidebar, four stat cards, an area chart and a releases table" src="docs/images/dashboard-light.png">
+</picture>
+
+<sup>`examples/dashboard-next/` — every value on this screen comes from `dist/`.
+The README renders the theme your system is set to.</sup>
+
+**Defined: colour, typography, radius, spacing, size, elevation.** Colour,
+typography, radius, spacing and elevation came out of the reference. **Size**
+came out of building a real screen, and so did the split of data colour into a
+sequential ramp and a categorical set. Motion is still undefined — a static file
+cannot carry it — and so are page containers, grid gutters and breakpoints,
+which belong to a screen rather than to a system.
 
 Focus states are resolved: `ring` plus `ring-offset`, passing in both modes.
+Every text node in all 40 specs and both screens is measured against WCAG AA, in
+both themes, on every build.
 
 ## Layout
 
 ```
-tokens/color.json          <- hand-edit
-tokens/typography.json     <- hand-edit
-tokens/radius.json         <- hand-edit
-tokens/spacing.json        <- hand-edit
-tokens/elevation.json      <- hand-edit
-components/<Name>/         <- component specs + live previews (hand-written)
+tokens/*.json              <- hand-edit: color, typography, radius,
+                              spacing, size, elevation
+components/<Name>/         <- 40 specs + live previews (hand-written)
+examples/dashboard-next/   <- the same screen in Next.js
+examples/dashboard-jinja/  <- and in FastAPI + Jinja2
 scripts/build_tokens.py    <- regenerates everything below
+scripts/check_tokens.py    <- every var() resolves; no raw values in previews
+scripts/check_contrast.py  <- WCAG AA across previews and screens, both themes
+scripts/_css.py            <- the small CSS reader those checks share
+.github/workflows/         <- the above, as build gates
 dist/
   web/tokens.css           <- Tailwind v4 (Next.js, Rails, FastAPI+Jinja2)
   web/tokens.js            <- Tailwind v3 config fallback
@@ -79,6 +94,80 @@ behaviour, which is what keeps a label in a Rails form and a label in a Compose
 screen looking like the same thing.
 
 The chart ramp runs light to dark, `chart-1` through `chart-5`. Use it in order.
+
+## Sizes
+
+`tokens/size.json` — twelve steps (4, 6, 8, 12, 14, 16, 20, 24, 28, 32, 40, 64)
+and eighteen named roles on top of them. The steps are named by pixel value, as
+radius and spacing are, because they form no consistent ratio; the roles are the
+counterpart to radius's `pill`/`full`, so a button does not have to be
+remembered as 32.
+
+They were prose under `controlHeights` in `tokens/radius.json` from the first
+extraction, flagged as "not yet tokens" in every README since. The values come
+from a frequency tally across all forty previews: 16px appears 124 times, 20px
+65, 32px 40, 28px 24, 24px 18. 36, 48 and 80 appear once or twice and were left
+out.
+
+Reach for the role, not the step — `--control-button`, not `--size-32`. When a
+density variant arrives the role moves and the call sites do not.
+
+Layout widths are deliberately absent. A 256px sidebar or a 1200px content
+column belongs to a screen, not to the system; see below on why no containers or
+breakpoints were taken from the reference.
+
+## Data colour
+
+Two families doing two different jobs. `chart-1..5` is a **sequential** ramp for
+magnitude — the dark ramp is the light one reversed, so step 1 is always nearest
+the surface and step 5 always the most prominent, in both themes. `series-1..3`
+is the **categorical** set for identity: brand red, full ink, muted ink.
+
+The split came out of building the dashboard. The five chart tokens were
+theme-invariant and, measured against 3:1, yielded exactly one usable mark
+colour. A one-hue palette cannot do categorical work by hue, so the third slot
+carries a hard requirement — a distinct mark type — and there is no fourth.
+
+## Contrast is checked, not asserted
+
+`scripts/check_contrast.py` resolves the cascade, composites alpha, and measures
+every text node against WCAG AA in both themes. Standard library only, so CI
+needs no browser. It covers two things:
+
+- the **40 component previews**, which carry their own `<style>` block
+- the **two built screens** — Tailwind's real minified output, and the markup
+  React and Jinja actually produce
+
+The second half matters because the first is not enough: the specs being
+accessible says nothing about the screens assembled from them. Dark mode needs
+no second parse, because neither example uses a single `dark:` variant — the
+semantic tokens flip under `.dark` on their own, so the same markup is measured
+twice, once against each mode's values.
+
+It also **tests itself before it tests anything else.** Six fixtures assert that
+it still catches what it is for, because a checker that cannot fail is worse than
+no checker: it reads as evidence and carries none. That is not hypothetical —
+the first version of the screens half compared the whole at-rule prelude, so
+`@layer utilities` never matched `@layer`, Tailwind's entire utility layer was
+discarded, and both screens reported a clean pass while every text node was
+being measured against bare paper. A fixture that passes only when a background
+is read out of `@layer utilities` now guards that exact hole, and a second guard
+fails the run outright if a screen's stylesheet yields almost no colour rules.
+
+It found thirty failures the first time it ran, in three groups, and all three
+turned into token changes rather than into documentation:
+
+| What | Was | Now |
+|---|---|---|
+| `muted-foreground` in light | neutral.500 — 4.35:1 on muted, 4.24:1 on input | **neutral.600** — 7.17 and 6.98 |
+| A destructive button's own label | red.50 on red.500/600 — **3.48:1 in dark** | white on red.600 — 4.77 both themes |
+| Destructive used as ink | the same token as the fill | **`destructive-text`**, red.600 / red.500 |
+
+The first of those reverses a call made earlier the same day. The reasoning had
+been that 4.35 vs 4.5 is a rounding-level miss on an extracted value, better
+prohibited than corrected. The measurement showed the pair in seven components —
+avatar initials, chip initials, card labels, placeholder text — so it was not an
+edge case to prohibit but a value the system leans on.
 
 ## Design decisions worth knowing
 
@@ -255,104 +344,6 @@ platforms move together.
 `CLAUDE.md` carries these rules written for an agent, plus the greps that catch
 violations and the two commands that must be run after any token change.
 
-## Open decisions
-
-1. **Destructive and primary are both red.** The reference never defined a
-   destructive colour — its "Danger Zone" row uses plain `foreground` — and
-   because the brand *is* red, a destructive button
-   currently looks much like a primary one. The current value reaches AA-large
-   only. If delete actions need to be unmistakable, a non-red destructive —
-   amber or orange — is the stronger call.
-
-2. **The chart ramp is a single red ramp.** Adjacent steps differ by 1.25–1.35:1.
-   Good for sequential data, weak for 4–5 categorical series.
-
-3. **Two type styles are fractional.** `prose` at 22.75px and `label` at
-   19.25px. Round to 23/19, or normalise to 24/20 for a 4px grid.
-
-4. **`space-10` is thin** — two uses, both as input inner padding. Kept because
-   inputs matter, but it is not a general step.
-
-5. **Compose cannot reproduce the elevation shadows.** Each level is a hairline
-   ring plus coloured drops; Compose offers a single `shadow(dp, shape)`. The
-   Kotlin output approximates and turns the ring into a border, which — unlike
-   the CSS version — affects layout. SwiftUI reproduces the drops faithfully but
-   draws the ring as an inset stroke.
-
-## Sizes
-
-`tokens/size.json` — twelve steps (4, 6, 8, 12, 14, 16, 20, 24, 28, 32, 40, 64)
-and eighteen named roles on top of them. The steps are named by pixel value, as
-radius and spacing are, because they form no consistent ratio; the roles are the
-counterpart to radius's `pill`/`full`, so a button does not have to be
-remembered as 32.
-
-They were prose under `controlHeights` in `tokens/radius.json` from the first
-extraction, flagged as "not yet tokens" in every README since. The values come
-from a frequency tally across all forty previews: 16px appears 124 times, 20px
-65, 32px 40, 28px 24, 24px 18. 36, 48 and 80 appear once or twice and were left
-out.
-
-Reach for the role, not the step — `--control-button`, not `--size-32`. When a
-density variant arrives the role moves and the call sites do not.
-
-Layout widths are deliberately absent. A 256px sidebar or a 1200px content
-column belongs to a screen, not to the system; see below on why no containers or
-breakpoints were taken from the reference.
-
-## Contrast is checked, not asserted
-
-`scripts/check_contrast.py` resolves the cascade, composites alpha, and measures
-every text node against WCAG AA in both themes. Standard library only, so CI
-needs no browser. It covers two things:
-
-- the **40 component previews**, which carry their own `<style>` block
-- the **two built screens** — Tailwind's real minified output, and the markup
-  React and Jinja actually produce
-
-The second half matters because the first is not enough: the specs being
-accessible says nothing about the screens assembled from them. Dark mode needs
-no second parse, because neither example uses a single `dark:` variant — the
-semantic tokens flip under `.dark` on their own, so the same markup is measured
-twice, once against each mode's values.
-
-It also **tests itself before it tests anything else.** Six fixtures assert that
-it still catches what it is for, because a checker that cannot fail is worse than
-no checker: it reads as evidence and carries none. That is not hypothetical —
-the first version of the screens half compared the whole at-rule prelude, so
-`@layer utilities` never matched `@layer`, Tailwind's entire utility layer was
-discarded, and both screens reported a clean pass while every text node was
-being measured against bare paper. A fixture that passes only when a background
-is read out of `@layer utilities` now guards that exact hole, and a second guard
-fails the run outright if a screen's stylesheet yields almost no colour rules.
-
-It found thirty failures the first time it ran, in three groups, and all three
-turned into token changes rather than into documentation:
-
-| What | Was | Now |
-|---|---|---|
-| `muted-foreground` in light | neutral.500 — 4.35:1 on muted, 4.24:1 on input | **neutral.600** — 7.17 and 6.98 |
-| A destructive button's own label | red.50 on red.500/600 — **3.48:1 in dark** | white on red.600 — 4.77 both themes |
-| Destructive used as ink | the same token as the fill | **`destructive-text`**, red.600 / red.500 |
-
-The first of those reverses a call made earlier the same day. The reasoning had
-been that 4.35 vs 4.5 is a rounding-level miss on an extracted value, better
-prohibited than corrected. The measurement showed the pair in seven components —
-avatar initials, chip initials, card labels, placeholder text — so it was not an
-edge case to prohibit but a value the system leans on.
-
-## Data colour
-
-Two families doing two different jobs. `chart-1..5` is a **sequential** ramp for
-magnitude — the dark ramp is the light one reversed, so step 1 is always nearest
-the surface and step 5 always the most prominent, in both themes. `series-1..3`
-is the **categorical** set for identity: brand red, full ink, muted ink.
-
-The split came out of building the dashboard. The five chart tokens were
-theme-invariant and, measured against 3:1, yielded exactly one usable mark
-colour. A one-hue palette cannot do categorical work by hue, so the third slot
-carries a hard requirement — a distinct mark type — and there is no fourth.
-
 ## Examples
 
 Two implementations of the same screen, a dashboard modelled on shadcn's
@@ -363,22 +354,35 @@ dashboard-01:
 | `examples/dashboard-next/` | Next.js + Tailwind v4 + lucide-react | `npm install && npm run dev` |
 | `examples/dashboard-jinja/` | Python + FastAPI + Jinja2 + Tailwind v4 | `pip install -r requirements.txt && npm run build && uvicorn app:app` |
 
-The second one exists to test whether the system survives a stack that is not
-React. It does — the size roles, the colour tokens and the named type styles all
-travelled unchanged, and the server-rendered page carries no client JavaScript
-at all. What did not travel is the components: the Jinja macros and the React
-components share every token and no code. That was the prediction in "On
-components" below, and building the second implementation confirmed it.
+The same region of the same screen, built twice:
 
-It exists to be a test, and it found things. The token file dropped into
-Tailwind v4 with no adapter, and `track` and `muted-subtle` both earned their
-keep. But `rounded-xl` turned out to resolve to Tailwind's own 12px rather than
-any F055 radius — the generator now clears Tailwind's radius, shadow and text
-scales so an off-system utility fails loudly instead of quietly. The five chart
-tokens turned out to yield one usable colour once measured against 3:1 in both
-themes. `muted-foreground` on `muted` fails AA in light. And `border` is too
-faint to outline a checkbox. That example's README has the full list with the
-measurements.
+![The stat cards and chart card, rendered identically by the Next.js build and the Jinja build](docs/images/two-stacks.png)
+
+The second implementation exists to test whether the system survives a stack
+that is not React. It does — the size roles, the colour tokens and the named
+type styles all travelled unchanged, and the server-rendered page carries no
+client JavaScript at all.
+
+What did **not** travel is the components. The Jinja macros and the React
+components share every token and no code. That was the prediction in "On
+components" below, and building the second implementation confirmed it rather
+than disproving it.
+
+Both examples exist to be tests, and both found things. The token file dropped
+into Tailwind v4 with no adapter, and `track` and `muted-subtle` both earned
+their keep. Against that:
+
+| Found by building | Outcome |
+|---|---|
+| `rounded-xl` resolved to Tailwind's 12px, not any F055 radius | the generator now clears Tailwind's radius, shadow and text scales, so an off-system utility produces no CSS at all |
+| the five chart tokens yielded one usable colour at 3:1 | split into sequential `chart-*` and categorical `series-*` |
+| every control dimension was a literal | `tokens/size.json` |
+| `muted-foreground` on `muted` was 4.35:1 | the light ink darkened to neutral.600 |
+| `border` was too faint to outline a checkbox | `border-strong` |
+| a destructive button's own label was 3.48:1 in dark | `destructive` split into fill and `destructive-text` |
+| `jinja_globals()` did not expose the size family | fixed before a template was written |
+
+Each example's README carries the full list with the measurements.
 
 ## On components
 
@@ -387,11 +391,20 @@ ERB, React and Compose is four implementations. What can realistically be shared
 is this token layer plus a written spec per component — anatomy, states, and
 which tokens each part uses — with four thin implementations under it.
 
-The reference's control geometry is already recorded in `tokens/radius.json`
-under `controlHeights`, and the component-level spacing conventions are in
-`tokens/spacing.json` — buttons at `px-3`, table cells at `p-2`, bordered rows
-at `py-3.5 px-4`. Together those are the raw material for that spec whenever it
-gets written.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/components-dark.png">
+  <img alt="Twelve component previews: buttons, inputs, selects, badges, tabs, toggles, sliders, password strength, avatars, a table, a menu and toasts" src="docs/images/components-light.png">
+</picture>
+
+<sup>Twelve of the forty, rendered from `components/<Name>/preview.html` against
+the real token file.</sup>
+
+That spec now exists for all forty. Each one is a `README.md` — anatomy,
+variants, which token every part uses, and the decisions that are easy to get
+wrong — beside a `preview.html` that renders it from `dist/web/tokens.css`. The
+previews are not illustrations: `check_tokens.py` fails the build if one uses a
+raw value or an undefined class, and `check_contrast.py` measures every text
+node in them.
 
 The overlay set — Menu, Dialog, Drawer, Toast, on top of Popover — settles two
 rules the rest of the system depends on. **Radius follows size; shadow follows
@@ -415,6 +428,36 @@ the source is a 3000px presentation artboard with seven columns of 375px
 specimen cards. That is how a designer arranged a catalogue for viewing, not an
 application layout. Containers, gutters and breakpoints belong to the first real
 screen in a real stack.
+
+## Open decisions
+
+1. **Destructive and primary are both red.** Still open, and the one decision
+   measurement cannot settle. The reference never defined a destructive
+   colour — its "Danger Zone" row uses plain `foreground` — and because the
+   brand *is* red, a destructive button still looks much like a primary one.
+   Contrast is no longer the problem: `destructive` carries white at 4.77:1 in
+   both themes, and `destructive-text` clears AA as ink. What remains is that
+   two red buttons side by side do not say which one is dangerous. Until a
+   non-red destructive is chosen, the words carry it — a dialog title states the
+   consequence and the button names the act, never "Are you sure?" and "OK".
+
+2. **A fourth categorical series has nowhere to go.** The ramp question is
+   settled — `chart-*` is sequential, `series-*` is categorical, and three slots
+   are validated. But three is the ceiling a one-hue palette allows, so a fourth
+   series has to fold into "Other" or become a facet. A product that genuinely
+   needs five categories needs a second hue, which is the same decision as 1.
+
+3. **Two type styles are fractional.** `prose` at 22.75px and `label` at
+   19.25px. Round to 23/19, or normalise to 24/20 for a 4px grid.
+
+4. **`space-10` is thin** — two uses, both as input inner padding. Kept because
+   inputs matter, but it is not a general step.
+
+5. **Compose cannot reproduce the elevation shadows.** Each level is a hairline
+   ring plus coloured drops; Compose offers a single `shadow(dp, shape)`. The
+   Kotlin output approximates and turns the ring into a border, which — unlike
+   the CSS version — affects layout. SwiftUI reproduces the drops faithfully but
+   draws the ring as an inset stroke.
 
 ## Verifying against the source
 
