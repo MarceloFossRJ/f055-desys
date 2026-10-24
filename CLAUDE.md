@@ -228,16 +228,36 @@ stroke.
 
 ## Components
 
-Thirty-four components are **specified, not implemented**: Button, ButtonGroup,
+Forty components are **specified, not implemented**: Button, ButtonGroup,
 CloseButton, Toolbar, Badge, Chip, Avatar, Input, Password, PasswordStrength,
 Validation, OTPInput, Select, MultiSelect, DatePicker, Slider, Range, Toggle,
 Calendar, Card, Table, ListGroup, Carousel, Alert, Accordion, Collapse, Popover,
-Nav, NavBar, NavOverflow, Scrollspy, Tabs, Breadcrumb, Pagination.
+Menu, Dialog, Drawer, Toast, Placeholder, Spinner, Nav, NavBar, NavOverflow,
+Scrollspy, Tabs, Breadcrumb, Pagination.
 
-Twenty are extracted. The rest are **derived or composed** — the reference
+Twenty-two are extracted. The rest are **derived or composed** — the reference
 contains none of them: MultiSelect, NavBar, NavOverflow, Pagination, Collapse,
-Alert, Range, PasswordStrength, Validation, OTPInput, Carousel and Scrollspy;
-DatePicker and Popover compose extracted parts. Their READMEs say so at the top.
+Alert, Range, PasswordStrength, Validation, OTPInput, Carousel, Scrollspy,
+Dialog, Drawer and Toast; DatePicker, Popover and Menu compose extracted parts.
+Their READMEs say so at the top.
+
+**Dialog, Drawer and Toast are the thinnest provenance in the system.** The
+reference has an "Alert Dialog" button but draws no dialog, and a page-wide
+search for a scrim fill returned nothing. Every value in those three is a
+decision, not an extraction.
+Two rules the overlay set settles, both load-bearing:
+
+- **Radius follows size; shadow follows whether it floats.** Menu, Popover and
+  Toast are small, so `radius-14`; Dialog and Drawer are card-sized, so
+  `radius-24`. All five take `shadow-overlay`.
+- **A scrim is `var(--foreground)` at 50% opacity**, never a new colour. It
+  inverts with the theme, which is the point: a dark scrim over a dark page
+  does not read.
+
+Motion exists in exactly two components — Spinner and the Placeholder pulse,
+both implied by the reference (a rotated arc; bars caught at 0.892/0.881/0.869/
+0.857 opacity). There is still no motion token. Everything else is static.
+
 Treat them as provisional against anything a designer produces. Each has a `README.md` under `components/<Name>/`
 covering anatomy, variants, which token every part uses, and the decisions that
 are easy to get wrong — plus a `preview.html` that renders it from the real

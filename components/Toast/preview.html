@@ -1,0 +1,106 @@
+<!-- @dsCard group="Feedback" height=360 subtitle="Transient, non-blocking, stacked bottom-right — derived" -->
+<div class="wrap">
+  <div class="page">
+    <span class="t18">Analytics</span>
+    <span class="sub">The page stays usable.</span>
+  </div>
+
+  <div class="region" role="region" aria-label="Notifications">
+    <div class="ts" role="status">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+      <span class="lines">
+        <span class="ttl">Release submitted</span>
+        <span class="msg">Night Signals is queued for review.</span>
+      </span>
+      <button class="x" aria-label="Dismiss">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="ts" role="status">
+      <span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span>
+      <span class="lines">
+        <span class="ttl">Track removed</span>
+      </span>
+      <button class="act">Undo</button>
+      <button class="x" aria-label="Dismiss">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="ts err" role="alert">
+      <span class="ic dg"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg></span>
+      <span class="lines">
+        <span class="ttl">Upload failed</span>
+        <span class="msg">The master exceeds the 2 GB limit.</span>
+      </span>
+      <button class="act">Retry</button>
+      <button class="x" aria-label="Dismiss">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    position: relative; background: var(--background); color: var(--foreground);
+    padding: var(--space-20); min-height: 340px; overflow: hidden;
+  }
+  .page { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .region {
+    position: absolute; right: var(--space-16); bottom: var(--space-16); z-index: 60;
+    width: 100%; max-width: 384px;
+    display: flex; flex-direction: column; gap: var(--space-8);
+  }
+
+  .ts {
+    display: flex; align-items: flex-start; gap: var(--space-8);
+    padding: var(--space-12) var(--space-12) var(--space-12) var(--space-14);
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
+  }
+  .err { box-shadow: var(--shadow-overlay), inset 0 0 0 1px var(--destructive); }
+
+  .ic { width: 16px; height: 16px; flex: none; display: block; margin-top: var(--space-2); }
+  .ic svg {
+    width: 100%; height: 100%; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .dg svg { stroke: var(--destructive); }
+
+  .lines { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .ttl {
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .msg {
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    color: var(--muted-foreground);
+  }
+
+  .act {
+    flex: none; height: 24px; padding-inline: var(--space-8); cursor: pointer;
+    border: 1px solid var(--border); border-radius: var(--radius-pill);
+    background: var(--card); color: var(--foreground);
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+  }
+  .x {
+    flex: none; width: 20px; height: 20px; display: grid; place-content: center; cursor: pointer;
+    border: 0; border-radius: var(--radius-5); background: transparent;
+  }
+  .x:hover { background: var(--accent); }
+  .x svg {
+    width: 14px; height: 14px; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .t18 {
+    font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 500;
+    letter-spacing: -0.45px;
+  }
+  .sub {
+    font-family: var(--font-sans); font-size: 14px; line-height: 22.75px;
+    color: var(--muted-foreground);
+  }
+</style>

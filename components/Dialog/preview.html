@@ -1,0 +1,69 @@
+<!-- @dsCard group="Overlay" height=420 subtitle="Card geometry, floating — a derived component" -->
+<div class="wrap">
+  <div class="page">
+    <span class="t18">Team settings</span>
+    <span class="sub">Behind the scrim.</span>
+  </div>
+
+  <div class="scrim"></div>
+
+  <div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dt" aria-describedby="dd">
+    <button class="x" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <span class="t18" id="dt">Delete this workspace?</span>
+    <span class="sub" id="dd">This removes all releases, analytics, and member access.
+      You cannot undo it.</span>
+    <div class="acts">
+      <button class="btn out">Cancel</button>
+      <button class="btn dang">Delete workspace</button>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    position: relative; background: var(--background); color: var(--foreground);
+    padding: var(--space-20); min-height: 400px; overflow: hidden;
+  }
+  .page { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .scrim { position: absolute; inset: 0; background: var(--foreground); opacity: .5; }
+
+  .dlg {
+    position: absolute; top: 50%; left: 50%; translate: -50% -50%;
+    width: 100%; max-width: 384px; padding: var(--space-24);
+    display: flex; flex-direction: column; gap: var(--space-8);
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-24); box-shadow: var(--shadow-overlay);
+  }
+
+  .x {
+    position: absolute; top: var(--space-12); right: var(--space-12);
+    width: 24px; height: 24px; display: grid; place-content: center; cursor: pointer;
+    border: 0; border-radius: var(--radius-6); background: transparent;
+  }
+  .x:hover { background: var(--accent); }
+  .x svg {
+    width: 16px; height: 16px; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .t18 {
+    font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 500;
+    letter-spacing: -0.45px; padding-right: var(--space-24);
+  }
+  .sub {
+    font-family: var(--font-sans); font-size: 14px; line-height: 22.75px;
+    color: var(--muted-foreground);
+  }
+
+  .acts { display: flex; justify-content: flex-end; gap: var(--space-8); margin-top: var(--space-8); }
+  .btn {
+    height: 32px; padding-inline: var(--space-16); cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .out { background: var(--card); color: var(--foreground); border-color: var(--border); }
+  .dang { background: var(--destructive); color: var(--destructive-foreground); }
+</style>
