@@ -1,0 +1,109 @@
+<!-- @dsCard group="Overlay" height=440 subtitle="An edge panel for flows too long for a Dialog — derived" -->
+<div class="wrap">
+  <div class="page">
+    <span class="t18">Releases</span>
+    <span class="sub">Behind the scrim.</span>
+  </div>
+
+  <div class="scrim"></div>
+
+  <aside class="dr" role="dialog" aria-modal="true" aria-labelledby="drt">
+    <header class="hd">
+      <span class="lines">
+        <span class="t18" id="drt">New release</span>
+        <span class="sub">Step 2 of 3 — Metadata</span>
+      </span>
+      <button class="x" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </header>
+
+    <div class="body">
+      <label class="fld"><span class="lab">Title</span>
+        <input class="inp" value="Night Signals" /></label>
+      <label class="fld"><span class="lab">Primary artist</span>
+        <input class="inp" value="F055" /></label>
+      <label class="fld"><span class="lab">Genre</span>
+        <input class="inp" placeholder="Select a genre" /></label>
+      <label class="fld"><span class="lab">Notes</span>
+        <textarea class="inp ta" rows="3" placeholder="Anything the distributor should know"></textarea></label>
+    </div>
+
+    <footer class="ft">
+      <button class="btn out">Back</button>
+      <button class="btn pri">Continue</button>
+    </footer>
+  </aside>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    position: relative; background: var(--background); color: var(--foreground);
+    padding: var(--space-20); min-height: 420px; overflow: hidden;
+  }
+  .page { display: flex; flex-direction: column; gap: var(--space-4); }
+  .scrim { position: absolute; inset: 0; background: var(--foreground); opacity: .5; }
+
+  .dr {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 384px; max-width: 100%;
+    display: flex; flex-direction: column;
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-24) 0 0 var(--radius-24); box-shadow: var(--shadow-overlay);
+  }
+
+  .hd {
+    display: flex; align-items: flex-start; gap: var(--space-8);
+    padding: var(--space-20) var(--space-20) var(--space-16);
+  }
+  .lines { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .body {
+    flex: 1; min-height: 0; overflow: auto;
+    padding: 0 var(--space-20);
+    display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .ft {
+    display: flex; justify-content: flex-end; gap: var(--space-8);
+    padding: var(--space-16) var(--space-20) var(--space-20);
+    border-top: 1px solid var(--border);
+  }
+
+  .x {
+    width: 24px; height: 24px; flex: none; display: grid; place-content: center; cursor: pointer;
+    border: 0; border-radius: var(--radius-6); background: transparent;
+  }
+  .x:hover { background: var(--accent); }
+  .x svg {
+    width: 16px; height: 16px; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .t18 {
+    font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 500;
+    letter-spacing: -0.45px;
+  }
+  .sub {
+    font-family: var(--font-sans); font-size: 14px; line-height: 22.75px;
+    color: var(--muted-foreground);
+  }
+
+  .fld { display: flex; flex-direction: column; gap: var(--space-6); }
+  .lab {
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .inp {
+    width: 100%; height: 32px; padding: 0 var(--space-12);
+    border: 1px solid transparent; border-radius: var(--radius-8);
+    background: var(--input); color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  }
+  .inp::placeholder { color: var(--muted-foreground); }
+  .ta { height: auto; padding: var(--space-8) var(--space-12); resize: vertical; }
+
+  .btn {
+    height: 32px; padding-inline: var(--space-16); cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .out { background: var(--card); color: var(--foreground); border-color: var(--border); }
+  .pri { background: var(--primary); color: var(--primary-foreground); }
+</style>

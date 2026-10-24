@@ -1,0 +1,68 @@
+<!-- @dsCard group="Feedback" height=300 subtitle="A 270° arc — the one place the reference implies motion" -->
+<div class="wrap">
+  <div class="row">
+    <span class="sp sm"><svg viewBox="0 0 24 24" role="img" aria-label="Loading"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span>
+    <span class="sp"><svg viewBox="0 0 24 24" role="img" aria-label="Loading"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span>
+    <span class="cap">12 · 16, inline on text</span>
+  </div>
+
+  <div class="row">
+    <span class="tile"><svg viewBox="0 0 24 24" role="img" aria-label="Loading"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span>
+    <span class="cap">In a 40px <code class="mono">muted</code> tile — the reference's own form</span>
+  </div>
+
+  <div class="row">
+    <button class="btn" disabled>
+      <span class="sp onb"><svg viewBox="0 0 24 24" role="img" aria-label=""><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span>
+      Saving…
+    </button>
+    <button class="btn out" disabled>
+      <span class="sp"><svg viewBox="0 0 24 24" role="img" aria-label=""><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></span>
+      Checking
+    </button>
+    <span class="cap">In a pending button</span>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .row { display: flex; align-items: center; gap: var(--space-12); flex-wrap: wrap; }
+
+  .sp { width: 16px; height: 16px; flex: none; display: grid; place-content: center; color: var(--foreground); }
+  .sm { width: 12px; height: 12px; }
+  .onb { color: var(--primary-foreground); }
+  .sp svg, .tile svg {
+    width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+    animation: spin 1s linear infinite;
+  }
+  .sm svg { stroke-width: 2.5; }
+
+  .tile {
+    width: 40px; height: 40px; flex: none; display: grid; place-content: center;
+    background: var(--muted); border-radius: var(--radius-14); color: var(--foreground);
+  }
+  .tile svg { width: 16px; height: 16px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: var(--space-6);
+    height: 32px; padding-inline: var(--space-12);
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: var(--primary); color: var(--primary-foreground); opacity: .7;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    cursor: not-allowed;
+  }
+  .out { background: var(--card); color: var(--foreground); border-color: var(--border); }
+
+  @keyframes spin { to { rotate: 360deg; } }
+  @media (prefers-reduced-motion: reduce) { .sp svg, .tile svg { animation: none; } }
+
+  .cap {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground);
+  }
+  .mono { font-family: var(--font-mono); }
+</style>

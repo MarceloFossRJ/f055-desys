@@ -303,6 +303,23 @@ under `controlHeights`, and the component-level spacing conventions are in
 at `py-3.5 px-4`. Together those are the raw material for that spec whenever it
 gets written.
 
+The overlay set — Menu, Dialog, Drawer, Toast, on top of Popover — settles two
+rules the rest of the system depends on. **Radius follows size; shadow follows
+whether it floats**: Menu, Popover and Toast take `radius-14`, Dialog and Drawer
+take `radius-24`, all five take `shadow-overlay`. And a **scrim is
+`var(--foreground)` at 50% opacity**, never a new colour, so it inverts with the
+theme — a dark scrim over a dark page does not read as a scrim at all.
+
+Those three overlays are also the weakest provenance here. The reference has an
+"Alert Dialog" button and draws no dialog; a page-wide search for a scrim fill
+found nothing. Treat Dialog, Drawer and Toast as proposals.
+
+Motion arrived with this set, in exactly two places. Spinner needs it to be a
+spinner, and the reference's skeleton bars carry opacities of 0.892, 0.881,
+0.869 and 0.857 — one staggered pulse caught mid-frame, which is the only
+animation the file implies anywhere. Both are hard-coded durations; there is
+still no motion token, and two components is not yet enough to design one from.
+
 What is *not* there, and should not be invented from this reference, is layout:
 the source is a 3000px presentation artboard with seven columns of 375px
 specimen cards. That is how a designer arranged a catalogue for viewing, not an
