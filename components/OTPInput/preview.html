@@ -1,0 +1,69 @@
+<!-- @dsCard group="Forms" height=400 subtitle="Separate boxes, mono figures, one grouped field" -->
+<div class="wrap">
+  <div class="field">
+    <span class="lbl">Verification code</span>
+    <div class="otp">
+      <span class="box filled">4</span><span class="box filled">8</span><span class="box filled">2</span>
+      <span class="gap"></span>
+      <span class="box cur"></span><span class="box"></span><span class="box"></span>
+    </div>
+    <p class="help">Sent to •••• 4421. The code expires in 10 minutes.</p>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Complete</span>
+    <div class="otp">
+      <span class="box filled">4</span><span class="box filled">8</span><span class="box filled">2</span>
+      <span class="gap"></span>
+      <span class="box filled">9</span><span class="box filled">1</span><span class="box filled">7</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Rejected</span>
+    <div class="otp">
+      <span class="box filled err">4</span><span class="box filled err">8</span><span class="box filled err">2</span>
+      <span class="gap"></span>
+      <span class="box filled err">9</span><span class="box filled err">1</span><span class="box filled err">0</span>
+    </div>
+    <p class="msg">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+      That code is not right. Check it and try again.
+    </p>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-8); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+
+  .otp { display: flex; align-items: center; gap: var(--space-8); }
+  .box {
+    width: 40px; height: 48px; display: grid; place-content: center;
+    background: var(--input); border: 1px solid transparent; border-radius: var(--radius-14);
+    font-family: var(--font-mono); font-size: 18px; line-height: 1; font-weight: 500;
+    font-variant-numeric: tabular-nums; color: var(--muted-foreground);
+  }
+  .filled { color: var(--foreground); }
+  .cur { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+  .err { box-shadow: 0 0 0 1px var(--destructive); }
+  .gap { width: var(--space-8); }
+
+  .help {
+    margin: 0; font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground);
+  }
+  .msg {
+    margin: 0; display: flex; align-items: flex-start; gap: var(--space-6);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--destructive);
+  }
+  .msg svg {
+    width: 16px; height: 16px; flex: none; translate: 0 2px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+</style>

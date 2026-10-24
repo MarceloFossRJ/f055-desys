@@ -1,0 +1,69 @@
+<!-- @dsCard group="Forms" height=400 subtitle="Four segments and a word — the word does the work" -->
+<div class="wrap">
+  <div class="field">
+    <div class="input"><span class="val mask">abc</span></div>
+    <div class="meter">
+      <span class="seg weak"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+    </div>
+    <div class="row"><span class="lab weak">Weak</span><span class="hint">Add more characters</span></div>
+  </div>
+
+  <div class="field">
+    <div class="input"><span class="val mask">abcdefgh</span></div>
+    <div class="meter">
+      <span class="seg on"></span><span class="seg on"></span><span class="seg"></span><span class="seg"></span>
+    </div>
+    <div class="row"><span class="lab">Fair</span><span class="hint">Add a number or symbol</span></div>
+  </div>
+
+  <div class="field">
+    <div class="input"><span class="val mask">abcdefgh1!</span></div>
+    <div class="meter">
+      <span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg"></span>
+    </div>
+    <div class="row"><span class="lab">Good</span></div>
+  </div>
+
+  <div class="field">
+    <div class="input"><span class="val mask">correct horse battery staple</span></div>
+    <div class="meter">
+      <span class="seg on"></span><span class="seg on"></span><span class="seg on"></span><span class="seg on"></span>
+    </div>
+    <div class="row"><span class="lab">Strong</span></div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-6); max-width: 320px; }
+
+  .input {
+    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
+    overflow: hidden;
+  }
+  .val {
+    flex: 1; min-width: 0; overflow: hidden; white-space: nowrap;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+  }
+  .mask { -webkit-text-security: disc; text-security: disc; }
+
+  .meter { display: flex; gap: var(--space-4); }
+  .seg { flex: 1; height: 4px; border-radius: var(--radius-pill); background: var(--track); }
+  .on { background: var(--foreground); }
+  .weak { background: var(--destructive); }
+
+  .row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-8); }
+  .lab {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    color: var(--foreground);
+  }
+  .lab.weak { background: none; color: var(--destructive); }
+  .hint {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground);
+  }
+</style>

@@ -1,0 +1,73 @@
+<!-- @dsCard group="Forms" height=400 subtitle="Input with a masked value and an action in the label row" -->
+<div class="wrap">
+  <div class="field">
+    <div class="lrow">
+      <label class="lbl" for="p-cur">Current Password</label>
+      <a class="act" href="#">Forgot?</a>
+    </div>
+    <div class="input"><span class="val mask">password123</span></div>
+  </div>
+
+  <div class="field">
+    <div class="lrow"><span class="lbl">With reveal</span></div>
+    <div class="input">
+      <span class="val mask">password123</span>
+      <button class="eye" aria-label="Show password" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="lrow"><span class="lbl">Revealed</span></div>
+    <div class="input">
+      <span class="val">correct horse battery</span>
+      <button class="eye on" aria-label="Hide password" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/><path d="m3 3 18 18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="lrow"><span class="lbl">Focused</span></div>
+    <div class="input is-focus"><span class="val mask">password123</span></div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-12); max-width: 320px; }
+  .lrow { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 1; font-weight: 500; }
+  .act {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted-foreground);
+    text-decoration: none;
+  }
+
+  .input {
+    display: flex; align-items: center; gap: var(--space-8);
+    height: 32px; padding-left: var(--space-10); padding-right: var(--space-8);
+    background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
+    overflow: hidden;
+  }
+  .val {
+    flex: 1; min-width: 0; overflow: hidden; white-space: nowrap;
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--foreground);
+  }
+  .mask { -webkit-text-security: disc; text-security: disc; }
+
+  .eye {
+    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    padding: 0; border: 0; background: none; cursor: pointer; color: var(--muted-foreground);
+  }
+  .on { color: var(--foreground); }
+  .eye svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+</style>

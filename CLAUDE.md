@@ -228,16 +228,17 @@ stroke.
 
 ## Components
 
-Twenty-seven components are **specified, not implemented**: Button,
-ButtonGroup, CloseButton, Toolbar, Badge, Chip, Avatar, Input, Select,
-MultiSelect, DatePicker, Slider, Range, Toggle, Calendar, Card, Table,
-ListGroup, Alert, Accordion, Collapse, Nav, NavBar, NavOverflow, Tabs,
-Breadcrumb, Pagination.
+Thirty-four components are **specified, not implemented**: Button, ButtonGroup,
+CloseButton, Toolbar, Badge, Chip, Avatar, Input, Password, PasswordStrength,
+Validation, OTPInput, Select, MultiSelect, DatePicker, Slider, Range, Toggle,
+Calendar, Card, Table, ListGroup, Carousel, Alert, Accordion, Collapse, Popover,
+Nav, NavBar, NavOverflow, Scrollspy, Tabs, Breadcrumb, Pagination.
 
-Seven are **derived or composed, not extracted** — the reference contains none
-of them: MultiSelect, NavBar, NavOverflow, Pagination, Collapse, Alert and
-Range, plus DatePicker which pairs two extracted halves. Their READMEs say so at
-the top. Treat them as provisional against anything a designer produces. Each has a `README.md` under `components/<Name>/`
+Twenty are extracted. The rest are **derived or composed** — the reference
+contains none of them: MultiSelect, NavBar, NavOverflow, Pagination, Collapse,
+Alert, Range, PasswordStrength, Validation, OTPInput, Carousel and Scrollspy;
+DatePicker and Popover compose extracted parts. Their READMEs say so at the top.
+Treat them as provisional against anything a designer produces. Each has a `README.md` under `components/<Name>/`
 covering anatomy, variants, which token every part uses, and the decisions that
 are easy to get wrong — plus a `preview.html` that renders it from the real
 tokens.
@@ -258,6 +259,17 @@ explains why.
 **Every control is `box-sizing: border-box`.** Heights in the specs are the
 rendered height, border included. Without it a 32px control with a 1px border
 renders at 34px, and one with block padding is far worse.
+
+**There is no error colour beyond a hairline ring.** The reference has no
+validation states at all — no red borders anywhere. An invalid field keeps its
+`input` fill and gains a 1px `destructive` ring; the message is 14px, never
+12px, because `destructive` only reaches AA-large. Every error carries an icon,
+so colour is never the only channel. Validation's README has the table.
+
+**There is no success green, and no amber.** A verified field gets a `border`
+ring and a tick in `foreground`. A password strength meter carries its meaning
+in how many segments are filled plus a word — not in hue. One hue means the
+text is the primary channel, not a fallback.
 
 **There is no alert banner, and adding one would break the palette.** The
 reference marks severity with an icon, a Badge or an action — never a tinted
