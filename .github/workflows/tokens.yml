@@ -37,8 +37,42 @@ jobs:
       - name: Validate component previews
         run: python3 scripts/check_tokens.py
 
-      # Every rule this enforces was found by rendering the dashboard and
-      # measuring the live DOM. A rule that is only written down gets broken
-      # again, so it is a build gate instead.
-      - name: Measure text contrast in both themes
+      # Every rule this enforces was found by rendering a screen and measuring
+      # the live DOM. A rule that is only written down gets broken again, so it
+      # is a build gate instead. Here it covers the previews; the `screens` job
+      # below builds the examples and covers the real pages.
+      - name: Measure text contrast in the component previews
+        run: python3 scripts/check_contrast.py
+
+  # The specs being accessible says nothing about the screens assembled from
+  # them. This job builds both examples and measures the pages themselves --
+  # Tailwind's real output, React's and Jinja's real markup.
+  screens:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build the Next.js example
+        working-directory: examples/dashboard-next
+        run: npm ci && npm run build
+
+      - name: Build the Jinja example
+        working-directory: examples/dashboard-jinja
+        run: |
+          python3 -m pip install -r requirements.txt httpx
+          npm ci
+          npm run build
+          python3 snapshot.py out
+
+      # Fails if a screen's stylesheet did not parse, so a clean pass cannot be
+      # a silent one.
+      - name: Measure text contrast in both screens
         run: python3 scripts/check_contrast.py

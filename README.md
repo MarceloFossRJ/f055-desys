@@ -302,11 +302,29 @@ breakpoints were taken from the reference.
 
 ## Contrast is checked, not asserted
 
-`scripts/check_contrast.py` resolves the cascade in every component preview —
-inheriting `color` down and taking the background from the nearest painted
-ancestor — composites alpha, and measures every text node against WCAG AA in
-both themes. Standard library only, so CI needs no browser, and it is a build
-gate alongside the token checks.
+`scripts/check_contrast.py` resolves the cascade, composites alpha, and measures
+every text node against WCAG AA in both themes. Standard library only, so CI
+needs no browser. It covers two things:
+
+- the **40 component previews**, which carry their own `<style>` block
+- the **two built screens** — Tailwind's real minified output, and the markup
+  React and Jinja actually produce
+
+The second half matters because the first is not enough: the specs being
+accessible says nothing about the screens assembled from them. Dark mode needs
+no second parse, because neither example uses a single `dark:` variant — the
+semantic tokens flip under `.dark` on their own, so the same markup is measured
+twice, once against each mode's values.
+
+It also **tests itself before it tests anything else.** Six fixtures assert that
+it still catches what it is for, because a checker that cannot fail is worse than
+no checker: it reads as evidence and carries none. That is not hypothetical —
+the first version of the screens half compared the whole at-rule prelude, so
+`@layer utilities` never matched `@layer`, Tailwind's entire utility layer was
+discarded, and both screens reported a clean pass while every text node was
+being measured against bare paper. A fixture that passes only when a background
+is read out of `@layer utilities` now guards that exact hole, and a second guard
+fails the run outright if a screen's stylesheet yields almost no colour rules.
 
 It found thirty failures the first time it ran, in three groups, and all three
 turned into token changes rather than into documentation:

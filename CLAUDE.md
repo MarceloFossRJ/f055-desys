@@ -281,11 +281,22 @@ belongs to a screen, not to the system.
 
 ## Contrast is a build gate
 
-`scripts/check_contrast.py` resolves the cascade in every preview, composites
-alpha and measures every text node against WCAG AA in both themes. Standard
-library only. **Run it before claiming a component is done** — it found thirty
+`scripts/check_contrast.py` resolves the cascade, composites alpha and measures
+every text node against WCAG AA in both themes — across the 40 previews **and
+the two built screens**. Standard library only.
+
+**Run it before claiming a component or a screen is done.** It found thirty
 failures the first time, across seven components, and every one became a token
 change rather than a note in a README.
+
+It runs six self-test fixtures first, and refuses to report a pass for a screen
+whose stylesheet yielded almost no colour rules. Both guards exist because the
+screens half once reported a clean pass while silently discarding the whole
+stylesheet. If you extend the CSS reader, extend the fixtures: a checker that
+cannot fail is worse than no checker.
+
+Screens are skipped when their build output is missing, so `check_contrast.py`
+alone proves the previews only. The `screens` CI job builds both examples first.
 
 Two of those reversed earlier decisions in this file. That is the point of
 measuring: an extracted value is evidence about the reference, not proof that
