@@ -1,0 +1,46 @@
+'use client';
+import * as React from 'react';
+import { Check, Minus } from 'lucide-react';
+import { cn } from '@/lib/cn';
+
+/* Checkbox — NOT YET SPECIFIED in the design system.
+ * Toggle is a switch; Menu has a checkbox *item*. This is the standalone box,
+ * needed for table-row selection. Built here first; the spec follows from it.
+ *
+ * 16px at radius-5 (the smallest radius the system has). Unchecked uses the
+ * `track` token, same as an unchecked Toggle -- that is what `track` is for. */
+export function Checkbox({
+  checked,
+  indeterminate,
+  onChange,
+  label,
+  className,
+}: {
+  checked: boolean;
+  indeterminate?: boolean;
+  onChange: (next: boolean) => void;
+  label: string;
+  className?: string;
+}) {
+  const on = checked || !!indeterminate;
+  return (
+    <button
+      type="button"
+      role="checkbox"
+      aria-checked={indeterminate ? 'mixed' : checked}
+      aria-label={label}
+      onClick={() => onChange(!checked)}
+      className={cn(
+        'inline-grid size-4 shrink-0 place-content-center rounded-5 border transition-colors cursor-pointer',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
+        // `border` is 1.03:1 against a light row -- the control vanishes. There is no
+        // token between `border` and `muted-foreground` that clears 3:1, so the heavier
+        // one wins: a visible control beats a subtle one. See README, 'What this exposed'.
+        on ? 'border-transparent bg-primary text-primary-foreground' : 'border-muted-foreground bg-track',
+        className,
+      )}
+    >
+      {indeterminate ? <Minus size={12} strokeWidth={3} /> : checked ? <Check size={12} strokeWidth={3} /> : null}
+    </button>
+  );
+}

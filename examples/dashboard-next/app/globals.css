@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* The real built token file, imported unmodified from dist/. The example must
+   consume what the generator produces -- a copy here would let the two drift
+   and the example would stop proving anything. */
+@import "../../../dist/web/tokens.css";
+
+/* tokens.css names the font families but cannot load them -- that is documented
+   in both READMEs and this is the bridge. @fontsource self-hosts, so the example
+   needs no network at build or at run time. */
