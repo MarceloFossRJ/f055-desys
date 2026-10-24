@@ -32,7 +32,10 @@ export const colors = {
     "chart-2": "#FB2C36",
     "chart-3": "#E7000B",
     "chart-4": "#C10007",
-    "chart-5": "#9F0712"
+    "chart-5": "#9F0712",
+    "series-1": "#C10007",
+    "series-2": "#0A0A0A",
+    "series-3": "#737373"
   },
   dark: {
     "background": "#0A0A0A",
@@ -57,11 +60,14 @@ export const colors = {
     "track": "#FFFFFF22",
     "ring": "#FB2C36",
     "ring-offset": "#0A0A0A",
-    "chart-1": "#FFA2A2",
-    "chart-2": "#FB2C36",
+    "chart-1": "#9F0712",
+    "chart-2": "#C10007",
     "chart-3": "#E7000B",
-    "chart-4": "#C10007",
-    "chart-5": "#9F0712"
+    "chart-4": "#FB2C36",
+    "chart-5": "#FFA2A2",
+    "series-1": "#FB2C36",
+    "series-2": "#FAFAFA",
+    "series-3": "#A1A1A1"
   },
 };
 
@@ -102,6 +108,43 @@ export const spacing = {
     "20": "20px",
     "24": "24px",
     "40": "40px"
+};
+
+export const size = {
+    "4": "4px",
+    "6": "6px",
+    "8": "8px",
+    "12": "12px",
+    "14": "14px",
+    "16": "16px",
+    "20": "20px",
+    "24": "24px",
+    "28": "28px",
+    "32": "32px",
+    "40": "40px",
+    "64": "64px"
+};
+
+/** What each size is FOR. `control.button` is 32px, so a button never has to be remembered as a number. */
+export const control = {
+    "dot": "6px",
+    "track": "4px",
+    "pip": "8px",
+    "icon-xs": "12px",
+    "icon-sm": "14px",
+    "icon": "16px",
+    "icon-lg": "20px",
+    "checkbox": "16px",
+    "slider-thumb": "16px",
+    "badge": "20px",
+    "switch": "20px",
+    "icon-button": "24px",
+    "button-sm": "28px",
+    "button": "32px",
+    "avatar": "32px",
+    "tile": "40px",
+    "row-header": "40px",
+    "textarea-min": "64px"
 };
 
 // Light-mode values. `card` differs in dark (its ring flips to near-white at

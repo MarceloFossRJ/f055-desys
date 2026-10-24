@@ -9,7 +9,7 @@
 #
 #   F055::Tokens.scheme(:dark)[:background].hex  # => "#0A0A0A"
 #   F055::Tokens::TYPE[:label].css
-#   F055::Tokens::RADIUS[:pill]                  # => "18px"
+#   F055::Tokens::RADIUS["pill"]                 # => "18px"
 
 module F055
   module Tokens
@@ -64,6 +64,9 @@ module F055
       chart_3: Color.new("#E7000B", "#E7000BFF", "rgba(231, 0, 11, 1)", "oklch(0.577 0.245 27.325)").freeze,
       chart_4: Color.new("#C10007", "#C10007FF", "rgba(193, 0, 7, 1)", "oklch(0.505 0.213 27.518)").freeze,
       chart_5: Color.new("#9F0712", "#9F0712FF", "rgba(159, 7, 18, 1)", "oklch(0.444 0.177 26.899)").freeze,
+      series_1: Color.new("#C10007", "#C10007FF", "rgba(193, 0, 7, 1)", "oklch(0.505 0.213 27.518)").freeze,
+      series_2: Color.new("#0A0A0A", "#0A0A0AFF", "rgba(10, 10, 10, 1)", "oklch(0.145 0 0)").freeze,
+      series_3: Color.new("#737373", "#737373FF", "rgba(115, 115, 115, 1)", "oklch(0.556 0 0)").freeze,
     }.freeze
 
     DARK = {
@@ -89,11 +92,14 @@ module F055
       track: Color.new("#FFFFFF", "#FFFFFF22", "rgba(255, 255, 255, 0.1333)", "oklch(1 0 0 / 13%)").freeze,
       ring: Color.new("#FB2C36", "#FB2C36FF", "rgba(251, 44, 54, 1)", "oklch(0.637 0.237 25.331)").freeze,
       ring_offset: Color.new("#0A0A0A", "#0A0A0AFF", "rgba(10, 10, 10, 1)", "oklch(0.145 0 0)").freeze,
-      chart_1: Color.new("#FFA2A2", "#FFA2A2FF", "rgba(255, 162, 162, 1)", "oklch(0.808 0.114 19.571)").freeze,
-      chart_2: Color.new("#FB2C36", "#FB2C36FF", "rgba(251, 44, 54, 1)", "oklch(0.637 0.237 25.331)").freeze,
+      chart_1: Color.new("#9F0712", "#9F0712FF", "rgba(159, 7, 18, 1)", "oklch(0.444 0.177 26.899)").freeze,
+      chart_2: Color.new("#C10007", "#C10007FF", "rgba(193, 0, 7, 1)", "oklch(0.505 0.213 27.518)").freeze,
       chart_3: Color.new("#E7000B", "#E7000BFF", "rgba(231, 0, 11, 1)", "oklch(0.577 0.245 27.325)").freeze,
-      chart_4: Color.new("#C10007", "#C10007FF", "rgba(193, 0, 7, 1)", "oklch(0.505 0.213 27.518)").freeze,
-      chart_5: Color.new("#9F0712", "#9F0712FF", "rgba(159, 7, 18, 1)", "oklch(0.444 0.177 26.899)").freeze,
+      chart_4: Color.new("#FB2C36", "#FB2C36FF", "rgba(251, 44, 54, 1)", "oklch(0.637 0.237 25.331)").freeze,
+      chart_5: Color.new("#FFA2A2", "#FFA2A2FF", "rgba(255, 162, 162, 1)", "oklch(0.808 0.114 19.571)").freeze,
+      series_1: Color.new("#FB2C36", "#FB2C36FF", "rgba(251, 44, 54, 1)", "oklch(0.637 0.237 25.331)").freeze,
+      series_2: Color.new("#FAFAFA", "#FAFAFAFF", "rgba(250, 250, 250, 1)", "oklch(0.985 0 0)").freeze,
+      series_3: Color.new("#A1A1A1", "#A1A1A1FF", "rgba(161, 161, 161, 1)", "oklch(0.708 0 0)").freeze,
     }.freeze
 
     SCHEMES = { light: LIGHT, dark: DARK }.freeze
@@ -117,14 +123,14 @@ module F055
     }.freeze
 
     RADIUS = {
-      5: "5px",
-      6: "6px",
-      8: "8px",
-      10: "10px",
-      14: "14px",
-      pill: "18px",
-      24: "24px",
-      full: "9999px",
+      "5" => "5px",
+      "6" => "6px",
+      "8" => "8px",
+      "10" => "10px",
+      "14" => "14px",
+      "pill" => "18px",
+      "24" => "24px",
+      "full" => "9999px",
     }.freeze
 
     # String keys: the scale uses Tailwind step names, several of which are
@@ -141,6 +147,44 @@ module F055
       "20" => "20px",
       "24" => "24px",
       "40" => "40px",
+    }.freeze
+
+    # String keys for the same reason SPACING uses them: "16" is not a Ruby symbol.
+    SIZE = {
+      "4" => "4px",
+      "6" => "6px",
+      "8" => "8px",
+      "12" => "12px",
+      "14" => "14px",
+      "16" => "16px",
+      "20" => "20px",
+      "24" => "24px",
+      "28" => "28px",
+      "32" => "32px",
+      "40" => "40px",
+      "64" => "64px",
+    }.freeze
+
+    # What each size is FOR: CONTROL["button"] => "32px".
+    CONTROL = {
+      "dot" => "6px",
+      "track" => "4px",
+      "pip" => "8px",
+      "icon-xs" => "12px",
+      "icon-sm" => "14px",
+      "icon" => "16px",
+      "icon-lg" => "20px",
+      "checkbox" => "16px",
+      "slider-thumb" => "16px",
+      "badge" => "20px",
+      "switch" => "20px",
+      "icon-button" => "24px",
+      "button-sm" => "28px",
+      "button" => "32px",
+      "avatar" => "32px",
+      "tile" => "40px",
+      "row-header" => "40px",
+      "textarea-min" => "64px",
     }.freeze
 
     ELEVATION = {

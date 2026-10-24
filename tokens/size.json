@@ -1,0 +1,47 @@
+{
+  "$description": "Canonical size source: control heights, icon boxes and indicator dimensions. Hand-edit this file only; dist/ is generated.",
+  "meta": {
+    "source": "Paper file 'F055 Desys 1' (01M5M3N461Y0VSS854R6G5S86K), plus a frequency tally across all 40 component previews and examples/dashboard-next.",
+    "extracted": "2026-10-24",
+    "note": "These were recorded as prose under radius.json's `controlHeights` from the first extraction and flagged as 'not yet tokens' in every README since. Building the Next.js dashboard made the cost concrete: every dimension in it was a literal, and that is the value most likely to drift when the same component is written again in Compose, in ERB and in Jinja2.",
+    "evidence": "Tally of width/height declarations across components/*/preview.html: 16px x124, 20px x65, 32px x40, 28px x24, 24px x18, 14px x12, 40px x11, 12px x11. 4, 6 and 8 appear as indicator dimensions (a status dot, a strength segment, a scrollspy pip, an accent swatch). 36, 48 and 80 appear once or twice each and are treated as incidental.",
+    "naming": "Named by pixel value, as radius and spacing are, because 4-6-8-12-14-16-20-24-28-32-40-64 is not a consistent ratio. The named roles below are the counterpart to radius's `pill`/`full` and typography's 15 named styles: they say what a value is FOR, so a button does not have to be remembered as 32.",
+    "notTokenised": "Layout widths - a 256px sidebar, a 384px panel, a 1200px content column - are deliberately absent. Those belong to a screen, not to the system; see README.md on why no containers or breakpoints were taken from the reference."
+  },
+
+  "tokens": {
+    "4":  { "value": "4px",  "origin": "extracted", "usage": "Slider and progress track thickness, accent swatch width." },
+    "6":  { "value": "6px",  "origin": "extracted", "usage": "Status dots. The smallest thing the system draws." },
+    "8":  { "value": "8px",  "origin": "extracted", "usage": "Scrollspy pips, legend swatches." },
+    "12": { "value": "12px", "origin": "extracted", "usage": "The smallest icon: inside a badge, or beside 12px text." },
+    "14": { "value": "14px", "origin": "extracted", "usage": "Chevrons and affordance icons that sit beside a 14px label without competing with it." },
+    "16": { "value": "16px", "origin": "extracted", "usage": "The default icon, and the checkbox, radio and slider thumb. By far the most used dimension in the system." },
+    "20": { "value": "20px", "origin": "extracted", "usage": "Badge and switch height; the largest icon." },
+    "24": { "value": "24px", "origin": "extracted", "usage": "Icon button, close button, avatar inside a dense row." },
+    "28": { "value": "28px", "origin": "extracted", "usage": "Small button, compact tab." },
+    "32": { "value": "32px", "origin": "extracted", "usage": "Default button, input, select, standard avatar. The system's default control height." },
+    "40": { "value": "40px", "origin": "extracted", "usage": "Icon tile, table header row, large avatar." },
+    "64": { "value": "64px", "origin": "extracted", "usage": "Textarea minimum height. The only value here above 40." }
+  },
+
+  "roles": {
+    "dot":           { "ref": "6",  "usage": "A status dot." },
+    "track":         { "ref": "4",  "usage": "Slider groove, progress bar, strength segment." },
+    "pip":           { "ref": "8",  "usage": "A scrollspy or carousel position marker." },
+    "icon-xs":       { "ref": "12", "usage": "Icon inside a badge or beside 12px text." },
+    "icon-sm":       { "ref": "14", "usage": "A chevron or affordance beside a 14px label." },
+    "icon":          { "ref": "16", "usage": "The default icon. Use this unless there is a reason not to." },
+    "icon-lg":       { "ref": "20", "usage": "An icon that carries a card or an empty state." },
+    "checkbox":      { "ref": "16", "usage": "Checkbox and radio." },
+    "slider-thumb":  { "ref": "16", "usage": "Slider and range thumb." },
+    "badge":         { "ref": "20", "usage": "Badge and chip height." },
+    "switch":        { "ref": "20", "usage": "Switch height. Width is 32px - the one control that is not square or text-sized." },
+    "icon-button":   { "ref": "24", "usage": "Icon-only button, close button." },
+    "button-sm":     { "ref": "28", "usage": "Small button, compact tab." },
+    "button":        { "ref": "32", "usage": "Default button, input, select, textarea row." },
+    "avatar":        { "ref": "32", "usage": "Standard avatar." },
+    "tile":          { "ref": "40", "usage": "Icon tile in an empty state, a spinner surround, a large avatar." },
+    "row-header":    { "ref": "40", "usage": "Table header row height." },
+    "textarea-min":  { "ref": "64", "usage": "Textarea minimum height." }
+  }
+}

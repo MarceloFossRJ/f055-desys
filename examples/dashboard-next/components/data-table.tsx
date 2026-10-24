@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Columns3, EllipsisVertical, GripVertical, Pl
 import { Badge, Button, IconButton } from '@/components/ui';
 import { Checkbox } from '@/components/checkbox';
 import { releases, type Release, type Status } from '@/lib/data';
+import { ICON } from '@/lib/tokens';
 import { cn } from '@/lib/cn';
 
 const TABS = ['All releases', 'In review', 'Scheduled', 'Takedowns'] as const;
@@ -15,14 +16,14 @@ function StatusCell({ status }: { status: Status }) {
   if (status === 'Takedown') {
     return (
       <span className="inline-flex items-center gap-1.5 text-sm text-destructive">
-        <span className="size-1.5 rounded-full bg-destructive" aria-hidden="true" />
+        <span className="size-(--control-dot) rounded-full bg-destructive" aria-hidden="true" />
         Takedown
       </span>
     );
   }
   return (
     <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-      <span className={cn('size-1.5 rounded-full', status === 'Live' ? 'bg-foreground' : 'bg-muted-foreground')} aria-hidden="true" />
+      <span className={cn('size-(--control-dot) rounded-full', status === 'Live' ? 'bg-foreground' : 'bg-muted-foreground')} aria-hidden="true" />
       {status}
     </span>
   );
@@ -60,7 +61,7 @@ export function DataTable() {
               aria-selected={t === tab}
               onClick={() => setTab(t)}
               className={cn(
-                'h-7 rounded-6 px-3 text-sm transition-colors cursor-pointer',
+                'h-(--control-button-sm) rounded-6 px-3 text-sm transition-colors cursor-pointer',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
                 t === tab ? 'bg-muted font-medium text-foreground' : 'text-muted-foreground hover:text-foreground',
               )}
@@ -70,8 +71,8 @@ export function DataTable() {
           ))}
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <Button size="sm"><Columns3 size={16} />Columns</Button>
-          <Button size="sm" variant="primary"><Plus size={16} />New release</Button>
+          <Button size="sm"><Columns3 size={ICON.md} />Columns</Button>
+          <Button size="sm" variant="primary"><Plus size={ICON.md} />New release</Button>
         </div>
       </div>
 
@@ -121,15 +122,15 @@ export function DataTable() {
             <span className="text-muted-foreground">Rows per page</span>
             <select
               defaultValue="8"
-              className="h-8 rounded-8 border border-border bg-card px-2 text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
+              className="h-(--control-button) rounded-8 border border-border bg-card px-2 text-sm cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset"
             >
               <option>8</option><option>16</option><option>32</option>
             </select>
           </label>
           <span className="text-sm text-muted-foreground">Page 1 of 7</span>
           <div className="flex items-center gap-1">
-            <IconButton label="Go to previous page" disabled className="opacity-50"><ChevronLeft size={16} /></IconButton>
-            <IconButton label="Go to next page"><ChevronRight size={16} /></IconButton>
+            <IconButton label="Go to previous page" disabled className="opacity-50"><ChevronLeft size={ICON.md} /></IconButton>
+            <IconButton label="Go to next page"><ChevronRight size={ICON.md} /></IconButton>
           </div>
         </div>
       </div>
@@ -144,7 +145,7 @@ function Th({ className, children }: { className?: string; children: React.React
 function Row({ r, on, toggle }: { r: Release; on: boolean; toggle: () => void }) {
   return (
     <tr className={cn('border-b border-border last:border-0 transition-colors', on ? 'bg-muted-subtle' : 'hover:bg-muted-subtle')}>
-      <td className="pl-4 text-muted-foreground"><GripVertical size={16} aria-label="Drag to reorder" /></td>
+      <td className="pl-4 text-muted-foreground"><GripVertical size={ICON.md} aria-label="Drag to reorder" /></td>
       <td><Checkbox checked={on} onChange={toggle} label={`Select ${r.title}`} /></td>
       <td className="px-3 py-2.5">
         <div className="font-medium">{r.title}</div>
@@ -155,9 +156,9 @@ function Row({ r, on, toggle }: { r: Release; on: boolean; toggle: () => void })
       <td className="px-3 py-2.5 text-right font-mono tabular-nums">{r.streams ? r.streams.toLocaleString('en-US') : '—'}</td>
       <td className="px-3 py-2.5 text-right font-mono tabular-nums">{r.royalties ? `€${r.royalties.toLocaleString('en-US', { minimumFractionDigits: 2 })}` : '—'}</td>
       <td className="px-3 py-2.5">
-        {r.reviewer ?? <Button size="sm" variant="ghost" className="h-7 border-border border px-2 text-muted-foreground">Assign reviewer</Button>}
+        {r.reviewer ?? <Button size="sm" variant="ghost" className="px-2 text-muted-foreground">Assign reviewer</Button>}
       </td>
-      <td className="pr-4"><IconButton label={`Open menu for ${r.title}`}><EllipsisVertical size={16} /></IconButton></td>
+      <td className="pr-4"><IconButton label={`Open menu for ${r.title}`}><EllipsisVertical size={ICON.md} /></IconButton></td>
     </tr>
   );
 }

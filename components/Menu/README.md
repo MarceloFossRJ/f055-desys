@@ -94,4 +94,4 @@ enough to need truncation, they are descriptions and belong in a Dialog.
 
 ## Not yet tokenised
 
-Item height (32), min width (224), icon sizes (14, 16), the `z-index` of 50.
+Min width (224) and the `z-index` of 50.

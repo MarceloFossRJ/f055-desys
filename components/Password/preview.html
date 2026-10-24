@@ -43,30 +43,30 @@
   .lrow { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
   .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 1; font-weight: 500; }
   .act {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
     letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted-foreground);
     text-decoration: none;
   }
 
   .input {
     display: flex; align-items: center; gap: var(--space-8);
-    height: 32px; padding-left: var(--space-10); padding-right: var(--space-8);
+    height: var(--size-32); padding-left: var(--space-10); padding-right: var(--space-8);
     background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
     overflow: hidden;
   }
   .val {
     flex: 1; min-width: 0; overflow: hidden; white-space: nowrap;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); color: var(--foreground);
   }
   .mask { -webkit-text-security: disc; text-security: disc; }
 
   .eye {
-    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    width: var(--size-16); height: var(--size-16); flex: none; display: grid; place-content: center;
     padding: 0; border: 0; background: none; cursor: pointer; color: var(--muted-foreground);
   }
   .on { color: var(--foreground); }
   .eye svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
   .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }

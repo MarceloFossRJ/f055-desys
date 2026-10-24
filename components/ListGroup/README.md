@@ -58,4 +58,4 @@ icons and chevrons acceptable here.
 
 ## Not yet tokenised
 
-Icon size (16), the 2px icon nudge, the two row densities.
+The 2px icon nudge and the two row densities.

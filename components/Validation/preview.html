@@ -43,22 +43,22 @@
   .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
 
   .input {
-    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    display: flex; align-items: center; height: var(--size-32); padding-inline: var(--space-10);
     background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
   }
   /* The fill never changes — only the ring is added. */
   .err { box-shadow: 0 0 0 1px var(--destructive); }
   .ok  { box-shadow: 0 0 0 1px var(--border); }
-  .val { flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: 20px; }
+  .val { flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); }
   .is-focus { box-shadow: 0 0 0 1px var(--destructive), 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
 
   .msg {
     margin: 0; display: flex; align-items: flex-start; gap: var(--space-6);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
     color: var(--muted-foreground);
   }
   .msg svg {
-    width: 16px; height: 16px; flex: none; translate: 0 2px;
+    width: var(--size-16); height: var(--size-16); flex: none; translate: 0 2px;
     fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }

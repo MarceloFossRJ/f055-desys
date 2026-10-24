@@ -45,17 +45,17 @@
 
   .trig {
     display: flex; align-items: center; cursor: pointer;
-    height: 32px; padding-left: var(--space-10); padding-right: var(--space-8);
+    height: var(--size-32); padding-left: var(--space-10); padding-right: var(--space-8);
     background: var(--input); border: 1px solid transparent;
     border-radius: var(--radius-pill);
   }
   .val {
     flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); color: var(--foreground);
   }
   .ph { color: var(--muted-foreground); }
   .trig svg {
-    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    width: var(--size-16); height: var(--size-16); flex: none; fill: none; stroke: var(--muted-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
   .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
@@ -70,13 +70,13 @@
   }
   .opt {
     display: flex; align-items: center; justify-content: space-between; gap: var(--space-8);
-    height: 32px; padding-inline: var(--space-10); cursor: pointer;
+    height: var(--size-32); padding-inline: var(--space-10); cursor: pointer;
     border-radius: var(--radius-pill);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
   .sel { background: var(--accent); color: var(--accent-foreground); }
   .opt svg {
-    width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor;
+    width: var(--size-16); height: var(--size-16); flex: none; fill: none; stroke: currentColor;
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
   .dis { color: var(--muted-foreground); cursor: not-allowed; }

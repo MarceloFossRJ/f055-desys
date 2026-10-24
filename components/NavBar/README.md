@@ -66,4 +66,4 @@ the page.
 
 ## Not yet tokenised
 
-Bar height (56 = 12 + 32 + 12), item height (32), icon size (16).
+Bar height (56), which is `space-12` either side of `--control-button`.

@@ -61,7 +61,16 @@ Return focus to the trigger on close, and close on Escape.
 
 Keep the width under about 320px. Beyond that it is a dialog.
 
+## The tooltip swatch
+
+`series-1`, at `--size-4` wide and full height. It identifies a data series, so
+it takes a categorical token, not a step of the sequential `chart-*` ramp. It
+used to be `chart-1`; when that ramp became theme-aware on 2026-10-24 — the
+dark ramp is the light one reversed — `chart-1` became the step *nearest* the
+dark surface, and the swatch would have dropped to 2.15:1. `series-1` clears
+3:1 in both themes because that is what it is for.
+
 ## Not yet tokenised
 
-Close button size (28), footer button height (28), the tooltip's 4px colour
-swatch.
+Nothing. Close button and footer button height are now `--control-icon-button`
+and `--control-button-sm`.

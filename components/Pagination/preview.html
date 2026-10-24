@@ -36,36 +36,36 @@
   .pg { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
 
   .pb {
-    min-width: 32px; height: 32px; padding-inline: var(--space-8);
+    min-width: var(--size-32); height: var(--size-32); padding-inline: var(--space-8);
     display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
     border: 1px solid transparent; border-radius: var(--radius-pill);
     background: transparent; color: var(--foreground); text-decoration: none;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 400;
     font-variant-numeric: tabular-nums;
   }
   .on { background: var(--muted); font-weight: 500; }
   .pb:disabled { color: var(--muted-foreground); cursor: not-allowed; }
   .pb svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor;
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
   .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
 
   .gap {
-    min-width: 32px; height: 32px; display: inline-flex; align-items: center;
+    min-width: var(--size-32); height: var(--size-32); display: inline-flex; align-items: center;
     justify-content: center; color: var(--muted-foreground);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
 
   .alt { display: flex; align-items: center; gap: var(--space-16); }
   .count {
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
     color: var(--muted-foreground); font-variant-numeric: tabular-nums;
   }
   .more {
-    height: 28px; padding-inline: var(--space-12); cursor: pointer;
+    height: var(--size-28); padding-inline: var(--space-12); cursor: pointer;
     border: 1px solid var(--border); border-radius: var(--radius-pill);
     background: var(--card); color: var(--foreground);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
   }
 </style>

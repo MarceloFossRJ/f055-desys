@@ -78,4 +78,4 @@ For a range, see Range.
 
 ## Not yet tokenised
 
-Trigger height (32), icon size (16), nav button (24), footer button (28).
+Nothing — every dimension is a `--control-*` token.

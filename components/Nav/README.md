@@ -75,4 +75,4 @@ stronger, that is the value to revisit.
 
 ## Not yet tokenised
 
-Item height (32), icon size (16).
+Nothing — every dimension is a `--control-*` token.

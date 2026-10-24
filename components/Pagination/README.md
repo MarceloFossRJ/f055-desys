@@ -63,4 +63,4 @@ Mark the current page `aria-current="page"` and give every arrow an
 
 ## Not yet tokenised
 
-Button size (32), arrow size (16), the Load more button's 28px height.
+Nothing — every dimension is a `--control-*` token.

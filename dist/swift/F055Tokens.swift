@@ -42,6 +42,9 @@ public protocol F055Palette {
     var chart3: Color { get }
     var chart4: Color { get }
     var chart5: Color { get }
+    var series1: Color { get }
+    var series2: Color { get }
+    var series3: Color { get }
 }
 
 public struct F055LightPalette: F055Palette {
@@ -73,6 +76,9 @@ public struct F055LightPalette: F055Palette {
     public let chart3: Color = Color(.sRGB, red: 0.9059, green: 0.0000, blue: 0.0431, opacity: 1)
     public let chart4: Color = Color(.sRGB, red: 0.7569, green: 0.0000, blue: 0.0275, opacity: 1)
     public let chart5: Color = Color(.sRGB, red: 0.6235, green: 0.0275, blue: 0.0706, opacity: 1)
+    public let series1: Color = Color(.sRGB, red: 0.7569, green: 0.0000, blue: 0.0275, opacity: 1)
+    public let series2: Color = Color(.sRGB, red: 0.0392, green: 0.0392, blue: 0.0392, opacity: 1)
+    public let series3: Color = Color(.sRGB, red: 0.4510, green: 0.4510, blue: 0.4510, opacity: 1)
 }
 
 public struct F055DarkPalette: F055Palette {
@@ -99,11 +105,14 @@ public struct F055DarkPalette: F055Palette {
     public let track: Color = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000, opacity: 0.1333)
     public let ring: Color = Color(.sRGB, red: 0.9843, green: 0.1725, blue: 0.2118, opacity: 1)
     public let ringOffset: Color = Color(.sRGB, red: 0.0392, green: 0.0392, blue: 0.0392, opacity: 1)
-    public let chart1: Color = Color(.sRGB, red: 1.0000, green: 0.6353, blue: 0.6353, opacity: 1)
-    public let chart2: Color = Color(.sRGB, red: 0.9843, green: 0.1725, blue: 0.2118, opacity: 1)
+    public let chart1: Color = Color(.sRGB, red: 0.6235, green: 0.0275, blue: 0.0706, opacity: 1)
+    public let chart2: Color = Color(.sRGB, red: 0.7569, green: 0.0000, blue: 0.0275, opacity: 1)
     public let chart3: Color = Color(.sRGB, red: 0.9059, green: 0.0000, blue: 0.0431, opacity: 1)
-    public let chart4: Color = Color(.sRGB, red: 0.7569, green: 0.0000, blue: 0.0275, opacity: 1)
-    public let chart5: Color = Color(.sRGB, red: 0.6235, green: 0.0275, blue: 0.0706, opacity: 1)
+    public let chart4: Color = Color(.sRGB, red: 0.9843, green: 0.1725, blue: 0.2118, opacity: 1)
+    public let chart5: Color = Color(.sRGB, red: 1.0000, green: 0.6353, blue: 0.6353, opacity: 1)
+    public let series1: Color = Color(.sRGB, red: 0.9843, green: 0.1725, blue: 0.2118, opacity: 1)
+    public let series2: Color = Color(.sRGB, red: 0.9804, green: 0.9804, blue: 0.9804, opacity: 1)
+    public let series3: Color = Color(.sRGB, red: 0.6314, green: 0.6314, blue: 0.6314, opacity: 1)
 }
 
 public enum F055 {
@@ -280,6 +289,45 @@ public enum F055Space {
     public static let s20: CGFloat = 20
     public static let s24: CGFloat = 24
     public static let s40: CGFloat = 40
+}
+
+/// Size: control heights, icon boxes and indicator dimensions.
+/// Named by pixel value, as radius and spacing are.
+public enum F055Size {
+    public static let s4: CGFloat = 4
+    public static let s6: CGFloat = 6
+    public static let s8: CGFloat = 8
+    public static let s12: CGFloat = 12
+    public static let s14: CGFloat = 14
+    public static let s16: CGFloat = 16
+    public static let s20: CGFloat = 20
+    public static let s24: CGFloat = 24
+    public static let s28: CGFloat = 28
+    public static let s32: CGFloat = 32
+    public static let s40: CGFloat = 40
+    public static let s64: CGFloat = 64
+}
+
+/// What each size is FOR: `F055Control.button` is 32.
+public enum F055Control {
+    public static let dot: CGFloat = F055Size.s6
+    public static let track: CGFloat = F055Size.s4
+    public static let pip: CGFloat = F055Size.s8
+    public static let iconXs: CGFloat = F055Size.s12
+    public static let iconSm: CGFloat = F055Size.s14
+    public static let icon: CGFloat = F055Size.s16
+    public static let iconLg: CGFloat = F055Size.s20
+    public static let checkbox: CGFloat = F055Size.s16
+    public static let sliderThumb: CGFloat = F055Size.s16
+    public static let badge: CGFloat = F055Size.s20
+    public static let switch: CGFloat = F055Size.s20
+    public static let iconButton: CGFloat = F055Size.s24
+    public static let buttonSm: CGFloat = F055Size.s28
+    public static let button: CGFloat = F055Size.s32
+    public static let avatar: CGFloat = F055Size.s32
+    public static let tile: CGFloat = F055Size.s40
+    public static let rowHeader: CGFloat = F055Size.s40
+    public static let textareaMin: CGFloat = F055Size.s64
 }
 
 /// Elevation.

@@ -279,16 +279,38 @@ violations and the two commands that must be run after any token change.
    the CSS version — affects layout. SwiftUI reproduces the drops faithfully but
    draws the ring as an inset stroke.
 
-## Sizes are not tokenised
+## Sizes
 
-Writing the component specs exposed one real gap: control geometry has no
-tokens. Heights, icon sizes, the switch's dimensions, border widths and the
-focus geometry are all literals in the specs, listed under "Not yet tokenised"
-in each component README.
+`tokens/size.json` — twelve steps (4, 6, 8, 12, 14, 16, 20, 24, 28, 32, 40, 64)
+and eighteen named roles on top of them. The steps are named by pixel value, as
+radius and spacing are, because they form no consistent ratio; the roles are the
+counterpart to radius's `pill`/`full`, so a button does not have to be
+remembered as 32.
 
-Survivable for one implementation, a liability across four — it is exactly the
-kind of value that drifts when the same component is written in Compose and in
-React by different hands. Worth adding before the second implementation.
+They were prose under `controlHeights` in `tokens/radius.json` from the first
+extraction, flagged as "not yet tokens" in every README since. The values come
+from a frequency tally across all forty previews: 16px appears 124 times, 20px
+65, 32px 40, 28px 24, 24px 18. 36, 48 and 80 appear once or twice and were left
+out.
+
+Reach for the role, not the step — `--control-button`, not `--size-32`. When a
+density variant arrives the role moves and the call sites do not.
+
+Layout widths are deliberately absent. A 256px sidebar or a 1200px content
+column belongs to a screen, not to the system; see below on why no containers or
+breakpoints were taken from the reference.
+
+## Data colour
+
+Two families doing two different jobs. `chart-1..5` is a **sequential** ramp for
+magnitude — the dark ramp is the light one reversed, so step 1 is always nearest
+the surface and step 5 always the most prominent, in both themes. `series-1..3`
+is the **categorical** set for identity: brand red, full ink, muted ink.
+
+The split came out of building the dashboard. The five chart tokens were
+theme-invariant and, measured against 3:1, yielded exactly one usable mark
+colour. A one-hue palette cannot do categorical work by hue, so the third slot
+carries a hard requirement — a distinct mark type — and there is no fourth.
 
 ## Examples
 

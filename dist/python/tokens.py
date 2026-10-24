@@ -102,6 +102,9 @@ LIGHT: Dict[str, Color] = {
     "chart-3": Color(hex="#E7000B", hex8="#E7000BFF", rgba="rgba(231, 0, 11, 1)", css="oklch(0.577 0.245 27.325)"),
     "chart-4": Color(hex="#C10007", hex8="#C10007FF", rgba="rgba(193, 0, 7, 1)", css="oklch(0.505 0.213 27.518)"),
     "chart-5": Color(hex="#9F0712", hex8="#9F0712FF", rgba="rgba(159, 7, 18, 1)", css="oklch(0.444 0.177 26.899)"),
+    "series-1": Color(hex="#C10007", hex8="#C10007FF", rgba="rgba(193, 0, 7, 1)", css="oklch(0.505 0.213 27.518)"),
+    "series-2": Color(hex="#0A0A0A", hex8="#0A0A0AFF", rgba="rgba(10, 10, 10, 1)", css="oklch(0.145 0 0)"),
+    "series-3": Color(hex="#737373", hex8="#737373FF", rgba="rgba(115, 115, 115, 1)", css="oklch(0.556 0 0)"),
 }
 
 DARK: Dict[str, Color] = {
@@ -127,11 +130,14 @@ DARK: Dict[str, Color] = {
     "track": Color(hex="#FFFFFF", hex8="#FFFFFF22", rgba="rgba(255, 255, 255, 0.1333)", css="oklch(1 0 0 / 13%)"),
     "ring": Color(hex="#FB2C36", hex8="#FB2C36FF", rgba="rgba(251, 44, 54, 1)", css="oklch(0.637 0.237 25.331)"),
     "ring-offset": Color(hex="#0A0A0A", hex8="#0A0A0AFF", rgba="rgba(10, 10, 10, 1)", css="oklch(0.145 0 0)"),
-    "chart-1": Color(hex="#FFA2A2", hex8="#FFA2A2FF", rgba="rgba(255, 162, 162, 1)", css="oklch(0.808 0.114 19.571)"),
-    "chart-2": Color(hex="#FB2C36", hex8="#FB2C36FF", rgba="rgba(251, 44, 54, 1)", css="oklch(0.637 0.237 25.331)"),
+    "chart-1": Color(hex="#9F0712", hex8="#9F0712FF", rgba="rgba(159, 7, 18, 1)", css="oklch(0.444 0.177 26.899)"),
+    "chart-2": Color(hex="#C10007", hex8="#C10007FF", rgba="rgba(193, 0, 7, 1)", css="oklch(0.505 0.213 27.518)"),
     "chart-3": Color(hex="#E7000B", hex8="#E7000BFF", rgba="rgba(231, 0, 11, 1)", css="oklch(0.577 0.245 27.325)"),
-    "chart-4": Color(hex="#C10007", hex8="#C10007FF", rgba="rgba(193, 0, 7, 1)", css="oklch(0.505 0.213 27.518)"),
-    "chart-5": Color(hex="#9F0712", hex8="#9F0712FF", rgba="rgba(159, 7, 18, 1)", css="oklch(0.444 0.177 26.899)"),
+    "chart-4": Color(hex="#FB2C36", hex8="#FB2C36FF", rgba="rgba(251, 44, 54, 1)", css="oklch(0.637 0.237 25.331)"),
+    "chart-5": Color(hex="#FFA2A2", hex8="#FFA2A2FF", rgba="rgba(255, 162, 162, 1)", css="oklch(0.808 0.114 19.571)"),
+    "series-1": Color(hex="#FB2C36", hex8="#FB2C36FF", rgba="rgba(251, 44, 54, 1)", css="oklch(0.637 0.237 25.331)"),
+    "series-2": Color(hex="#FAFAFA", hex8="#FAFAFAFF", rgba="rgba(250, 250, 250, 1)", css="oklch(0.985 0 0)"),
+    "series-3": Color(hex="#A1A1A1", hex8="#A1A1A1FF", rgba="rgba(161, 161, 161, 1)", css="oklch(0.708 0 0)"),
 }
 
 SCHEMES: Dict[str, Dict[str, Color]] = {"light": LIGHT, "dark": DARK}
@@ -177,6 +183,43 @@ SPACING: Dict[str, str] = {
     "20": "20px",
     "24": "24px",
     "40": "40px",
+}
+
+SIZE: Dict[str, str] = {
+    "4": "4px",
+    "6": "6px",
+    "8": "8px",
+    "12": "12px",
+    "14": "14px",
+    "16": "16px",
+    "20": "20px",
+    "24": "24px",
+    "28": "28px",
+    "32": "32px",
+    "40": "40px",
+    "64": "64px",
+}
+
+#: What each size is FOR: CONTROL["button"] == "32px".
+CONTROL: Dict[str, str] = {
+    "dot": "6px",
+    "track": "4px",
+    "pip": "8px",
+    "icon-xs": "12px",
+    "icon-sm": "14px",
+    "icon": "16px",
+    "icon-lg": "20px",
+    "checkbox": "16px",
+    "slider-thumb": "16px",
+    "badge": "20px",
+    "switch": "20px",
+    "icon-button": "24px",
+    "button-sm": "28px",
+    "button": "32px",
+    "avatar": "32px",
+    "tile": "40px",
+    "row-header": "40px",
+    "textarea-min": "64px",
 }
 
 ELEVATION: Dict[str, "Shadow"] = {

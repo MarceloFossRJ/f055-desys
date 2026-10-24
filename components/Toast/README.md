@@ -89,5 +89,5 @@ needs no announcement.
 
 ## Not yet tokenised
 
-Max width (384), durations (4s, 8s), the three-toast cap, action and dismiss
-sizes (24, 20), the 640px breakpoint.
+Max width (384), durations (4s, 8s), the three-toast cap, and the 640px
+breakpoint.

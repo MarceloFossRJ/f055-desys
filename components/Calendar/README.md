@@ -58,4 +58,4 @@ from the source; revert it if the designer confirms 12.8px was deliberate.
 
 ## Not yet tokenised
 
-Header height (40), nav button size (24), icon size (16), minimum cell width (40).
+Nothing — every dimension is a `--control-*` token.

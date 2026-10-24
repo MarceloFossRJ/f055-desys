@@ -55,4 +55,4 @@ contexts.
 
 ## Not yet tokenised
 
-Button heights, and the 1px hairline that `shadow-card` draws.
+The 1px hairline that `shadow-card` draws.

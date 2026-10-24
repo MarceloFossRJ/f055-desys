@@ -75,4 +75,4 @@ One message per field. If a field has three problems, name the first.
 
 ## Not yet tokenised
 
-Ring width (1), icon size (16), the 2px icon nudge.
+Ring width (1px) and the 2px icon nudge.

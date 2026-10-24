@@ -23,21 +23,21 @@
   .bar { display: flex; align-items: center; gap: var(--space-16); flex-wrap: wrap; }
 
   .ib {
-    width: 32px; height: 32px; display: grid; place-content: center; cursor: pointer;
+    width: var(--size-32); height: var(--size-32); display: grid; place-content: center; cursor: pointer;
     border: 0; background: transparent; color: var(--foreground);
     border-radius: var(--radius-8); box-shadow: var(--shadow-hairline);
   }
   .ib svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor;
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
   .is-focus { box-shadow: var(--shadow-hairline), 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
 
-  .div { width: 1px; height: 20px; background: var(--border); }
+  .div { width: 1px; height: var(--size-20); background: var(--border); }
 
   .note {
     margin: 0; max-width: 60ch; color: var(--muted-foreground);
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
   }
   .mono { font-family: var(--font-mono); }
 </style>

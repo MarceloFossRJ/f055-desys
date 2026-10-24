@@ -1,13 +1,14 @@
 'use client';
 import * as React from 'react';
 import { Check, Minus } from 'lucide-react';
+import { ICON } from '@/lib/tokens';
 import { cn } from '@/lib/cn';
 
 /* Checkbox — NOT YET SPECIFIED in the design system.
  * Toggle is a switch; Menu has a checkbox *item*. This is the standalone box,
  * needed for table-row selection. Built here first; the spec follows from it.
  *
- * 16px at radius-5 (the smallest radius the system has). Unchecked uses the
+ * --control-checkbox at radius-5 (the smallest radius the system has). Unchecked uses the
  * `track` token, same as an unchecked Toggle -- that is what `track` is for. */
 export function Checkbox({
   checked,
@@ -31,7 +32,7 @@ export function Checkbox({
       aria-label={label}
       onClick={() => onChange(!checked)}
       className={cn(
-        'inline-grid size-4 shrink-0 place-content-center rounded-5 border transition-colors cursor-pointer',
+        'inline-grid size-(--control-checkbox) shrink-0 place-content-center rounded-5 border transition-colors cursor-pointer',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset',
         // `border` is 1.03:1 against a light row -- the control vanishes. There is no
         // token between `border` and `muted-foreground` that clears 3:1, so the heavier
@@ -40,7 +41,7 @@ export function Checkbox({
         className,
       )}
     >
-      {indeterminate ? <Minus size={12} strokeWidth={3} /> : checked ? <Check size={12} strokeWidth={3} /> : null}
+      {indeterminate ? <Minus size={ICON.xs} strokeWidth={3} /> : checked ? <Check size={ICON.xs} strokeWidth={3} /> : null}
     </button>
   );
 }

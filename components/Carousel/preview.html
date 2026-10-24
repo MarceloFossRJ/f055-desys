@@ -45,7 +45,7 @@
   .cur { opacity: 1; }
   .next { opacity: .5; }
   .eyebrow {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
     text-transform: uppercase; color: var(--muted-foreground);
   }
   .amt {
@@ -53,26 +53,26 @@
     font-variant-numeric: tabular-nums;
   }
   .sub {
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
     color: var(--muted-foreground); font-variant-numeric: tabular-nums;
   }
 
   .nav {
     position: absolute; top: 50%; translate: 0 -50%;
-    width: 28px; height: 28px; display: grid; place-content: center; cursor: pointer;
+    width: var(--size-28); height: var(--size-28); display: grid; place-content: center; cursor: pointer;
     border: 0; border-radius: var(--radius-pill);
     background: var(--card); color: var(--foreground); box-shadow: var(--shadow-overlay);
   }
   .prev { left: calc(var(--space-8) * -1); }
   .next-b { right: calc(var(--space-8) * -1); }
   .nav svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
 
   .dots { display: flex; justify-content: center; gap: var(--space-6); }
   .dot {
-    width: 6px; height: 6px; padding: 0; cursor: pointer;
+    width: var(--size-6); height: var(--size-6); padding: 0; cursor: pointer;
     border: 0; border-radius: var(--radius-full); background: var(--track);
   }
   .dot.on { background: var(--foreground); }

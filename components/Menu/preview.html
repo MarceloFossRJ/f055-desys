@@ -56,12 +56,12 @@
 
   .trig {
     display: inline-flex; align-items: center; gap: var(--space-6);
-    height: 32px; padding-inline: var(--space-12); cursor: pointer;
+    height: var(--size-32); padding-inline: var(--space-12); cursor: pointer;
     border: 1px solid var(--border); border-radius: var(--radius-pill);
     background: var(--card); color: var(--foreground); box-shadow: var(--shadow-thumb);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); font-weight: 500;
   }
-  .chev { width: 14px; height: 14px; display: block; }
+  .chev { width: var(--size-14); height: var(--size-14); display: block; }
   .chev svg {
     width: 100%; height: 100%; fill: none; stroke: var(--muted-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
@@ -77,33 +77,33 @@
 
   .lbl {
     padding: var(--space-6) var(--space-8);
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
     color: var(--muted-foreground);
   }
   .sep { height: 1px; background: var(--border); margin: var(--space-4) 0; }
 
   .it {
     display: flex; align-items: center; gap: var(--space-8); width: 100%;
-    min-height: 32px; padding: var(--space-6) var(--space-8); cursor: pointer;
+    min-height: var(--size-32); padding: var(--space-6) var(--space-8); cursor: pointer;
     border: 0; border-radius: var(--radius-6); background: transparent;
     color: inherit; text-align: left;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
   .it:hover, .it.on { background: var(--accent); color: var(--accent-foreground); }
   .it[disabled] { opacity: .5; cursor: not-allowed; }
   .it[disabled]:hover { background: transparent; }
 
-  .ic { width: 16px; height: 16px; flex: none; display: block; }
+  .ic { width: var(--size-16); height: var(--size-16); flex: none; display: block; }
   .ic svg {
     width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
 
   .kb {
-    margin-left: auto; font-family: var(--font-mono); font-size: 12px; line-height: 16px;
+    margin-left: auto; font-family: var(--font-mono); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground); letter-spacing: .04em;
   }
-  .sub { margin-left: auto; width: 14px; height: 14px; flex: none; display: block; }
+  .sub { margin-left: auto; width: var(--size-14); height: var(--size-14); flex: none; display: block; }
   .sub svg {
     width: 100%; height: 100%; fill: none; stroke: var(--muted-foreground);
     stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;

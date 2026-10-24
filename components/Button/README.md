@@ -62,7 +62,6 @@ The icon. Nothing here ships icons — pass an inline SVG that inherits
 
 ## Not yet tokenised
 
-Control heights (20 / 28 / 32), border width (1px) and the focus geometry
-(2px ring, 2px offset) are written as literals above. They are recorded in
-`tokens/radius.json` under `controlHeights` but are not emitted as tokens.
-Worth adding if a second implementation needs them.
+Border width (1px) and the focus geometry (2px ring, 2px offset).
+Control heights are now `--control-badge`, `--control-button-sm` and
+`--control-button`.

@@ -62,4 +62,4 @@ elsewhere, it is a NavBar.
 
 ## Not yet tokenised
 
-Button size (32), icon size (16), divider height (20).
+Nothing — every dimension is a `--control-*` token.

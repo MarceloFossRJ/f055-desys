@@ -38,17 +38,17 @@
   }
   .input {
     display: flex; align-items: center; gap: var(--space-8);
-    height: 32px; padding-left: var(--space-10); padding-right: var(--space-8);
+    height: var(--size-32); padding-left: var(--space-10); padding-right: var(--space-8);
     background: var(--input);
     border: 1px solid transparent;
     border-radius: var(--radius-pill);
   }
-  .input.area { height: auto; min-height: 64px; align-items: flex-start; padding: var(--space-8) var(--space-10); }
+  .input.area { height: auto; min-height: var(--size-64); align-items: flex-start; padding: var(--space-8) var(--space-10); }
 
   .input input, .input textarea {
     flex: 1; min-width: 0; border: 0; background: none; padding: 0; margin: 0;
     color: var(--foreground); resize: none;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
   .input input:focus, .input textarea:focus { outline: none; }
   .input ::placeholder { color: var(--muted-foreground); }
@@ -57,14 +57,14 @@
     box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring);
   }
   .input svg {
-    width: 16px; height: 16px; flex: none;
+    width: var(--size-16); height: var(--size-16); flex: none;
     fill: none; stroke: var(--muted-foreground); stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
   /* type style `caption`: 12 / 16 / 400, defined locally so the preview depends
      on tokens only -- utility class names differ between contexts. */
   .caption {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 400;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 400;
   }
   .help { margin: 0; color: var(--muted-foreground); }
 </style>

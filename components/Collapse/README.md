@@ -57,4 +57,4 @@ a default.
 
 ## Not yet tokenised
 
-Trigger height (32), chevron size (16).
+Nothing — every dimension is a `--control-*` token.

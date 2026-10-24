@@ -43,7 +43,7 @@
 
   .otp { display: flex; align-items: center; gap: var(--space-8); }
   .box {
-    width: 40px; height: 48px; display: grid; place-content: center;
+    width: var(--size-40); height: 48px; display: grid; place-content: center;
     background: var(--input); border: 1px solid transparent; border-radius: var(--radius-14);
     font-family: var(--font-mono); font-size: 18px; line-height: 1; font-weight: 500;
     font-variant-numeric: tabular-nums; color: var(--muted-foreground);
@@ -54,15 +54,15 @@
   .gap { width: var(--space-8); }
 
   .help {
-    margin: 0; font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    margin: 0; font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground);
   }
   .msg {
     margin: 0; display: flex; align-items: flex-start; gap: var(--space-6);
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--destructive);
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20); color: var(--destructive);
   }
   .msg svg {
-    width: 16px; height: 16px; flex: none; translate: 0 2px;
+    width: var(--size-16); height: var(--size-16); flex: none; translate: 0 2px;
     fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }

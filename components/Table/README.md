@@ -49,4 +49,4 @@ its transaction lists.
 
 ## Not yet tokenised
 
-The 40px header height and the 1px separator width.
+The 1px separator width. The header row is `--control-row-header`.

@@ -47,4 +47,4 @@ Never mix the two forms in one view.
 
 ## Not yet tokenised
 
-The 28px tab height.
+Nothing — the tab height is `--control-button-sm`.

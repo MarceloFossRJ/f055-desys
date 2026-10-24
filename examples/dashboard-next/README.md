@@ -50,7 +50,7 @@ wrong value. `rounded-xl` and `shadow-md` are now dead names.
 This was the most dangerous thing found, because nothing would ever have caught
 it: the page renders, it just renders a radius the system does not contain.
 
-### 2. The chart ramp is effectively one colour
+### 2. The chart ramp is effectively one colour — FIXED
 
 `chart-1…5` are `red.300 → red.800` — a **sequential** ramp doing **categorical**
 work. Measured against the 3:1 non-text minimum, on `card`:
@@ -70,9 +70,17 @@ The chart therefore uses one red (`chart-3`) plus `muted-foreground`, with the
 comparison series as a *dashed line* against a *filled area*. Different mark
 types, so identity never rests on hue alone.
 
-**Recommended fix:** `chart-*` must become theme-aware, stepping lighter in dark,
-exactly as `ring` already does for exactly this reason. They are currently the
-only tokens with identical light and dark values.
+**Fixed 2026-10-24**, by splitting the two jobs apart rather than patching one
+ramp. `chart-1..5` is now explicitly **sequential**, and the dark ramp is the
+light one reversed, so step 1 is always nearest the surface: contrast climbs
+1.92 → 8.36 in light and 2.15 → 9.34 in dark. A separate **categorical** set,
+`series-1..3`, carries identity — brand red, full ink, muted ink — validated
+all-pairs at 11.3 / 13.1 ΔE CVD separation with all three clearing 3:1 in both
+themes.
+
+This chart now uses `series-1` and `series-3`. `series-3` is the same value as
+`muted-foreground`, which the axis labels also wear, so it keeps the dashed
+mark — the token's own note requires it.
 
 ### 3. `muted-foreground` on `muted` fails AA in light
 
@@ -111,11 +119,24 @@ So: **tooltip 8 · panel 14 · card and dialog 24.**
 surface to fall back on — and `muted` as a canvas inverts in dark, where it is
 *lighter* than `card`.
 
-### 7. Size tokens, again
+### 7. Size tokens, again — FIXED
 
-`h-7`, `h-8`, `size-4`, `size-8`, `w-64`, `w-14` — every control and layout
-dimension in this example is a literal. This has been flagged since the first
-seven components; a real screen is the argument for fixing it.
+Every control dimension here used to be a literal. **Fixed 2026-10-24**:
+`tokens/size.json` has twelve steps and eighteen named roles, drawn from a
+frequency tally across all forty previews (16px appears 124 times, 20px 65,
+32px 40).
+
+In Tailwind they are not utilities — there is no `--size-*` namespace, and
+routing them through `--spacing-*` would silently redefine `p-32` from 128px to
+32px, the same class of bug as finding 1. So the call sites use the
+custom-property form, `h-(--control-button)`.
+
+React cannot put a CSS variable in a prop, so `lib/tokens.ts` imports `control`
+from the generated `dist/web/tokens.js` for lucide's `size`. That is what the JS
+output is for, and this is the first thing to use it.
+
+Layout widths — the 256px sidebar, the 1200px column — stay literal on purpose.
+They belong to this screen, not to the system.
 
 ### 8. The font gap is real
 

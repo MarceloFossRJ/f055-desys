@@ -41,29 +41,29 @@
   .field { display: flex; flex-direction: column; gap: var(--space-6); max-width: 320px; }
 
   .input {
-    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    display: flex; align-items: center; height: var(--size-32); padding-inline: var(--space-10);
     background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
     overflow: hidden;
   }
   .val {
     flex: 1; min-width: 0; overflow: hidden; white-space: nowrap;
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
   }
   .mask { -webkit-text-security: disc; text-security: disc; }
 
   .meter { display: flex; gap: var(--space-4); }
-  .seg { flex: 1; height: 4px; border-radius: var(--radius-pill); background: var(--track); }
+  .seg { flex: 1; height: var(--size-4); border-radius: var(--radius-pill); background: var(--track); }
   .on { background: var(--foreground); }
   .weak { background: var(--destructive); }
 
   .row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-8); }
   .lab {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16); font-weight: 500;
     color: var(--foreground);
   }
   .lab.weak { background: none; color: var(--destructive); }
   .hint {
-    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    font-family: var(--font-sans); font-size: 12px; line-height: var(--size-16);
     color: var(--muted-foreground);
   }
 </style>

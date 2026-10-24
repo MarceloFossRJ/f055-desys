@@ -61,4 +61,4 @@ padded button.
 
 ## Not yet tokenised
 
-Segment height (32), icon size (16), border width (1).
+Border width (1px).

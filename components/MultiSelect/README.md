@@ -72,5 +72,4 @@ it should win.
 
 ## Not yet tokenised
 
-Trigger min-height (32), chip height (20), remove icon (12), checkbox (16),
-tick (14), option height (32).
+Nothing — every dimension is a `--control-*` token.

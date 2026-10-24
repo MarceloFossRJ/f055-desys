@@ -68,5 +68,4 @@ decorative cross. The chip itself stays non-interactive unless it is selectable.
 
 ## Not yet tokenised
 
-Both heights (20, 28), icon size (12), avatar sizes (16, 24), remove size (12),
-and the 2px flush-left inset.
+The 2px flush-left inset.

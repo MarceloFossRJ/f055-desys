@@ -73,4 +73,5 @@ Never mask the digits. The person is copying them from somewhere else.
 
 ## Not yet tokenised
 
-Box size (40 × 48), digit size (18), group split (3 + 3).
+Box width (48), digit size (18), group split (3 + 3). The box height is
+`--control-tile`.

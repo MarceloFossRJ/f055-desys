@@ -27,24 +27,24 @@
   .bc { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-10); }
 
   .crumb {
-    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    font-family: var(--font-sans); font-size: 14px; line-height: var(--size-20);
     color: var(--muted-foreground); text-decoration: none;
   }
   .now { color: var(--foreground); }
 
   .sep {
-    width: 14px; height: 14px; flex: none;
+    width: var(--size-14); height: var(--size-14); flex: none;
     fill: none; stroke: var(--muted-foreground); stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
 
   .more {
-    width: 28px; height: 28px; display: grid; place-content: center; cursor: pointer;
+    width: var(--size-28); height: var(--size-28); display: grid; place-content: center; cursor: pointer;
     border: 1px solid transparent; border-radius: var(--radius-pill);
     background: transparent; color: var(--muted-foreground);
   }
   .more svg {
-    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    width: var(--size-16); height: var(--size-16); fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
 </style>
