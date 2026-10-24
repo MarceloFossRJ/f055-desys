@@ -160,6 +160,16 @@ public enum F055Type {
     public static let titleFallback: Font =
         .system(size: 18, weight: .semibold, design: .default)
 
+    /// The title of a centred or floating panel: an empty state, a dialog, a drawer, a login card.
+    public static var panelTitle: Font {
+        Font.custom("Roboto", size: 18)
+            .weight(.medium)
+    }
+    public static let panelTitleTracking: CGFloat = -0.45
+    public static let panelTitleLineHeight: CGFloat = 28
+    public static let panelTitleFallback: Font =
+        .system(size: 18, weight: .medium, design: .default)
+
     /// Default card and panel title.
     public static var cardTitle: Font {
         Font.custom("Roboto", size: 16)

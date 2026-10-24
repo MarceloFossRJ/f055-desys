@@ -5,57 +5,217 @@
     "extracted": "2026-10-23",
     "note": "The six size steps coincide exactly with Tailwind's own defaults (xs/sm/base/lg/2xl/3xl). The reference skips Tailwind's xl (20px) entirely. That means a Tailwind project gets this scale for free; the other stacks need it written out."
   },
-
   "families": {
     "sans": {
-      "stack": "\"Roboto\", system-ui, sans-serif",
+      "stack": "'Roboto', system-ui, sans-serif",
       "primary": "Roboto",
       "source": "Google Fonts",
       "variable": true,
-      "axes": { "wght": [100, 900], "wdth": [75, 100] },
-      "weights": [400, 500, 600],
+      "axes": {
+        "wght": [
+          100,
+          900
+        ],
+        "wdth": [
+          75,
+          100
+        ]
+      },
+      "weights": [
+        400,
+        500,
+        600
+      ],
       "usage": "Everything that is not code or a tabular figure."
     },
     "mono": {
-      "stack": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+      "stack": "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
       "primary": "Geist Mono",
       "source": "Google Fonts",
       "variable": true,
-      "axes": { "wght": [100, 900] },
-      "weights": [400, 500],
+      "axes": {
+        "wght": [
+          100,
+          900
+        ]
+      },
+      "weights": [
+        400,
+        500
+      ],
       "usage": "Code, identifiers, environment keys, and figures in tables or usage meters. Used at one size only (12px) across the whole reference."
-    }
+    },
+    "$note": "Stacks are single-quoted. A font stack ends up inside a double-quoted HTML style attribute whenever a token is used inline -- a mailer, a PDF, any email client -- and double quotes terminate the attribute there. Rails escapes on output so it survives in a view, but nothing else does, and the password-reset mailer in examples/login-rails rendered with a broken style attribute until this changed on 2026-10-24. Single quotes are equally valid CSS and safe everywhere."
   },
-
   "declaredUnused": {
     "Archivo": "Declared in the Paper file's font list but used on zero nodes. Not a token. Either leftover, or a display face that was never applied — worth confirming before anyone adds it."
   },
-
   "scale": {
     "$note": "Size steps only. Semantic styles below are what application code should reference.",
-    "xs":   { "fontSize": "12px", "lineHeight": "16px", "ratio": 1.3333 },
-    "sm":   { "fontSize": "14px", "lineHeight": "20px", "ratio": 1.42857 },
-    "base": { "fontSize": "16px", "lineHeight": "24px", "ratio": 1.5 },
-    "lg":   { "fontSize": "18px", "lineHeight": "28px", "ratio": 1.55556 },
-    "2xl":  { "fontSize": "24px", "lineHeight": "32px", "ratio": 1.33333 },
-    "3xl":  { "fontSize": "30px", "lineHeight": "36px", "ratio": 1.2 }
+    "xs": {
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "ratio": 1.3333
+    },
+    "sm": {
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "ratio": 1.42857
+    },
+    "base": {
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "ratio": 1.5
+    },
+    "lg": {
+      "fontSize": "18px",
+      "lineHeight": "28px",
+      "ratio": 1.55556
+    },
+    "2xl": {
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "ratio": 1.33333
+    },
+    "3xl": {
+      "fontSize": "30px",
+      "lineHeight": "36px",
+      "ratio": 1.2
+    }
   },
-
   "styles": {
-    "display":    { "family": "sans", "fontSize": "30px", "lineHeight": "36px",    "fontWeight": 600, "tabular": true,  "origin": "extracted", "usage": "The one big figure on a card: a balance, a goal total. Carries tabular numerals." },
-    "heading":    { "family": "sans", "fontSize": "24px", "lineHeight": "32px",    "fontWeight": 500, "origin": "extracted", "usage": "Largest card title. One per card at most." },
-    "title":      { "family": "sans", "fontSize": "18px", "lineHeight": "28px",    "fontWeight": 600, "tabular": true,  "origin": "extracted", "usage": "Stat values and prominent section titles (3.4 kW, May 25 2024). Drop to weight 500 with letterSpacing -0.45px for centred empty-state titles, which is how the reference sets them." },
-    "card-title": { "family": "sans", "fontSize": "16px", "lineHeight": "24px",    "fontWeight": 500, "origin": "extracted", "usage": "Default card and panel title." },
-    "body":       { "family": "sans", "fontSize": "16px", "lineHeight": "24px",    "fontWeight": 400, "origin": "extracted", "usage": "Introductory and supporting copy under a title." },
-    "text":       { "family": "sans", "fontSize": "14px", "lineHeight": "20px",    "fontWeight": 400, "origin": "extracted", "usage": "The default. Table cells, list rows, descriptions, most interface text." },
-    "prose":      { "family": "sans", "fontSize": "14px", "lineHeight": "22.75px", "fontWeight": 400, "origin": "extracted", "usage": "Long-form paragraphs that run several lines. NOTE the fractional line height: the reference sets 162.5%, which lands on 22.75px at 14px. Round to 23px, or normalise to 24px for a 4px grid." },
-    "label":      { "family": "sans", "fontSize": "14px", "lineHeight": "19.25px", "fontWeight": 500, "origin": "extracted", "usage": "Form field labels and switch titles. NOTE the fractional line height: 137.5% lands on 19.25px. Round to 19px, or use 20px to match text." },
-    "button":     { "family": "sans", "fontSize": "14px", "lineHeight": "20px",    "fontWeight": 500, "origin": "extracted", "usage": "All button and tab labels, at every button height." },
-    "caption":    { "family": "sans", "fontSize": "12px", "lineHeight": "16px",    "fontWeight": 400, "origin": "extracted", "usage": "Help text, timestamps, chart axis labels." },
-    "eyebrow":    { "family": "sans", "fontSize": "12px", "lineHeight": "16px",    "fontWeight": 500, "textTransform": "uppercase", "origin": "extracted", "usage": "Small uppercase label above a title (RETIREMENT, UPCOMING, COVER ART)." },
-    "badge":      { "family": "sans", "fontSize": "12px", "lineHeight": "16px",    "fontWeight": 500, "origin": "extracted", "usage": "Badge and pill text." },
-    "code":       { "family": "mono", "fontSize": "12px", "lineHeight": "16px",    "fontWeight": 500, "origin": "extracted", "usage": "Identifiers and keys: env var names, token names." },
-    "code-value": { "family": "mono", "fontSize": "12px", "lineHeight": "16px",    "fontWeight": 400, "origin": "extracted", "usage": "The value beside a code key, set in muted-foreground." },
-    "numeric":    { "family": "mono", "fontSize": "12px", "lineHeight": "16px",    "fontWeight": 500, "tabular": true, "origin": "extracted", "usage": "Figures in usage meters and dense tables, where digits must align in a column." }
+    "display": {
+      "family": "sans",
+      "fontSize": "30px",
+      "lineHeight": "36px",
+      "fontWeight": 600,
+      "tabular": true,
+      "origin": "extracted",
+      "usage": "The one big figure on a card: a balance, a goal total. Carries tabular numerals."
+    },
+    "heading": {
+      "family": "sans",
+      "fontSize": "24px",
+      "lineHeight": "32px",
+      "fontWeight": 500,
+      "origin": "extracted",
+      "usage": "Largest card title. One per card at most."
+    },
+    "title": {
+      "family": "sans",
+      "fontSize": "18px",
+      "lineHeight": "28px",
+      "fontWeight": 600,
+      "tabular": true,
+      "origin": "extracted",
+      "usage": "Stat values and prominent section titles (3.4 kW, May 25 2024). For a centred or floating panel title use `panel-title`, which is this size at weight 500 with -0.45px tracking."
+    },
+    "panel-title": {
+      "family": "sans",
+      "fontSize": "18px",
+      "lineHeight": "28px",
+      "fontWeight": 500,
+      "letterSpacing": "-0.45px",
+      "origin": "extracted",
+      "usage": "The title of a centred or floating panel: an empty state, a dialog, a drawer, a login card. The system's ONLY negative tracking -- at 18px weight 500 it tightens a short heading that would otherwise read as spaced out. Distinct from `title`, which is the same size at weight 600 with no tracking and is for stat values. Named on 2026-10-24: the values were recorded in `title`'s usage note from the first extraction and hard-coded in six places before the login screen made that untenable."
+    },
+    "card-title": {
+      "family": "sans",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontWeight": 500,
+      "origin": "extracted",
+      "usage": "Default card and panel title."
+    },
+    "body": {
+      "family": "sans",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "fontWeight": 400,
+      "origin": "extracted",
+      "usage": "Introductory and supporting copy under a title."
+    },
+    "text": {
+      "family": "sans",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontWeight": 400,
+      "origin": "extracted",
+      "usage": "The default. Table cells, list rows, descriptions, most interface text."
+    },
+    "prose": {
+      "family": "sans",
+      "fontSize": "14px",
+      "lineHeight": "22.75px",
+      "fontWeight": 400,
+      "origin": "extracted",
+      "usage": "Long-form paragraphs that run several lines. NOTE the fractional line height: the reference sets 162.5%, which lands on 22.75px at 14px. Round to 23px, or normalise to 24px for a 4px grid."
+    },
+    "label": {
+      "family": "sans",
+      "fontSize": "14px",
+      "lineHeight": "19.25px",
+      "fontWeight": 500,
+      "origin": "extracted",
+      "usage": "Form field labels and switch titles. NOTE the fractional line height: 137.5% lands on 19.25px. Round to 19px, or use 20px to match text."
+    },
+    "button": {
+      "family": "sans",
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontWeight": 500,
+      "origin": "extracted",
+      "usage": "All button and tab labels, at every button height."
+    },
+    "caption": {
+      "family": "sans",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 400,
+      "origin": "extracted",
+      "usage": "Help text, timestamps, chart axis labels."
+    },
+    "eyebrow": {
+      "family": "sans",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 500,
+      "textTransform": "uppercase",
+      "origin": "extracted",
+      "usage": "Small uppercase label above a title (RETIREMENT, UPCOMING, COVER ART)."
+    },
+    "badge": {
+      "family": "sans",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 500,
+      "origin": "extracted",
+      "usage": "Badge and pill text."
+    },
+    "code": {
+      "family": "mono",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 500,
+      "origin": "extracted",
+      "usage": "Identifiers and keys: env var names, token names."
+    },
+    "code-value": {
+      "family": "mono",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 400,
+      "origin": "extracted",
+      "usage": "The value beside a code key, set in muted-foreground."
+    },
+    "numeric": {
+      "family": "mono",
+      "fontSize": "12px",
+      "lineHeight": "16px",
+      "fontWeight": 500,
+      "tabular": true,
+      "origin": "extracted",
+      "usage": "Figures in usage meters and dense tables, where digits must align in a column."
+    }
   }
 }

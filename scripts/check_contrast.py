@@ -251,11 +251,23 @@ def check_previews(failures: list) -> int:
     return passes
 
 
+NEXT_CSS  = ["examples/dashboard-next/out/_next/static/chunks/*.css"]
+JINJA_CSS = ["examples/dashboard-jinja/out/static/css/app.css"]
+RAILS_CSS = ["examples/login-rails/out/assets/application.css"]
+
 SCREENS = [
-    ("dashboard-next",  "examples/dashboard-next/out/index.html",
-     ["examples/dashboard-next/out/_next/static/chunks/*.css"]),
-    ("dashboard-jinja", "examples/dashboard-jinja/out/light.html",
-     ["examples/dashboard-jinja/out/static/css/app.css"]),
+    ("dashboard-next",   "examples/dashboard-next/out/index.html",        NEXT_CSS),
+    ("dashboard-jinja",  "examples/dashboard-jinja/out/light.html",       JINJA_CSS),
+    ("login-next",       "examples/dashboard-next/out/login.html",        NEXT_CSS),
+    ("login-jinja",      "examples/dashboard-jinja/out/login-light.html", JINJA_CSS),
+    ("login-rails",      "examples/login-rails/out/login-light.html",     RAILS_CSS),
+    # The error variant, so destructive-text on a card is measured and not just
+    # asserted -- it is the pair that broke twice.
+    ("login-rails-error", "examples/login-rails/out/login-light-error.html", RAILS_CSS),
+    # No stylesheet at all: a mailer is inline styles only, built from the
+    # generated Ruby tokens. This is the one screen where dist/ruby is load
+    # bearing, so it is the one place its contrast can actually be wrong.
+    ("password-reset-email", "examples/login-rails/out/password-reset-email.html", []),
 ]
 
 
@@ -264,7 +276,7 @@ def check_screens(failures: list):
     for name, html_rel, css_globs in SCREENS:
         html_path = ROOT / html_rel
         css_paths = [p for g in css_globs for p in sorted(ROOT.glob(g))]
-        if not html_path.exists() or not css_paths:
+        if not html_path.exists() or (css_globs and not css_paths):
             skipped.append(name)
             continue
         css = "\n".join(p.read_text() for p in css_paths)
@@ -365,9 +377,9 @@ def main() -> int:
 
     # A screen whose stylesheet did not parse still reports a clean pass,
     # because every text node then sits on the bare page colour. Refuse that.
-    for name, _, _ in SCREENS:
+    for name, _, css_globs in SCREENS:
         st = STATS.get(name)
-        if st and st["colour_rules"] < 10:
+        if css_globs and st and st["colour_rules"] < 10:
             print(f"\n{name}: only {st['colour_rules']} colour rules parsed out of "
                   f"{st['rules']} -- the stylesheet did not read, so this pass means nothing.")
             return 1

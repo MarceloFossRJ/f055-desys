@@ -76,8 +76,8 @@ export const colors = {
 };
 
 export const fontFamily = {
-    sans: "\"Roboto\", system-ui, sans-serif",
-    mono: "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace"
+    sans: "'Roboto', system-ui, sans-serif",
+    mono: "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
 };
 
 export const fontSize = {

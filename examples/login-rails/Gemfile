@@ -1,0 +1,7 @@
+# The gems a real app needs. Not installed in this repo's CI: the views and the
+# helper are the deliverable, and render.rb exercises them with stdlib ERB.
+source "https://rubygems.org"
+ruby "~> 3.0"
+
+gem "rails", "~> 7.1"
+gem "puma"

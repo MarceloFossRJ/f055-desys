@@ -1,0 +1,79 @@
+<% content_for :title, "Login — F055" %>
+
+<main class="flex min-h-dvh items-center justify-center bg-background p-6">
+  <%# 384px: the width the reference uses for every centred panel, already in
+      Dialog, Drawer, Toast and the empty state. A login card is that object. %>
+  <div class="w-full max-w-[384px]">
+    <div class="flex flex-col gap-6 rounded-24 bg-card p-6 shadow-card">
+      <header class="flex flex-col gap-1.5">
+        <%# Named styles, not literals. %>
+        <h1 class="type-panel-title">Login to your account</h1>
+        <p class="type-prose text-muted-foreground">
+          Enter your email below to login to your account
+        </p>
+      </header>
+
+      <%= form_with url: login_path, method: :post, class: "flex flex-col gap-4" do |f| %>
+        <div class="flex flex-col gap-1.5">
+          <%= f.label :email, "Email", class: "text-sm font-medium" %>
+          <%= f.email_field :email, required: true, autocomplete: "email",
+                placeholder: "m@example.com",
+                class: "h-(--control-button) w-full rounded-8 bg-input px-3 text-sm
+                  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2
+                  focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset" %>
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <div class="flex items-center justify-between gap-2">
+            <%= f.label :password, "Password", class: "text-sm font-medium" %>
+            <%# No link colour in this system, so the underline carries it. %>
+            <%= link_to "Forgot your password?", "#",
+                  class: "text-sm text-muted-foreground underline underline-offset-4
+                    hover:text-foreground rounded-5 focus-visible:outline-none focus-visible:ring-2
+                    focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset" %>
+          </div>
+          <%= f.password_field :password, required: true, autocomplete: "current-password",
+                "aria-invalid": (@error ? "true" : nil),
+                "aria-describedby": (@error ? "password-error" : nil),
+                class: "h-(--control-button) w-full rounded-8 bg-input px-3 text-sm
+                  placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2
+                  focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset
+                  #{'ring-1 ring-destructive' if @error}" %>
+          <% if @error %>
+            <%# Ring, not tint: one hue, so an invalid field keeps its fill and
+                gains an outline. The Validation spec's rule. %>
+            <p id="password-error" class="text-sm text-destructive-text">
+              That email and password do not match.
+            </p>
+          <% end %>
+        </div>
+
+        <%# f.button, not f.submit: submit emits <input type="submit">, whose label
+            lives in an attribute and is invisible to a screen reader's heading
+            list and to scripts/check_contrast.py alike. %>
+        <%= f.button "Login", type: "submit",
+              class: "inline-flex h-(--control-button) w-full items-center justify-center rounded-pill
+                border border-transparent bg-primary px-4 text-sm font-medium text-primary-foreground
+                cursor-pointer hover:opacity-90 focus-visible:outline-none focus-visible:ring-2
+                focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset" %>
+
+        <%# No Google mark: drawing someone else's logo is not ours to do, and
+            this system has no brand-icon set. The label carries it. %>
+        <button type="button"
+          class="inline-flex h-(--control-button) w-full items-center justify-center rounded-pill
+            border border-border bg-card px-4 text-sm font-medium shadow-thumb cursor-pointer
+            hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+            focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset">
+          Login with Google
+        </button>
+      <% end %>
+    </div>
+
+    <p class="mt-4 text-center text-sm text-muted-foreground">
+      Don't have an account?
+      <%= link_to "Sign up", "#", class: "underline underline-offset-4 hover:text-foreground rounded-5
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+        focus-visible:ring-offset-2 focus-visible:ring-offset-ring-offset" %>
+    </p>
+  </div>
+</main>

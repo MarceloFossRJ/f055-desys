@@ -25,7 +25,8 @@ ELEVATION = json.loads((ROOT / "tokens" / "elevation.json").read_text())
 SIZE = json.loads((ROOT / "tokens" / "size.json").read_text())
 
 PALETTE, SEMANTIC, META = COLOR["palette"], COLOR["semantic"], COLOR["meta"]
-FAMILIES = TYPE["families"]
+# `$`-prefixed keys are notes, as in `scale` -- filter them the same way.
+FAMILIES = {k: v for k, v in TYPE["families"].items() if not k.startswith("$")}
 SCALE = {k: v for k, v in TYPE["scale"].items() if not k.startswith("$")}
 STYLES = TYPE["styles"]
 RADII = RADIUS["tokens"]
@@ -124,6 +125,8 @@ def build_web_css() -> None:
             f"  line-height: {s['lineHeight']};",
             f"  font-weight: {s['fontWeight']};",
         ]
+        if s.get("letterSpacing"):
+            decls.append(f"  letter-spacing: {s['letterSpacing']};")
         if s.get("textTransform"):
             decls.append(f"  text-transform: {s['textTransform']};")
         if s.get("tabular"):
@@ -302,6 +305,7 @@ def build_python() -> None:
         f'    "{n}": TextStyle(family={json.dumps(FAMILIES[s["family"]]["stack"])}, '
         f'font_size="{s["fontSize"]}", line_height="{s["lineHeight"]}", '
         f'font_weight={s["fontWeight"]}, '
+        f'letter_spacing={repr(s.get("letterSpacing"))}, '
         f'text_transform={repr(s.get("textTransform"))}, '
         f'tabular={bool(s.get("tabular"))}),'
         for n, s in STYLES.items())
@@ -367,6 +371,7 @@ class TextStyle:
     font_size: str
     line_height: str
     font_weight: int
+    letter_spacing: Optional[str] = None
     text_transform: Optional[str] = None
     tabular: bool = False
 
@@ -379,6 +384,8 @@ class TextStyle:
             f"line-height: {{self.line_height}}",
             f"font-weight: {{self.font_weight}}",
         ]
+        if self.letter_spacing:
+            parts.append(f"letter-spacing: {{self.letter_spacing}}")
         if self.text_transform:
             parts.append(f"text-transform: {{self.text_transform}}")
         if self.tabular:
@@ -463,6 +470,7 @@ def build_ruby() -> None:
     styles = "\n".join(
         f'      {n.replace("-", "_")}: TextStyle.new({json.dumps(FAMILIES[s["family"]]["stack"])}, '
         f'"{s["fontSize"]}", "{s["lineHeight"]}", {s["fontWeight"]}, '
+        f'{json.dumps(s.get("letterSpacing")) if s.get("letterSpacing") else "nil"}, '
         f'{json.dumps(s.get("textTransform")) if s.get("textTransform") else "nil"}, '
         f'{str(bool(s.get("tabular"))).lower()}).freeze,'
         for n, s in STYLES.items())
@@ -506,11 +514,12 @@ module F055
     end
 
     TextStyle = Struct.new(:family, :font_size, :line_height, :font_weight,
-                           :text_transform, :tabular) do
+                           :letter_spacing, :text_transform, :tabular) do
       # An inline style declaration, for mail and PDF where classes do not apply.
       def css
         parts = ["font-family: #{{family}}", "font-size: #{{font_size}}",
                  "line-height: #{{line_height}}", "font-weight: #{{font_weight}}"]
+        parts << "letter-spacing: #{{letter_spacing}}" if letter_spacing
         parts << "text-transform: #{{text_transform}}" if text_transform
         parts << "font-variant-numeric: tabular-nums" if tabular
         "#{{parts.join('; ')}};"
@@ -684,11 +693,13 @@ def build_kotlin_type() -> None:
     def style(name: str, s: dict) -> str:
         fam = "sans" if s["family"] == "sans" else "mono"
         feat = '\n        fontFeatureSettings = "tnum",' if s.get("tabular") else ""
+        ls = (f"\n        letterSpacing = {px(s['letterSpacing']):g}.sp,"
+              if s.get("letterSpacing") else "")
         return f"""    val {camel(name)}: TextStyle = TextStyle(
         fontFamily = {fam},
         fontSize = {px(s['fontSize']):g}.sp,
         lineHeight = {px(s['lineHeight']):g}.sp,
-        fontWeight = FontWeight({s['fontWeight']}),{feat}
+        fontWeight = FontWeight({s['fontWeight']}),{ls}{feat}
     )"""
 
     iface = "\n".join(f"    val {camel(n)}: TextStyle" for n in STYLES)
@@ -862,11 +873,15 @@ def build_swift() -> None:
         fam = FAMILIES[s["family"]]["primary"]
         design = ".monospaced" if s["family"] == "mono" else ".default"
         tab = "\n            .monospacedDigit()" if s.get("tabular") else ""
+        # Tracking is a view modifier in SwiftUI, not part of Font, so it is
+        # published as a constant to apply with .tracking(...) at the call site.
+        trk = (f"\n    public static let {camel(name)}Tracking: CGFloat = "
+               f"{px(s['letterSpacing']):g}" if s.get("letterSpacing") else "")
         return f"""    /// {s['usage'].split('.')[0]}.
     public static var {camel(name)}: Font {{
         Font.custom("{fam}", size: {px(s['fontSize']):g})
             .weight(.{weight_name(s['fontWeight'])}){tab}
-    }}
+    }}{trk}
     public static let {camel(name)}LineHeight: CGFloat = {px(s['lineHeight']):g}
     public static let {camel(name)}Fallback: Font =
         .system(size: {px(s['fontSize']):g}, weight: .{weight_name(s['fontWeight'])}, design: {design})"""

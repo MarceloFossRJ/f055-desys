@@ -97,6 +97,14 @@ def chart_geometry(points, width=720, height=240, pad=(44, 8, 12, 28)):
     }
 
 
+@app.get("/login", response_class=HTMLResponse)
+def login(request: Request, theme: str = "light", error: bool = False):
+    return templates.TemplateResponse(
+        request=request, name="login.html",
+        context={"theme": "dark" if theme == "dark" else "light", "error": error},
+    )
+
+
 @app.get("/", response_class=HTMLResponse)
 def dashboard(request: Request, theme: str = "light"):
     return templates.TemplateResponse(

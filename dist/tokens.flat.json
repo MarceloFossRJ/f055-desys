@@ -589,7 +589,7 @@
   "typography": {
     "families": {
       "sans": {
-        "stack": "\"Roboto\", system-ui, sans-serif",
+        "stack": "'Roboto', system-ui, sans-serif",
         "primary": "Roboto",
         "source": "Google Fonts",
         "variable": true,
@@ -611,7 +611,7 @@
         "usage": "Everything that is not code or a tabular figure."
       },
       "mono": {
-        "stack": "\"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+        "stack": "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
         "primary": "Geist Mono",
         "source": "Google Fonts",
         "variable": true,
@@ -685,7 +685,16 @@
         "fontWeight": 600,
         "tabular": true,
         "origin": "extracted",
-        "usage": "Stat values and prominent section titles (3.4 kW, May 25 2024). Drop to weight 500 with letterSpacing -0.45px for centred empty-state titles, which is how the reference sets them."
+        "usage": "Stat values and prominent section titles (3.4 kW, May 25 2024). For a centred or floating panel title use `panel-title`, which is this size at weight 500 with -0.45px tracking."
+      },
+      "panel-title": {
+        "family": "sans",
+        "fontSize": "18px",
+        "lineHeight": "28px",
+        "fontWeight": 500,
+        "letterSpacing": "-0.45px",
+        "origin": "extracted",
+        "usage": "The title of a centred or floating panel: an empty state, a dialog, a drawer, a login card. The system's ONLY negative tracking -- at 18px weight 500 it tightens a short heading that would otherwise read as spaced out. Distinct from `title`, which is the same size at weight 600 with no tracking and is for stat values. Named on 2026-10-24: the values were recorded in `title`'s usage note from the first extraction and hard-coded in six places before the login screen made that untenable."
       },
       "card-title": {
         "family": "sans",
