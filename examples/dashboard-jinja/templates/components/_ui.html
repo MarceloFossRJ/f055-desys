@@ -40,7 +40,7 @@
 
 {%- macro badge(label, tone='outline', icon_name=None) -%}
   <span class="inline-flex items-center gap-1 rounded-pill px-2 py-0.5 text-xs font-medium whitespace-nowrap
-    {% if tone == 'muted' %}bg-muted text-accent-foreground
+    {% if tone == 'muted' %}bg-muted text-muted-foreground
     {% elif tone == 'primary' %}bg-primary text-primary-foreground
     {% else %}border border-border text-foreground{% endif %}">
     {%- if icon_name %}{{ lucide(icon_name, size=control['icon-xs']) }}{% endif -%}
@@ -66,5 +66,5 @@
 
 {%- macro avatar(initials) -%}
   <span class="inline-grid size-(--control-avatar) shrink-0 place-content-center rounded-full
-    bg-muted text-xs font-medium text-accent-foreground">{{ initials }}</span>
+    bg-muted text-xs font-medium text-muted-foreground">{{ initials }}</span>
 {%- endmacro -%}
