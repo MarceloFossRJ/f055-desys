@@ -1,0 +1,59 @@
+<!-- @dsCard group="Disclosure" height=420 subtitle="Stacked disclosure items on muted-subtle, divided by hairlines" -->
+<div class="wrap">
+  <div class="acc">
+    <div class="item">
+      <button class="trig" aria-expanded="true">
+        How secure is my financial data with Ledger?
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+      <div class="panel">
+        <p class="body">We use bank-level AES-256 encryption, SOC 2 Type II certified
+          infrastructure, and never store your credentials. All connections use read-only
+          access tokens.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <button class="trig" aria-expanded="false">
+        How do I connect my bank or investment accounts?
+        <svg class="down" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+    </div>
+
+    <div class="item">
+      <button class="trig is-focus" aria-expanded="false">
+        Can I export my data for tax purposes?
+        <svg class="down" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap { background: var(--background); color: var(--foreground); padding: var(--space-20); }
+  .acc { max-width: 360px; border-radius: var(--radius-14); overflow: hidden; }
+
+  .item { background: var(--muted-subtle); border-bottom: 1px solid var(--border); }
+  .item:last-child { border-bottom: 0; }
+
+  .trig {
+    width: 100%; display: flex; align-items: flex-start; justify-content: space-between;
+    gap: var(--space-24); padding: var(--space-16);
+    border: 1px solid transparent; background: none; cursor: pointer; text-align: left;
+    color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .trig svg {
+    width: 16px; height: 16px; flex: none; margin-left: auto;
+    fill: none; stroke: var(--muted-foreground); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .down { transform: rotate(180deg); }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .panel { padding-inline: var(--space-16); padding-bottom: var(--space-16); }
+  .body {
+    margin: 0; font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    color: var(--foreground);
+  }
+</style>

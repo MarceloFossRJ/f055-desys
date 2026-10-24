@@ -1,0 +1,109 @@
+<!-- @dsCard group="Forms" height=560 subtitle="Input trigger plus Calendar in an overlay panel" -->
+<div class="wrap">
+  <div class="field">
+    <span class="lbl">Target Date</span>
+    <div class="trig">
+      <svg class="lead" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+      <span class="val">23 October 2026</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Empty</span>
+    <div class="trig">
+      <svg class="lead" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+      <span class="val ph">Pick a date</span>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Open</span>
+    <div class="trig is-focus">
+      <svg class="lead" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+      <span class="val">23 October 2026</span>
+    </div>
+    <div class="panel">
+      <div class="chd">
+        <button class="nav" aria-label="Previous month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+        <span class="mo">October 2026</span>
+        <button class="nav" aria-label="Next month"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+      </div>
+      <div class="dow"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+      <div class="grid">
+        <span class="d out">27</span><span class="d out">28</span><span class="d out">29</span><span class="d out">30</span>
+        <span class="d">1</span><span class="d">2</span><span class="d">3</span>
+        <span class="d">4</span><span class="d">5</span><span class="d">6</span><span class="d">7</span><span class="d">8</span><span class="d">9</span><span class="d">10</span>
+        <span class="d">11</span><span class="d">12</span><span class="d">13</span><span class="d">14</span><span class="d">15</span><span class="d">16</span><span class="d">17</span>
+        <span class="d">18</span><span class="d">19</span><span class="d">20</span><span class="d">21</span><span class="d">22</span><span class="d sel">23</span><span class="d">24</span>
+        <span class="d">25</span><span class="d">26</span><span class="d">27</span><span class="d">28</span><span class="d">29</span><span class="d">30</span><span class="d">31</span>
+      </div>
+      <div class="foot">
+        <button class="gb">Today</button>
+        <button class="gb pri">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-6); max-width: 320px; }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+
+  .trig {
+    display: flex; align-items: center; gap: var(--space-8); cursor: pointer;
+    height: 32px; padding-inline: var(--space-10);
+    background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
+  }
+  .lead {
+    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .val { flex: 1; font-family: var(--font-sans); font-size: 14px; line-height: 20px; }
+  .ph { color: var(--muted-foreground); }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .panel {
+    margin-top: var(--space-4);
+    background: var(--popover); color: var(--popover-foreground);
+    border-radius: var(--radius-14); box-shadow: var(--shadow-overlay);
+    padding: var(--space-16);
+    display: flex; flex-direction: column; gap: var(--space-12);
+  }
+  .chd { display: flex; align-items: center; justify-content: space-between; height: 32px; }
+  .mo { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500; }
+  .nav {
+    width: 24px; height: 24px; display: grid; place-content: center; cursor: pointer;
+    border: 0; background: transparent; border-radius: var(--radius-14); color: var(--foreground);
+  }
+  .nav svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .dow { display: grid; grid-template-columns: repeat(7, 1fr); }
+  .dow span {
+    text-align: center; color: var(--muted-foreground);
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--space-4); }
+  .d {
+    aspect-ratio: 1 / 1; display: grid; place-content: center; cursor: pointer;
+    border-radius: var(--radius-full);
+    font-family: var(--font-sans); font-size: 14px; line-height: 1; color: var(--foreground);
+  }
+  .out { color: var(--muted-foreground); }
+  .sel { background: var(--primary); color: var(--primary-foreground); }
+
+  .foot { display: flex; justify-content: flex-end; gap: var(--space-8); }
+  .gb {
+    height: 28px; padding-inline: var(--space-12); cursor: pointer;
+    border: 1px solid var(--border); border-radius: var(--radius-pill);
+    background: var(--popover); color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .pri { background: var(--primary); color: var(--primary-foreground); border-color: transparent; }
+</style>

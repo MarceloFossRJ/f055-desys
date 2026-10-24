@@ -6,7 +6,7 @@ A stack of pill rows on a tinted fill. Each row is its own surface — there are
 
 | Part | Token |
 |---|---|
-| Row fill | `muted` |
+| Row fill | `muted-subtle` |
 | Row shape | `radius-pill` |
 | Row padding | `space-14` block, `space-16` inline |
 | Gap between rows | `space-8` |
@@ -21,7 +21,12 @@ A stack of pill rows on a tinted fill. Each row is its own surface — there are
 
 This is the part that distinguishes a ListGroup from a Table. A table uses
 hairline `border` rules between rows and no fill. A list group gives each row
-its own `muted` pill with `space-8` between them, and no rules at all.
+its own `muted-subtle` pill with `space-8` between them, and no rules at all.
+
+`muted-subtle` is `muted` at 50% — one step lighter. That matters at this
+density: a stack of rows in solid `muted` reads as a single grey block, while
+the lighter fill keeps each row distinct from its neighbours and from the card
+behind them. Accordion and Alert use the same fill for the same reason.
 
 Use a **Table** when the rows are records to compare — columns line up, figures
 align. Use a **ListGroup** when each row is a destination or an action.
@@ -50,14 +55,6 @@ Descriptions clamp to two lines. A row needing three lines is a card.
 
 The whole row is the target, not just the title — which is what makes the small
 icons and chevrons acceptable here.
-
-## Deviation from the reference
-
-The reference fills rows with `muted` at 50% (`#F5F5F580`), and this spec uses
-solid `muted`. Over `card` the difference is roughly one step of grey. It is
-called out because the reference also uses partial-alpha fills for `input` and
-`track`, which *are* tokenised — a `muted` variant at 50% may deserve a token of
-its own if this pattern recurs.
 
 ## Not yet tokenised
 

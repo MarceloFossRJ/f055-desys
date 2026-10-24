@@ -113,7 +113,12 @@ darker in dark mode than light. `secondary` sits on a zinc ramp while everything
 else is neutral. Two type styles land on fractional pixels. All preserved, all
 flagged.
 
-**`track` is the one colour token added after the first pass.** The empty half
+**`muted-subtle` is `muted` at 50%** — the fill under ListGroup rows, Accordion
+items and Alerts. Measured at `#F5F5F580` light and `#26262680` dark; one step
+lighter than `muted`, which is what stops a stack of rows reading as a wall of
+grey.
+
+**`track` was the first colour token added after the first pass.** The empty half
 of a slider and the fill of an unchecked checkbox use `#E5E5E5E6` light and
 `#FFFFFF22` dark — a third alpha ramp, distinct from both `border` (10% dark)
 and `input` (15%). The values are extracted; only the name is mine.

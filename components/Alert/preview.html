@@ -1,0 +1,81 @@
+<!-- @dsCard group="Display" height=420 subtitle="The system's own idiom: a row, an icon, a badge — not a tinted banner" -->
+<div class="wrap">
+  <div class="al">
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+    <span class="body">
+      <span class="t">Observability Plus is replacing Monitoring</span>
+      <span class="s">Monitoring will no longer be available on the Pro plan from November 2025.</span>
+    </span>
+    <span class="badge">Warning</span>
+  </div>
+
+  <div class="al">
+    <svg class="ico danger" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+    <span class="body">
+      <span class="t">Danger Zone</span>
+      <span class="s">Archive account and remove catalog.</span>
+    </span>
+    <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+  </div>
+
+  <div class="al">
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    <span class="body"><span class="t">Payout settings saved</span></span>
+  </div>
+
+  <div class="al">
+    <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+    <span class="body">
+      <span class="t">Two-factor authentication is off</span>
+      <span class="s">Verify via email or phone number.</span>
+    </span>
+    <button class="btn">Enable</button>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-8);
+  }
+
+  .al {
+    display: flex; align-items: center; gap: var(--space-14);
+    padding: var(--space-14) var(--space-16);
+    background: var(--muted-subtle); border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+  }
+  .ico {
+    width: 16px; height: 16px; flex: none; align-self: flex-start; translate: 0 2px;
+    fill: none; stroke: var(--foreground); stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .danger { stroke: var(--destructive); }
+
+  .body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-4); }
+  .t {
+    font-family: var(--font-sans); font-size: 14px; line-height: 19.25px;
+    font-weight: 500; color: var(--foreground);
+  }
+  .s {
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px;
+    color: var(--muted-foreground);
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; height: 20px; padding-inline: var(--space-8);
+    flex: none; border-radius: var(--radius-pill);
+    background: var(--secondary); color: var(--secondary-foreground);
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+  }
+  .chev {
+    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .btn {
+    height: 28px; padding-inline: var(--space-12); flex: none; cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: var(--secondary); color: var(--secondary-foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+</style>

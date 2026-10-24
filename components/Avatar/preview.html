@@ -1,0 +1,62 @@
+<!-- @dsCard group="Display" height=280 subtitle="Circle with a hairline ring; stacks overlap by 8px" -->
+<div class="wrap">
+  <div class="row">
+    <span class="av sm"><span class="ini">MF</span></span>
+    <span class="av"><span class="ini">MF</span></span>
+    <span class="av lg"><span class="ini">MF</span></span>
+    <span class="cap">24 · 32 · 40</span>
+  </div>
+
+  <div class="row">
+    <span class="av"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>
+    <span class="av"><span class="ini">JO</span></span>
+    <span class="cap">Fallbacks: icon, then initials</span>
+  </div>
+
+  <div class="stack">
+    <span class="av ring"><span class="ini">MF</span></span>
+    <span class="av ring"><span class="ini">JO</span></span>
+    <span class="av ring"><span class="ini">AK</span></span>
+    <span class="av ring more"><span class="ini">+9</span></span>
+  </div>
+  <span class="cap">Stacked — 2px ring in the page colour, overlapping by 8px</span>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .row { display: flex; align-items: center; gap: var(--space-8); }
+  .stack { display: flex; }
+
+  .av {
+    width: 32px; height: 32px; flex: none;
+    display: grid; place-content: center; overflow: hidden;
+    border-radius: var(--radius-full);
+    background: var(--muted); color: var(--muted-foreground);
+    box-shadow: var(--shadow-hairline);
+  }
+  .sm { width: 24px; height: 24px; }
+  .lg { width: 40px; height: 40px; }
+
+  .ini {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+  }
+  .lg .ini { font-size: 14px; line-height: 20px; }
+  .av svg {
+    width: 16px; height: 16px; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* In a stack the hairline is replaced by a 2px ring in the page colour,
+     which is what separates overlapping circles. */
+  .ring { box-shadow: 0 0 0 2px var(--ring-offset); }
+  .ring + .ring { margin-left: -8px; }
+  .more { background: var(--secondary); color: var(--secondary-foreground); }
+
+  .cap {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground);
+  }
+</style>

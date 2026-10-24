@@ -1,0 +1,69 @@
+<!-- @dsCard group="Forms" height=340 subtitle="Two thumbs, one filled segment between them" -->
+<div class="wrap">
+  <div class="field">
+    <div class="head">
+      <span class="lbl">Payout range</span>
+      <span class="val">$2,500 – $7,500</span>
+    </div>
+    <div class="sl">
+      <div class="track"><span class="fill" style="left:25%;right:25%"></span></div>
+      <span class="thumb" style="left:25%"></span>
+      <span class="thumb" style="left:75%"></span>
+    </div>
+    <div class="ends"><span class="cap">$50 (MIN)</span><span class="cap">$10,000 (MAX)</span></div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Thumbs together — the lower one keeps its z-order</span>
+    <div class="sl">
+      <div class="track"><span class="fill" style="left:48%;right:48%"></span></div>
+      <span class="thumb" style="left:48%"></span>
+      <span class="thumb hi" style="left:52%"></span>
+    </div>
+  </div>
+
+  <div class="field">
+    <span class="lbl">Focused upper thumb</span>
+    <div class="sl">
+      <div class="track"><span class="fill" style="left:10%;right:40%"></span></div>
+      <span class="thumb" style="left:10%"></span>
+      <span class="thumb is-focus" style="left:60%"></span>
+    </div>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-24);
+  }
+  .field { display: flex; flex-direction: column; gap: var(--space-8); }
+  .head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+  .val {
+    font-family: var(--font-sans); font-size: 18px; line-height: 28px; font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sl { position: relative; display: flex; align-items: center; height: 16px; }
+  .track {
+    position: relative; flex: 1; height: 4px; overflow: hidden;
+    background: var(--track); border-radius: var(--radius-pill);
+  }
+  /* The fill is bounded on BOTH sides — that is the only structural
+     difference from Slider, whose fill always starts at 0. */
+  .fill { position: absolute; top: 0; bottom: 0; background: var(--primary); }
+  .thumb {
+    position: absolute; translate: -50% 0; width: 16px; height: 16px;
+    background: var(--background); border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-raised); cursor: grab;
+  }
+  .hi { z-index: 1; }
+  .is-focus { z-index: 2; box-shadow: var(--shadow-raised), 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .ends { display: flex; justify-content: space-between; }
+  .cap {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground); font-variant-numeric: tabular-nums;
+  }
+</style>

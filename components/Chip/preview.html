@@ -1,0 +1,84 @@
+<!-- @dsCard group="Display" height=340 subtitle="One component, four variants: plain, icon, avatar, removable" -->
+<div class="wrap">
+  <div class="row">
+    <span class="chip">Equities</span>
+    <span class="chip">Bonds</span>
+    <span class="chip sel">Real Estate</span>
+    <span class="cap">Plain · last is selected</span>
+  </div>
+
+  <div class="row">
+    <span class="chip"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Verified</span>
+    <span class="chip"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Needs review</span>
+    <span class="cap">With icon</span>
+  </div>
+
+  <div class="row">
+    <span class="chip"><span class="av"><span class="ini">MF</span></span>Marcelo</span>
+    <span class="chip"><span class="av"><span class="ini">JO</span></span>Jane</span>
+    <span class="cap">With avatar</span>
+  </div>
+
+  <div class="row">
+    <span class="chip">Equities<button class="x" aria-label="Remove Equities"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span>
+    <span class="chip"><span class="av"><span class="ini">MF</span></span>Marcelo<button class="x" aria-label="Remove Marcelo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></span>
+    <span class="cap">Removable</span>
+  </div>
+
+  <div class="row">
+    <span class="chip lg">Larger, 28px</span>
+    <span class="chip lg"><span class="av md"><span class="ini">MF</span></span>Marcelo</span>
+    <span class="cap">28px — when a chip sits beside 28px buttons</span>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-12);
+  }
+  .row { display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-8); }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--space-4);
+    height: 20px; padding-inline: var(--space-8);
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: var(--secondary); color: var(--secondary-foreground);
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px; font-weight: 500;
+    white-space: nowrap;
+  }
+  .sel { background: var(--primary); color: var(--primary-foreground); }
+  .lg { height: 28px; padding-inline: var(--space-10); font-size: 14px; line-height: 20px; }
+
+  .ico {
+    width: 12px; height: 12px; flex: none; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* The avatar sits flush to the leading edge, so the chip loses its
+     left padding and the circle fills the full height. */
+  .chip:has(.av) { padding-left: 2px; }
+  .av {
+    width: 16px; height: 16px; flex: none; display: grid; place-content: center;
+    border-radius: var(--radius-full); overflow: hidden;
+    background: var(--muted); color: var(--muted-foreground);
+  }
+  .md { width: 24px; height: 24px; }
+  .ini { font-family: var(--font-sans); font-size: 9px; line-height: 1; font-weight: 500; }
+  .md .ini { font-size: 11px; }
+
+  .x {
+    width: 12px; height: 12px; flex: none; display: grid; place-content: center;
+    padding: 0; border: 0; background: none; cursor: pointer; color: inherit;
+    border-radius: var(--radius-full);
+  }
+  .x svg {
+    width: 12px; height: 12px; fill: none; stroke: currentColor;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .cap {
+    font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground); margin-left: var(--space-4);
+  }
+</style>

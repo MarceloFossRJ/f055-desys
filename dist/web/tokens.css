@@ -39,6 +39,7 @@
   --destructive-foreground: oklch(0.971 0.013 17.38);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0 / 50%);
+  --muted-subtle: oklch(0.97 0 0 / 50%);
   --track: oklch(0.922 0 0 / 90%);
   --ring: oklch(0.505 0.213 27.518);
   --ring-offset: oklch(1 0 0);
@@ -106,6 +107,7 @@
   --destructive-foreground: oklch(0.971 0.013 17.38);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
+  --muted-subtle: oklch(0.269 0 0 / 50%);
   --track: oklch(1 0 0 / 13%);
   --ring: oklch(0.637 0.237 25.331);
   --ring-offset: oklch(0.145 0 0);
@@ -142,6 +144,7 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
+  --color-muted-subtle: var(--muted-subtle);
   --color-track: var(--track);
   --color-ring: var(--ring);
   --color-ring-offset: var(--ring-offset);

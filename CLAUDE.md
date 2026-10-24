@@ -87,6 +87,7 @@ Pick a token by the *role* it plays, not by how it looks.
 | `border` | Hairlines and dividers |
 | `input` | Form field fills |
 | `track` | The off state of a control: empty slider groove, unchecked box |
+| `muted-subtle` | Row and disclosure-item fills: ListGroup, Accordion, Alert |
 | `ring` | Focus rings only |
 | `ring-offset` | The gap between a control and its focus ring |
 | `chart-1…5` | Data series, in order |
@@ -227,15 +228,16 @@ stroke.
 
 ## Components
 
-Twenty components are **specified, not implemented**: Button, ButtonGroup,
-CloseButton, Toolbar, Badge, Input, Select, MultiSelect, Slider, Toggle,
-Calendar, Card, Table, ListGroup, Nav, NavBar, NavOverflow, Tabs, Breadcrumb,
-Pagination.
+Twenty-seven components are **specified, not implemented**: Button,
+ButtonGroup, CloseButton, Toolbar, Badge, Chip, Avatar, Input, Select,
+MultiSelect, DatePicker, Slider, Range, Toggle, Calendar, Card, Table,
+ListGroup, Alert, Accordion, Collapse, Nav, NavBar, NavOverflow, Tabs,
+Breadcrumb, Pagination.
 
-Three are **derived, not extracted** — the reference contains no multi-select,
-no horizontal nav bar, no overflow control and no pagination: MultiSelect,
-NavBar, NavOverflow and Pagination. Their READMEs say so. Treat them as
-provisional against anything a designer produces. Each has a `README.md` under `components/<Name>/`
+Seven are **derived or composed, not extracted** — the reference contains none
+of them: MultiSelect, NavBar, NavOverflow, Pagination, Collapse, Alert and
+Range, plus DatePicker which pairs two extracted halves. Their READMEs say so at
+the top. Treat them as provisional against anything a designer produces. Each has a `README.md` under `components/<Name>/`
 covering anatomy, variants, which token every part uses, and the decisions that
 are easy to get wrong — plus a `preview.html` that renders it from the real
 tokens.
@@ -246,7 +248,7 @@ from another design system; the spec records choices that are specific to F055
 (the pill on every control, the checkbox being the one square thing, `none` as a
 real elevation for inputs, tabular numerals on every numeric cell).
 
-If a component you need is not among the twenty, say so rather than inventing one —
+If a component you need is not among these, say so rather than inventing one —
 the pattern for adding it is to write the spec first.
 
 **A floating panel (dropdown, popover, menu, tooltip, date picker) uses
@@ -256,6 +258,15 @@ explains why.
 **Every control is `box-sizing: border-box`.** Heights in the specs are the
 rendered height, border included. Without it a 32px control with a 1px border
 renders at 34px, and one with block padding is far worse.
+
+**There is no alert banner, and adding one would break the palette.** The
+reference marks severity with an icon, a Badge or an action — never a tinted
+fill. A red or amber banner is decorative red, which is the one thing `primary`
+may not be. Alert's README has the severity table.
+
+**Chip and Badge look identical and are not the same.** A Badge is a label with
+no interaction; a Chip is a value the person set or can remove. If clicking does
+nothing, it is a Badge.
 
 **An icon-only button has three shapes depending on where it sits.** In a
 toolbar it is `radius-8` with `shadow-hairline` and no fill; alone on a surface

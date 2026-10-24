@@ -1,0 +1,66 @@
+<!-- @dsCard group="Disclosure" height=380 subtitle="A single disclosure — no fill, no dividers" -->
+<div class="wrap">
+  <div class="col">
+    <button class="trig" aria-expanded="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      Advanced settings
+    </button>
+    <div class="panel">
+      <div class="field">
+        <span class="lbl">Webhook endpoint</span>
+        <div class="input"><span class="val">https://api.example.com/hooks</span></div>
+      </div>
+      <p class="help">Changes take effect on the next sync.</p>
+    </div>
+  </div>
+
+  <div class="col">
+    <button class="trig" aria-expanded="false">
+      <svg class="closed" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      Danger zone
+    </button>
+  </div>
+
+  <div class="col">
+    <button class="trig is-focus" aria-expanded="false">
+      <svg class="closed" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      Show 4 more fields
+    </button>
+  </div>
+</div>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  .wrap {
+    background: var(--background); color: var(--foreground);
+    padding: var(--space-20); display: flex; flex-direction: column; gap: var(--space-16);
+  }
+  .col { display: flex; flex-direction: column; gap: var(--space-12); max-width: 360px; }
+
+  .trig {
+    display: inline-flex; align-items: center; gap: var(--space-6);
+    height: 32px; padding-inline: var(--space-10);
+    width: fit-content; cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-pill);
+    background: transparent; color: var(--foreground);
+    font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500;
+  }
+  .trig svg {
+    width: 16px; height: 16px; flex: none; fill: none; stroke: var(--muted-foreground);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .closed { transform: rotate(-90deg); }
+  .is-focus { box-shadow: 0 0 0 2px var(--ring-offset), 0 0 0 4px var(--ring); }
+
+  .panel { display: flex; flex-direction: column; gap: var(--space-6); padding-inline: var(--space-10); }
+  .field { display: flex; flex-direction: column; gap: var(--space-6); }
+  .lbl { font-family: var(--font-sans); font-size: 14px; line-height: 19.25px; font-weight: 500; }
+  .input {
+    display: flex; align-items: center; height: 32px; padding-inline: var(--space-10);
+    background: var(--input); border: 1px solid transparent; border-radius: var(--radius-pill);
+  }
+  .val { font-family: var(--font-mono); font-size: 12px; line-height: 16px; color: var(--foreground); }
+  .help {
+    margin: 0; font-family: var(--font-sans); font-size: 12px; line-height: 16px;
+    color: var(--muted-foreground);
+  }
+</style>

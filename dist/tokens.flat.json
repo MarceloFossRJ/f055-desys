@@ -333,6 +333,24 @@
         "alpha": 0.15
       }
     },
+    "muted-subtle": {
+      "light": {
+        "hex": "#F5F5F5",
+        "hex8": "#F5F5F580",
+        "rgba": "rgba(245, 245, 245, 0.5)",
+        "css": "oklch(0.97 0 0 / 50%)",
+        "ref": "neutral.100",
+        "alpha": 0.5
+      },
+      "dark": {
+        "hex": "#262626",
+        "hex8": "#26262680",
+        "rgba": "rgba(38, 38, 38, 0.5)",
+        "css": "oklch(0.269 0 0 / 50%)",
+        "ref": "neutral.800",
+        "alpha": 0.5
+      }
+    },
     "track": {
       "light": {
         "hex": "#E5E5E5",
