@@ -354,7 +354,7 @@ login-01, across the four target stacks:
 | `examples/dashboard-next/` | TypeScript · Next.js · Tailwind | dashboard, login | `npm install && npm run dev` |
 | `examples/dashboard-jinja/` | Python · FastAPI · Jinja2 · Tailwind | dashboard, login | `pip install -r requirements.txt && npm run build && uvicorn app:app` |
 | `examples/login-rails/` | Ruby on Rails · ERB · Tailwind | login, password-reset mailer | `npm run build && ruby render.rb out` |
-| `examples/login-compose/` | Kotlin · Compose Multiplatform | login | **not compiled — see below** |
+| `examples/login-compose/` | Kotlin · Compose Multiplatform | login | `./gradlew :composeApp:desktopTest` |
 
 The same login screen, built three times:
 
@@ -373,13 +373,20 @@ The mailer is where `dist/ruby/f055_tokens.rb` stops being optional: email
 clients strip `<style>`, so every rule is inline, built from the same token file
 the web app compiles its classes from.
 
-### The Compose one is not verified
+### The Compose one is verified in CI, not in the sandbox
 
-There is no Kotlin toolchain in this sandbox, so `examples/login-compose` has
-never been compiled or run, unlike the three above. `scripts/check_kotlin_tokens.py`
-verifies on every build that every token its source names exists in
-`dist/kotlin` — which catches a renamed token, and nothing else. A pass there
-does not mean the screen works, and its README says so.
+`examples/login-compose` compiles the generated Kotlin, lays the screen out,
+asserts its geometry **against the token objects** — `F055Control.button`, not
+`32.dp`, so a changed token cannot pass unnoticed — and renders both themes to
+PNG. That runs on every push and uploads the renders.
+
+It does not run in the sandbox this repo is developed in: Maven Central,
+JetBrains Space and the JetBrains CDN are all refused at its egress proxy, which
+the proxy logs as a 403 on CONNECT. Two checks do run everywhere:
+`check_kotlin_tokens.py` for every `F055…` name a Kotlin source uses, and
+`check_native_values.py`, which compares the numbers in `dist/kotlin` and
+`dist/swift` against the flat token file — the two outputs nothing else
+executes.
 
 The same region of the dashboard, built twice:
 

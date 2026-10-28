@@ -50,6 +50,46 @@ jobs:
       - name: Check Kotlin token references
         run: python3 scripts/check_kotlin_tokens.py
 
+      # dist/kotlin and dist/swift are the two outputs nothing executes. This
+      # compares their numbers against the flat token file -- a different code
+      # path, through px(), dp/sp conversion and ARGB packing, which is where a
+      # unit slip or a dropped alpha channel would live.
+      - name: Check Kotlin and Swift token values
+        run: python3 scripts/check_native_values.py
+
+  # Compose is the one stack that cannot be verified in the sandbox this repo is
+  # developed in: Maven Central, JetBrains Space and the JetBrains CDN are all
+  # refused at the proxy. Here they are reachable, so this job does what the
+  # sandbox cannot -- compiles the generated Kotlin, lays the screen out, and
+  # asserts its geometry against the tokens.
+  compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build the tokens the Compose source compiles against
+        run: python3 scripts/build_tokens.py
+
+      # Compiles dist/kotlin/*.kt as part of the module, so a generator that
+      # emits Kotlin which does not compile fails here and nowhere else.
+      - name: Compile and render the Compose login
+        working-directory: examples/login-compose
+        run: ./gradlew --no-daemon :composeApp:desktopTest
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: compose-login-renders
+          path: examples/login-compose/composeApp/build/reports/f055/*.png
+          if-no-files-found: error
+
   # The specs being accessible says nothing about the screens assembled from
   # them. This job builds both examples and measures the pages themselves --
   # Tailwind's real output, React's and Jinja's real markup.
