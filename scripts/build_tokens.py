@@ -9,7 +9,6 @@ Never edit anything under dist/ -- the next build overwrites it.
 """
 from __future__ import annotations
 
-import datetime
 import json
 import pathlib
 
@@ -1041,7 +1040,6 @@ def weight_name(w: int) -> str:
 def build_flat_json() -> None:
     out = {
         "$generated": BANNER,
-        "$built": datetime.date.today().isoformat(),
         "meta": META,
         "colors": {n: {m: {k: RESOLVED[n][m][k]
                            for k in ("hex", "hex8", "rgba", "css", "ref", "alpha")}
